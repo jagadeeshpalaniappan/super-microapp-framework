@@ -1,6 +1,6 @@
 {
-  "name": "meanjs",
-  "description": "MEAN.js App",
+  "name": "super-microapp-framework",
+  "description": "Super Microapp Framework -with MEAN.js",
   "repository": "https://github.com/jagadeeshtechgeek/meanjs",
   "logo": "https://meanjs.org/img/logo.png",
   "keywords": [
@@ -11,7 +11,8 @@
     "MEAN",
     "mongodb",
     "REST",
-    "API"
+    "API",
+    "super-microapp-framework"
   ],
   "env": {
     "NODE_ENV": "production",
