@@ -1,0 +1,23 @@
+{
+  "name": "meanjs",
+  "description": "MEAN.js App",
+  "repository": "https://github.com/jagadeeshtechgeek/meanjs",
+  "logo": "https://meanjs.org/img/logo.png",
+  "keywords": [
+    "node",
+    "express",
+    "angular",
+    "angular2",
+    "MEAN",
+    "mongodb",
+    "REST",
+    "API"
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "NPM_CONFIG_PRODUCTION": "false"
+  },
+  "addons": [
+    "mongolab"
+  ]
+}
