@@ -19,9 +19,9 @@
       }
     });
 
-    // Redirect to 404 when route not found
+    // Redirect to 404 when route not found  --anything redirecting to home view
     $urlRouterProvider.otherwise(function ($injector, $location) {
-      $injector.get('$state').transitionTo('not-found', null, {
+      $injector.get('$state').transitionTo('home', null, {
         location: false
       });
     });
