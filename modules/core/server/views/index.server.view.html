@@ -1,8 +1,10 @@
 {{!< layout}}
 
+{{#if isRootApp}}
 {{#contentFor 'rootAppContent'}}
   <section ui-view></section>
 {{/contentFor}}
+{{/if}}
 
 
 {{#contentFor 'microAppContent'}}
