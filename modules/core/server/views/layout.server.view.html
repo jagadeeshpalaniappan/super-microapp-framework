@@ -75,16 +75,17 @@
 
   <div id="rootApp">
     <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
+    {{#if isRootApp}}
     <section class="content">
       <section class="container">
-        {{{block "content"}}}
+        {{{block "rootAppContent"}}}
       </section>
     </section>
+    {{/if}}
   </div>
 
-
   <div id="microApp">
-    <h1>Micro Apps {{jag}} ..!</h1>
+    {{{block "microAppContent"}}}
   </div>
 
 </body>

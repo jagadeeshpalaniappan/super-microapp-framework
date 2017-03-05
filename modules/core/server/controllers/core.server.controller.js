@@ -55,11 +55,10 @@ exports.renderIndex = function (req, res) {
 
   var safeUserObject = _getSafeUserObject(req, res);
 
-
-
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
-    sharedConfig: JSON.stringify(config.shared)
+    sharedConfig: JSON.stringify(config.shared),
+    isRootApp: true
   });
 };
 
@@ -93,13 +92,12 @@ exports.renderMicroAppIndex = function (req, res) {
 
       var microAppBody = response.body;
 
-
       safeUserObject = _getSafeUserObject(req, res);
 
-      res.render('modules/core/server/views/mappindex', {
+      res.render('modules/core/server/views/index', {
         user: safeUserObject? JSON.stringify(safeUserObject) : null,
         sharedConfig: JSON.stringify(config.shared),
-        body: microAppBody
+        microAppBody: microAppBody
       });
 
 
@@ -107,11 +105,14 @@ exports.renderMicroAppIndex = function (req, res) {
     .catch(function (err) {
       // Request failed...
 
-      res.render('modules/core/server/views/mappindex', {
+      return res.redirect(500);
+
+      /*
+      res.render('modules/core/server/views/index', {
         user: safeUserObject? JSON.stringify(safeUserObject) : null,
         sharedConfig: JSON.stringify(config.shared)
       });
-
+      */
 
     });
 

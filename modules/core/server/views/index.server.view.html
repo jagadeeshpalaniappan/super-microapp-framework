@@ -1,5 +1,12 @@
 {{!< layout}}
 
-{{#contentFor 'content'}}
+{{#contentFor 'rootAppContent'}}
   <section ui-view></section>
+{{/contentFor}}
+
+
+{{#contentFor 'microAppContent'}}
+
+  {{{microAppBody}}}
+
 {{/contentFor}}
