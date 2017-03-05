@@ -52,6 +52,7 @@
     }
 
     // Then init the app
-    angular.bootstrap(document, [app.applicationModuleName]);
+    var rootApp = document.getElementById('rootApp');
+    angular.bootstrap(rootApp, [app.applicationModuleName]);
   }
 }(ApplicationConfiguration));
