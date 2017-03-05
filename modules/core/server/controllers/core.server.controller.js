@@ -4,10 +4,27 @@ var validator = require('validator'),
   path = require('path'),
   config = require(path.resolve('./config/config'));
 
-/**
- * Render the main application page
- */
-exports.renderIndex = function (req, res) {
+var parseUrl = require('url').parse;
+var formatUrl = require('url').format;
+var rp = require('request-promise');
+var requestProxy = require('express-request-proxy');
+
+
+var _redirectFormattedUrl = function(req, res){
+
+  // append '/' --if not
+  if(!req.path.endsWith('/')){
+    var url = parseUrl(req.url);
+    url.pathname = url.pathname + '/';
+    var newUrl = formatUrl(url);
+
+    return res.redirect(301, newUrl);
+  }
+
+};
+
+var _getSafeUserObject = function (req, res){
+
   var safeUserObject = null;
   if (req.user) {
     safeUserObject = {
@@ -24,11 +41,101 @@ exports.renderIndex = function (req, res) {
     };
   }
 
+  return safeUserObject;
+};
+
+
+
+/**
+ * Render the main application page
+ */
+exports.renderIndex = function (req, res) {
+
+  _redirectFormattedUrl(req, res);
+
+  var safeUserObject = _getSafeUserObject(req, res);
+
+
+
   res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared)
   });
 };
+
+
+/**
+ * Render the main application page
+ */
+exports.renderMicroAppIndex = function (req, res) {
+
+  console.log('-------------------renderMicroAppIndex ['+req.params.mappId+']---------------------');
+
+  _redirectFormattedUrl(req, res);
+
+  // Common:
+  var safeUserObject = null;
+
+  // Micro Apps Configuration::
+  // var mappsConfigured = [{id:'mapp1', name:'Micro App1'}, {id:'mapp2', name:'Micro App2'}];
+
+
+  // Request Micro App --html
+  var options = {
+    method: 'GET',
+    uri: 'http://localhost:4000',
+    resolveWithFullResponse: true
+  };
+
+  rp(options)
+    .then(function (response) {
+      console.log("succeeded with status %d", response.statusCode);
+
+      var microAppBody = response.body;
+
+
+      safeUserObject = _getSafeUserObject(req, res);
+
+      res.render('modules/core/server/views/mappindex', {
+        user: safeUserObject? JSON.stringify(safeUserObject) : null,
+        sharedConfig: JSON.stringify(config.shared),
+        body: microAppBody
+      });
+
+
+    })
+    .catch(function (err) {
+      // Request failed...
+
+      res.render('modules/core/server/views/mappindex', {
+        user: safeUserObject? JSON.stringify(safeUserObject) : null,
+        sharedConfig: JSON.stringify(config.shared)
+      });
+
+
+    });
+
+
+};
+
+
+exports.proxyAllMicroAppRequest = function (req, res, next) {
+
+  console.log('-------------------proxyAllMicroAppRequest---------------------');
+
+  var customHeader = {};
+
+  var options = {
+    url: 'http://localhost:4000'+ '/*',
+    timeout: 10000,
+    headers: customHeader,
+    originalQuery: req.originalUrl.indexOf('?') >= 0
+  };
+
+  requestProxy(options)(req, res, next);
+
+};
+
 
 /**
  * Render the server error page
