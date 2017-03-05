@@ -7,7 +7,8 @@ var config = require('../config'),
   mongoose = require('./mongoose'),
   express = require('./express'),
   chalk = require('chalk'),
-  seed = require('./seed');
+  seed = require('./seed'),
+  scheduler = require('./scheduler');
 
 function seedDB() {
   if (config.seedDB && config.seedDB.seed) {
@@ -21,8 +22,13 @@ mongoose.loadModels(seedDB);
 
 module.exports.init = function init(callback) {
   mongoose.connect(function (db) {
-    // Initialize express
+
+    // 1. Initialize express
     var app = express.init(db);
+
+    // 2. Initialize Schedulers
+    scheduler.scheduleAllDBJobs();
+
     if (callback) callback(app, db, config);
 
   });

@@ -4,10 +4,12 @@ var validator = require('validator'),
   path = require('path'),
   config = require(path.resolve('./config/config'));
 
+var _ = require('lodash');
 var parseUrl = require('url').parse;
 var formatUrl = require('url').format;
 var rp = require('request-promise');
 var requestProxy = require('express-request-proxy');
+var cache = require('memory-cache');
 
 
 var _redirectFormattedUrl = function(req, res){
@@ -68,7 +70,9 @@ exports.renderIndex = function (req, res) {
  */
 exports.renderMicroAppIndex = function (req, res) {
 
-  console.log('-------------------renderMicroAppIndex ['+req.params.mappId+']---------------------');
+  var microAppId = req.params.mappId;
+
+  console.log('-------------------renderMicroAppIndex ['+microAppId+']---------------------');
 
   _redirectFormattedUrl(req, res);
 
@@ -76,45 +80,70 @@ exports.renderMicroAppIndex = function (req, res) {
   var safeUserObject = null;
 
   // Micro Apps Configuration::
-  // var mappsConfigured = [{id:'mapp1', name:'Micro App1'}, {id:'mapp2', name:'Micro App2'}];
+  // var mappsConfigured = [
+  // {id:'mapp1', name:'Micro App1', uri: 'http://localhost:4000'},
+  // {id:'mapp2', name:'Micro App2', uri: 'http://localhost:4000'}];
+
+  var allMicroAppsConfig = cache.get('allMicroAppsConfig');
+
+  console.log("### allMicroAppsConfig");
+  console.log(allMicroAppsConfig);
+  var requestedMicroAppConfig = _.find(allMicroAppsConfig, { 'title': microAppId});
+
+  if (requestedMicroAppConfig) {
+
+    // Requested Micro App (Found)
+
+    // Request Micro App --html
+    var options = {
+      method: 'GET',
+      uri: 'http://localhost:4000',
+      resolveWithFullResponse: true
+    };
+
+    rp(options)
+      .then(function (response) {
+        console.log("succeeded with status %d", response.statusCode);
+
+        var microAppBody = response.body;
+
+        safeUserObject = _getSafeUserObject(req, res);
+
+        res.render('modules/core/server/views/index', {
+          user: safeUserObject? JSON.stringify(safeUserObject) : null,
+          sharedConfig: JSON.stringify(config.shared),
+          microAppBody: microAppBody
+        });
 
 
-  // Request Micro App --html
-  var options = {
-    method: 'GET',
-    uri: 'http://localhost:4000',
-    resolveWithFullResponse: true
-  };
+      })
+      .catch(function (err) {
+        // Request failed...
 
-  rp(options)
-    .then(function (response) {
-      console.log("succeeded with status %d", response.statusCode);
+        var microAppBody = '<br><br><h1> Micro App Found, But its not responding :( </h1>';
 
-      var microAppBody = response.body;
+        res.render('modules/core/server/views/index', {
+          user: safeUserObject? JSON.stringify(safeUserObject) : null,
+          sharedConfig: JSON.stringify(config.shared),
+          microAppBody: microAppBody
+        });
 
-      safeUserObject = _getSafeUserObject(req, res);
-
-      res.render('modules/core/server/views/index', {
-        user: safeUserObject? JSON.stringify(safeUserObject) : null,
-        sharedConfig: JSON.stringify(config.shared),
-        microAppBody: microAppBody
       });
 
+  } else {
 
-    })
-    .catch(function (err) {
-      // Request failed...
 
-      return res.redirect(500);
+    var microAppBody = '<br><br><h1> Micro App Not Found :( </h1>';
 
-      /*
-      res.render('modules/core/server/views/index', {
-        user: safeUserObject? JSON.stringify(safeUserObject) : null,
-        sharedConfig: JSON.stringify(config.shared)
-      });
-      */
-
+    res.render('modules/core/server/views/index', {
+      user: safeUserObject? JSON.stringify(safeUserObject) : null,
+      sharedConfig: JSON.stringify(config.shared),
+      microAppBody: microAppBody
     });
+
+
+  }
+
 
 
 };
