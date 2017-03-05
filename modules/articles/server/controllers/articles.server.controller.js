@@ -8,6 +8,8 @@ var path = require('path'),
   Article = mongoose.model('Article'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+var appcache = require('../../../../config/lib/appcache');
+
 /**
  * Create an article
  */
@@ -22,6 +24,9 @@ exports.create = function (req, res) {
       });
     } else {
       res.json(article);
+
+      // Update Cache ::
+      appcache.updateMicroAppsConfigCache();
     }
   });
 };
@@ -56,6 +61,9 @@ exports.update = function (req, res) {
       });
     } else {
       res.json(article);
+
+      // Update Cache ::
+      appcache.updateMicroAppsConfigCache();
     }
   });
 };
@@ -73,6 +81,9 @@ exports.delete = function (req, res) {
       });
     } else {
       res.json(article);
+
+      // Update Cache ::
+      appcache.updateMicroAppsConfigCache();
     }
   });
 };

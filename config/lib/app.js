@@ -26,7 +26,7 @@ module.exports.init = function init(callback) {
     // 1. Initialize express
     var app = express.init(db);
 
-    // 2. Initialize Schedulers
+    // 2. Initialize DB related Schedulers
     scheduler.scheduleAllDBJobs();
 
     if (callback) callback(app, db, config);
