@@ -1,4 +1,4 @@
-<div class="container" ng-controller="HeaderController as vm">
+<div class="container" ng-controller="RootHeaderController as vm">
   <div class="navbar-header">
     <button class="navbar-toggle" type="button" ng-click="vm.isCollapsed = !vm.isCollapsed">
       <span class="sr-only">Toggle navigation</span>
@@ -9,6 +9,15 @@
     <a href="/#/" class="navbar-brand">MEAN.JS</a>
   </div>
   <nav class="navbar-collapse" uib-collapse="!vm.isCollapsed" role="navigation">
+
+    <ul class="nav navbar-nav">
+      <li ng-repeat="article in vm.articles">
+        <a href="/mapp/{{article.title}}">{{article.title}}</a>
+      </li>
+    </ul>
+
+
+
     <ul class="nav navbar-nav" ng-if="vm.menu.shouldRender(vm.authentication.user);">
       <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
         <a ng-switch-when="dropdown" class="dropdown-toggle" uib-dropdown-toggle role="button">{{::item.title}}&nbsp;<span class="caret"></span></a>
@@ -20,6 +29,9 @@
         <a ng-switch-default ui-sref="{{item.state}}" ng-bind="item.title"></a>
       </li>
     </ul>
+
+
+
     <ul class="nav navbar-nav navbar-right" ng-hide="vm.authentication.user">
       <li ui-sref-active="active">
         <a ui-sref="authentication.signup">Sign Up</a>
@@ -29,6 +41,8 @@
         <a ui-sref="authentication.signin">Sign In</a>
       </li>
     </ul>
+
+
     <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
       <li class="dropdown" uib-dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
