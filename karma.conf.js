@@ -19,7 +19,7 @@ module.exports = function (karmaConfig) {
     },
 
     ngHtml2JsPreprocessor: {
-      moduleName: 'mean',
+      moduleName: 'rootApp',
 
       cacheIdFromPath: function (filepath) {
         return filepath;
