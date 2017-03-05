@@ -69,6 +69,6 @@ module.exports = {
     Promise: true,
     __TESTING__: true,
     _: false,
-    ApplicationConfiguration: true
+    RootApplicationConfiguration: true
   }
 };

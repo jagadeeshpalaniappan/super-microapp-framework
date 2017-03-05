@@ -15,7 +15,7 @@
       $httpBackend;
 
     // Load the main application module
-    beforeEach(module(ApplicationConfiguration.applicationModuleName));
+    beforeEach(module(RootApplicationConfiguration.applicationModuleName));
 
     beforeEach(inject(function ($controller, $rootScope, _Socket_, _Authentication_, _$timeout_, _$state_) {
       $scope = $rootScope.$new();

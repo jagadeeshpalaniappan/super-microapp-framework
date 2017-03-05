@@ -6,4 +6,4 @@
   app.registerModule('articles.admin.routes', ['core.admin.routes']);
   app.registerModule('articles.services');
   app.registerModule('articles.routes', ['ui.router', 'core.routes', 'articles.services']);
-}(ApplicationConfiguration));
+}(RootApplicationConfiguration));

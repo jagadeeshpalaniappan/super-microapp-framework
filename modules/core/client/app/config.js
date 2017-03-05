@@ -10,7 +10,7 @@
     registerModule: registerModule
   };
 
-  window.ApplicationConfiguration = service;
+  window.RootApplicationConfiguration = service;
 
   // Add a new vertical module
   function registerModule(moduleName, dependencies) {

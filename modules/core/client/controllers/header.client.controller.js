@@ -3,12 +3,14 @@
 
   angular
     .module('core')
-    .controller('HeaderController', HeaderController);
+    .controller('RootHeaderController', RootHeaderController);
 
-  HeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService'];
+  RootHeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService', 'ArticlesService'];
 
-  function HeaderController($scope, $state, Authentication, menuService) {
+  function RootHeaderController($scope, $state, Authentication, menuService, ArticlesService) {
     var vm = this;
+
+    vm.articles = ArticlesService.query();
 
     vm.accountMenu = menuService.getMenu('account').items[0];
     vm.authentication = Authentication;

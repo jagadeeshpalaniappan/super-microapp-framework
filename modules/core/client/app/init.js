@@ -55,4 +55,4 @@
     var rootApp = document.getElementById('rootApp');
     angular.bootstrap(rootApp, [app.applicationModuleName]);
   }
-}(ApplicationConfiguration));
+}(RootApplicationConfiguration));
