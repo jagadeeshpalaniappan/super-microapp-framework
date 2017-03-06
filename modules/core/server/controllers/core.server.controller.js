@@ -77,7 +77,7 @@ exports.renderMicroAppIndex = function (req, res) {
   _redirectFormattedUrl(req, res);
 
   // Common:
-  var safeUserObject = null;
+  var safeUserObject = _getSafeUserObject(req, res);
 
   // Micro Apps Configuration::
   // var mappsConfigured = [
@@ -106,8 +106,6 @@ exports.renderMicroAppIndex = function (req, res) {
         console.log("succeeded with status %d", response.statusCode);
 
         var microAppBody = response.body;
-
-        safeUserObject = _getSafeUserObject(req, res);
 
         res.render('modules/core/server/views/index', {
           user: safeUserObject? JSON.stringify(safeUserObject) : null,
