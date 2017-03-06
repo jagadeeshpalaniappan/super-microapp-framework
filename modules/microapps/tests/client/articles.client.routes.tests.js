@@ -66,7 +66,7 @@
           viewstate = $state.get('microapps.view');
           $templateCache.put('/modules/microapps/client/views/view-microapps.client.view.html', '');
 
-          // create mock article
+          // create mock microapp
           mockArticle = new MicroAppsService({
             _id: '525a8422f6d0f87f0e407a33',
             title: 'An MicroApp about MEAN',
@@ -95,7 +95,7 @@
           })).toEqual('/microapps/1');
         }));
 
-        it('should attach an article to the controller scope', function () {
+        it('should attach an microapp to the controller scope', function () {
           expect($scope.vm.microApp._id).toBe(mockArticle._id);
         });
 

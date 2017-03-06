@@ -15,7 +15,7 @@ var app,
   agent,
   credentials,
   user,
-  article;
+  microapp;
 
 /**
  * MicroApp routes tests
@@ -48,9 +48,9 @@ describe('MicroApp CRUD tests', function () {
       provider: 'local'
     });
 
-    // Save a user to the test db and create new article
+    // Save a user to the test db and create new microapp
     user.save(function () {
-      article = {
+      microapp = {
         title: 'MicroApp Title',
         content: 'MicroApp Content'
       };
@@ -59,7 +59,7 @@ describe('MicroApp CRUD tests', function () {
     });
   });
 
-  it('should not be able to save an article if logged in without the "admin" role', function (done) {
+  it('should not be able to save an microapp if logged in without the "admin" role', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -70,7 +70,7 @@ describe('MicroApp CRUD tests', function () {
         }
 
         agent.post('/api/microapps')
-          .send(article)
+          .send(microapp)
           .expect(403)
           .end(function (articleSaveErr, articleSaveRes) {
             // Call the assertion callback
@@ -80,9 +80,9 @@ describe('MicroApp CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an article if not logged in', function (done) {
+  it('should not be able to save an microapp if not logged in', function (done) {
     agent.post('/api/microapps')
-      .send(article)
+      .send(microapp)
       .expect(403)
       .end(function (articleSaveErr, articleSaveRes) {
         // Call the assertion callback
@@ -90,7 +90,7 @@ describe('MicroApp CRUD tests', function () {
       });
   });
 
-  it('should not be able to update an article if signed in without the "admin" role', function (done) {
+  it('should not be able to update an microapp if signed in without the "admin" role', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -101,7 +101,7 @@ describe('MicroApp CRUD tests', function () {
         }
 
         agent.post('/api/microapps')
-          .send(article)
+          .send(microapp)
           .expect(403)
           .end(function (articleSaveErr, articleSaveRes) {
             // Call the assertion callback
@@ -111,10 +111,10 @@ describe('MicroApp CRUD tests', function () {
   });
 
   it('should be able to get a list of microapps if not signed in', function (done) {
-    // Create new article model instance
-    var articleObj = new MicroApp(article);
+    // Create new microapp model instance
+    var articleObj = new MicroApp(microapp);
 
-    // Save the article
+    // Save the microapp
     articleObj.save(function () {
       // Request microapps
       request(app).get('/api/microapps')
@@ -129,16 +129,16 @@ describe('MicroApp CRUD tests', function () {
     });
   });
 
-  it('should be able to get a single article if not signed in', function (done) {
-    // Create new article model instance
-    var articleObj = new MicroApp(article);
+  it('should be able to get a single microapp if not signed in', function (done) {
+    // Create new microapp model instance
+    var articleObj = new MicroApp(microapp);
 
-    // Save the article
+    // Save the microapp
     articleObj.save(function () {
       request(app).get('/api/microapps/' + articleObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('title', article.title);
+          res.body.should.be.instanceof(Object).and.have.property('title', microapp.title);
 
           // Call the assertion callback
           done();
@@ -146,7 +146,7 @@ describe('MicroApp CRUD tests', function () {
     });
   });
 
-  it('should return proper error for single article with an invalid Id, if not signed in', function (done) {
+  it('should return proper error for single microapp with an invalid Id, if not signed in', function (done) {
     // test is not a valid mongoose Id
     request(app).get('/api/microapps/test')
       .end(function (req, res) {
@@ -158,19 +158,19 @@ describe('MicroApp CRUD tests', function () {
       });
   });
 
-  it('should return proper error for single article which doesnt exist, if not signed in', function (done) {
-    // This is a valid mongoose Id but a non-existent article
+  it('should return proper error for single microapp which doesnt exist, if not signed in', function (done) {
+    // This is a valid mongoose Id but a non-existent microapp
     request(app).get('/api/microapps/559e9cd815f80b4c256a8f41')
       .end(function (req, res) {
         // Set assertion
-        res.body.should.be.instanceof(Object).and.have.property('message', 'No article with that identifier has been found');
+        res.body.should.be.instanceof(Object).and.have.property('message', 'No microapp with that identifier has been found');
 
         // Call the assertion callback
         done();
       });
   });
 
-  it('should not be able to delete an article if signed in without the "admin" role', function (done) {
+  it('should not be able to delete an microapp if signed in without the "admin" role', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -181,7 +181,7 @@ describe('MicroApp CRUD tests', function () {
         }
 
         agent.post('/api/microapps')
-          .send(article)
+          .send(microapp)
           .expect(403)
           .end(function (articleSaveErr, articleSaveRes) {
             // Call the assertion callback
@@ -190,30 +190,30 @@ describe('MicroApp CRUD tests', function () {
       });
   });
 
-  it('should not be able to delete an article if not signed in', function (done) {
-    // Set article user
-    article.user = user;
+  it('should not be able to delete an microapp if not signed in', function (done) {
+    // Set microapp user
+    microapp.user = user;
 
-    // Create new article model instance
-    var articleObj = new MicroApp(article);
+    // Create new microapp model instance
+    var articleObj = new MicroApp(microapp);
 
-    // Save the article
+    // Save the microapp
     articleObj.save(function () {
-      // Try deleting article
+      // Try deleting microapp
       request(app).delete('/api/microapps/' + articleObj._id)
         .expect(403)
         .end(function (articleDeleteErr, articleDeleteRes) {
           // Set message assertion
           (articleDeleteRes.body.message).should.match('User is not authorized');
 
-          // Handle article error error
+          // Handle microapp error error
           done(articleDeleteErr);
         });
 
     });
   });
 
-  it('should be able to get a single article that has an orphaned user reference', function (done) {
+  it('should be able to get a single microapp that has an orphaned user reference', function (done) {
     // Create orphan user creds
     var _creds = {
       usernameOrEmail: 'orphan',
@@ -250,22 +250,22 @@ describe('MicroApp CRUD tests', function () {
           // Get the userId
           var orphanId = orphan._id;
 
-          // Save a new article
+          // Save a new microapp
           agent.post('/api/microapps')
-            .send(article)
+            .send(microapp)
             .expect(200)
             .end(function (articleSaveErr, articleSaveRes) {
-              // Handle article save error
+              // Handle microapp save error
               if (articleSaveErr) {
                 return done(articleSaveErr);
               }
 
-              // Set assertions on new article
-              (articleSaveRes.body.title).should.equal(article.title);
+              // Set assertions on new microapp
+              (articleSaveRes.body.title).should.equal(microapp.title);
               should.exist(articleSaveRes.body.user);
               should.equal(articleSaveRes.body.user._id, orphanId);
 
-              // force the article to have an orphaned user reference
+              // force the microapp to have an orphaned user reference
               orphan.remove(function () {
                 // now signin with valid user
                 agent.post('/api/auth/signin')
@@ -277,18 +277,18 @@ describe('MicroApp CRUD tests', function () {
                       return done(err);
                     }
 
-                    // Get the article
+                    // Get the microapp
                     agent.get('/api/microapps/' + articleSaveRes.body._id)
                       .expect(200)
                       .end(function (articleInfoErr, articleInfoRes) {
-                        // Handle article error
+                        // Handle microapp error
                         if (articleInfoErr) {
                           return done(articleInfoErr);
                         }
 
                         // Set assertions
                         (articleInfoRes.body._id).should.equal(articleSaveRes.body._id);
-                        (articleInfoRes.body.title).should.equal(article.title);
+                        (articleInfoRes.body.title).should.equal(microapp.title);
                         should.equal(articleInfoRes.body.user, undefined);
 
                         // Call the assertion callback
@@ -301,16 +301,16 @@ describe('MicroApp CRUD tests', function () {
     });
   });
 
-  it('should be able to get a single article if not signed in and verify the custom "isCurrentUserOwner" field is set to "false"', function (done) {
-    // Create new article model instance
-    var articleObj = new MicroApp(article);
+  it('should be able to get a single microapp if not signed in and verify the custom "isCurrentUserOwner" field is set to "false"', function (done) {
+    // Create new microapp model instance
+    var articleObj = new MicroApp(microapp);
 
-    // Save the article
+    // Save the microapp
     articleObj.save(function () {
       request(app).get('/api/microapps/' + articleObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('title', article.title);
+          res.body.should.be.instanceof(Object).and.have.property('title', microapp.title);
           // Assert the custom field "isCurrentUserOwner" is set to false for the un-authenticated User
           res.body.should.be.instanceof(Object).and.have.property('isCurrentUserOwner', false);
           // Call the assertion callback
@@ -319,7 +319,7 @@ describe('MicroApp CRUD tests', function () {
     });
   });
 
-  it('should be able to get single article, that a different user created, if logged in & verify the "isCurrentUserOwner" field is set to "false"', function (done) {
+  it('should be able to get single microapp, that a different user created, if logged in & verify the "isCurrentUserOwner" field is set to "false"', function (done) {
     // Create temporary user creds
     var _creds = {
       usernameOrEmail: 'articleowner',
@@ -357,18 +357,18 @@ describe('MicroApp CRUD tests', function () {
           // Get the userId
           var userId = _user._id;
 
-          // Save a new article
+          // Save a new microapp
           agent.post('/api/microapps')
-            .send(article)
+            .send(microapp)
             .expect(200)
             .end(function (articleSaveErr, articleSaveRes) {
-              // Handle article save error
+              // Handle microapp save error
               if (articleSaveErr) {
                 return done(articleSaveErr);
               }
 
-              // Set assertions on new article
-              (articleSaveRes.body.title).should.equal(article.title);
+              // Set assertions on new microapp
+              (articleSaveRes.body.title).should.equal(microapp.title);
               should.exist(articleSaveRes.body.user);
               should.equal(articleSaveRes.body.user._id, userId);
 
@@ -382,18 +382,18 @@ describe('MicroApp CRUD tests', function () {
                     return done(err);
                   }
 
-                  // Get the article
+                  // Get the microapp
                   agent.get('/api/microapps/' + articleSaveRes.body._id)
                     .expect(200)
                     .end(function (articleInfoErr, articleInfoRes) {
-                      // Handle article error
+                      // Handle microapp error
                       if (articleInfoErr) {
                         return done(articleInfoErr);
                       }
 
                       // Set assertions
                       (articleInfoRes.body._id).should.equal(articleSaveRes.body._id);
-                      (articleInfoRes.body.title).should.equal(article.title);
+                      (articleInfoRes.body.title).should.equal(microapp.title);
                       // Assert that the custom field "isCurrentUserOwner" is set to false since the current User didn't create it
                       (articleInfoRes.body.isCurrentUserOwner).should.equal(false);
 

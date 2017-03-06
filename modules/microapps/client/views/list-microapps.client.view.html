@@ -3,16 +3,16 @@
     <h1>Micro Apps</h1>
   </div>
   <div class="list-group">
-    <a ng-repeat="article in vm.microapps" ui-sref="microapps.view({ microAppId: article._id })" class="list-group-item">
+    <a ng-repeat="microapp in vm.microapps" ui-sref="microapps.view({ microAppId: microapp._id })" class="list-group-item">
       <small class="list-group-item-text">
         Posted on
-        <span ng-bind="article.created | date:'mediumDate'"></span>
+        <span ng-bind="microapp.created | date:'mediumDate'"></span>
         by
-        <span ng-if="article.user" ng-bind="article.user.displayName"></span>
-        <span ng-if="!article.user">Deleted User</span>
+        <span ng-if="microapp.user" ng-bind="microapp.user.displayName"></span>
+        <span ng-if="!microapp.user">Deleted User</span>
       </small>
-      <h4 class="list-group-item-heading" ng-bind="article.title"></h4>
-      <p class="list-group-item-text" ng-bind="article.content"></p>
+      <h4 class="list-group-item-heading" ng-bind="microapp.title"></h4>
+      <p class="list-group-item-text" ng-bind="microapp.content"></p>
     </a>
   </div>
 </section>

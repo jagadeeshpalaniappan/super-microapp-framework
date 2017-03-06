@@ -15,7 +15,7 @@ var app,
   agent,
   credentials,
   user,
-  article;
+  microapp;
 
 /**
  * MicroApp routes tests
@@ -48,9 +48,9 @@ describe('MicroApp Admin CRUD tests', function () {
       provider: 'local'
     });
 
-    // Save a user to the test db and create new article
+    // Save a user to the test db and create new microapp
     user.save(function () {
-      article = {
+      microapp = {
         title: 'MicroApp Title',
         content: 'MicroApp Content'
       };
@@ -59,7 +59,7 @@ describe('MicroApp Admin CRUD tests', function () {
     });
   });
 
-  it('should be able to save an article if logged in', function (done) {
+  it('should be able to save an microapp if logged in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -72,12 +72,12 @@ describe('MicroApp Admin CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new article
+        // Save a new microapp
         agent.post('/api/microapps')
-          .send(article)
+          .send(microapp)
           .expect(200)
           .end(function (articleSaveErr, articleSaveRes) {
-            // Handle article save error
+            // Handle microapp save error
             if (articleSaveErr) {
               return done(articleSaveErr);
             }
@@ -85,7 +85,7 @@ describe('MicroApp Admin CRUD tests', function () {
             // Get a list of microapps
             agent.get('/api/microapps')
               .end(function (articlesGetErr, articlesGetRes) {
-                // Handle article save error
+                // Handle microapp save error
                 if (articlesGetErr) {
                   return done(articlesGetErr);
                 }
@@ -104,7 +104,7 @@ describe('MicroApp Admin CRUD tests', function () {
       });
   });
 
-  it('should be able to update an article if signed in', function (done) {
+  it('should be able to update an microapp if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -117,25 +117,25 @@ describe('MicroApp Admin CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new article
+        // Save a new microapp
         agent.post('/api/microapps')
-          .send(article)
+          .send(microapp)
           .expect(200)
           .end(function (articleSaveErr, articleSaveRes) {
-            // Handle article save error
+            // Handle microapp save error
             if (articleSaveErr) {
               return done(articleSaveErr);
             }
 
-            // Update article title
-            article.title = 'WHY YOU GOTTA BE SO MEAN?';
+            // Update microapp title
+            microapp.title = 'WHY YOU GOTTA BE SO MEAN?';
 
-            // Update an existing article
+            // Update an existing microapp
             agent.put('/api/microapps/' + articleSaveRes.body._id)
-              .send(article)
+              .send(microapp)
               .expect(200)
               .end(function (articleUpdateErr, articleUpdateRes) {
-                // Handle article update error
+                // Handle microapp update error
                 if (articleUpdateErr) {
                   return done(articleUpdateErr);
                 }
@@ -151,9 +151,9 @@ describe('MicroApp Admin CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an article if no title is provided', function (done) {
+  it('should not be able to save an microapp if no title is provided', function (done) {
     // Invalidate title field
-    article.title = '';
+    microapp.title = '';
 
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -167,21 +167,21 @@ describe('MicroApp Admin CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new article
+        // Save a new microapp
         agent.post('/api/microapps')
-          .send(article)
+          .send(microapp)
           .expect(422)
           .end(function (articleSaveErr, articleSaveRes) {
             // Set message assertion
             (articleSaveRes.body.message).should.match('Title cannot be blank');
 
-            // Handle article save error
+            // Handle microapp save error
             done(articleSaveErr);
           });
       });
   });
 
-  it('should be able to delete an article if signed in', function (done) {
+  it('should be able to delete an microapp if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -194,22 +194,22 @@ describe('MicroApp Admin CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new article
+        // Save a new microapp
         agent.post('/api/microapps')
-          .send(article)
+          .send(microapp)
           .expect(200)
           .end(function (articleSaveErr, articleSaveRes) {
-            // Handle article save error
+            // Handle microapp save error
             if (articleSaveErr) {
               return done(articleSaveErr);
             }
 
-            // Delete an existing article
+            // Delete an existing microapp
             agent.delete('/api/microapps/' + articleSaveRes.body._id)
-              .send(article)
+              .send(microapp)
               .expect(200)
               .end(function (articleDeleteErr, articleDeleteRes) {
-                // Handle article error error
+                // Handle microapp error error
                 if (articleDeleteErr) {
                   return done(articleDeleteErr);
                 }
@@ -224,10 +224,10 @@ describe('MicroApp Admin CRUD tests', function () {
       });
   });
 
-  it('should be able to get a single article if signed in and verify the custom "isCurrentUserOwner" field is set to "true"', function (done) {
-    // Create new article model instance
-    article.user = user;
-    var articleObj = new MicroApp(article);
+  it('should be able to get a single microapp if signed in and verify the custom "isCurrentUserOwner" field is set to "true"', function (done) {
+    // Create new microapp model instance
+    microapp.user = user;
+    var articleObj = new MicroApp(microapp);
 
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -241,28 +241,28 @@ describe('MicroApp Admin CRUD tests', function () {
         // Get the userId
         var userId = user.id;
 
-        // Save a new article
+        // Save a new microapp
         agent.post('/api/microapps')
-          .send(article)
+          .send(microapp)
           .expect(200)
           .end(function (articleSaveErr, articleSaveRes) {
-            // Handle article save error
+            // Handle microapp save error
             if (articleSaveErr) {
               return done(articleSaveErr);
             }
 
-            // Get the article
+            // Get the microapp
             agent.get('/api/microapps/' + articleSaveRes.body._id)
               .expect(200)
               .end(function (articleInfoErr, articleInfoRes) {
-                // Handle article error
+                // Handle microapp error
                 if (articleInfoErr) {
                   return done(articleInfoErr);
                 }
 
                 // Set assertions
                 (articleInfoRes.body._id).should.equal(articleSaveRes.body._id);
-                (articleInfoRes.body.title).should.equal(article.title);
+                (articleInfoRes.body.title).should.equal(microapp.title);
 
                 // Assert that the "isCurrentUserOwner" field is set to true since the current User created it
                 (articleInfoRes.body.isCurrentUserOwner).should.equal(true);

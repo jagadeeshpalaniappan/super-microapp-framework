@@ -51,7 +51,7 @@
       // Ignore parent template get on state transitions
       $httpBackend.whenGET('/modules/core/client/views/home.client.view.html').respond(200, '');
 
-      // create mock article
+      // create mock microapp
       mockArticle = new MicroAppsService({
         _id: '525a8422f6d0f87f0e407a33',
         title: 'An MicroApp about MEAN',
@@ -79,7 +79,7 @@
       var sampleArticlePostData;
 
       beforeEach(function () {
-        // Create a sample article object
+        // Create a sample microapp object
         sampleArticlePostData = new MicroAppsService({
           title: 'An MicroApp about MEAN',
           content: 'MEAN rocks!'
@@ -98,7 +98,7 @@
 
         // Test Notification success was called
         expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> MicroApp saved successfully!' });
-        // Test URL redirection after the article was created
+        // Test URL redirection after the microapp was created
         expect($state.go).toHaveBeenCalledWith('admin.microapps.list');
       }));
 
@@ -117,11 +117,11 @@
 
     describe('vm.save() as update', function () {
       beforeEach(function () {
-        // Mock article in $scope
+        // Mock microapp in $scope
         $scope.vm.microApp = mockArticle;
       });
 
-      it('should update a valid article', inject(function (MicroAppsService) {
+      it('should update a valid microapp', inject(function (MicroAppsService) {
         // Set PUT response
         $httpBackend.expectPUT(/api\/microapps\/([0-9a-fA-F]{24})$/).respond();
 
@@ -154,7 +154,7 @@
         $scope.vm.microApp = mockArticle;
       });
 
-      it('should delete the article and redirect to microapps', function () {
+      it('should delete the microapp and redirect to microapps', function () {
         // Return true on confirm message
         spyOn(window, 'confirm').and.returnValue(true);
 
@@ -167,7 +167,7 @@
         expect($state.go).toHaveBeenCalledWith('admin.microapps.list');
       });
 
-      it('should should not delete the article and not redirect', function () {
+      it('should should not delete the microapp and not redirect', function () {
         // Return false on confirm message
         spyOn(window, 'confirm').and.returnValue(false);
 

@@ -11,19 +11,19 @@ var path = require('path'),
 var appcache = require('../../../../config/lib/appcache');
 
 /**
- * Create an article
+ * Create an microapp
  */
 exports.create = function (req, res) {
-  var article = new MicroApp(req.body);
-  article.user = req.user;
+  var microapp = new MicroApp(req.body);
+  microapp.user = req.user;
 
-  article.save(function (err) {
+  microapp.save(function (err) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(microapp);
 
       // Update Cache ::
       appcache.updateMicroAppsConfigCache();
@@ -32,35 +32,35 @@ exports.create = function (req, res) {
 };
 
 /**
- * Show the current article
+ * Show the current microapp
  */
 exports.read = function (req, res) {
   // convert mongoose document to JSON
-  var article = req.article ? req.article.toJSON() : {};
+  var microapp = req.microapp ? req.microapp.toJSON() : {};
 
   // Add a custom field to the MicroApp, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the MicroApp model.
-  article.isCurrentUserOwner = !!(req.user && article.user && article.user._id.toString() === req.user._id.toString());
+  microapp.isCurrentUserOwner = !!(req.user && microapp.user && microapp.user._id.toString() === req.user._id.toString());
 
-  res.json(article);
+  res.json(microapp);
 };
 
 /**
- * Update an article
+ * Update an microapp
  */
 exports.update = function (req, res) {
-  var article = req.article;
+  var microapp = req.microapp;
 
-  article.title = req.body.title;
-  article.content = req.body.content;
+  microapp.title = req.body.title;
+  microapp.content = req.body.content;
 
-  article.save(function (err) {
+  microapp.save(function (err) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(microapp);
 
       // Update Cache ::
       appcache.updateMicroAppsConfigCache();
@@ -69,18 +69,18 @@ exports.update = function (req, res) {
 };
 
 /**
- * Delete an article
+ * Delete an microapp
  */
 exports.delete = function (req, res) {
-  var article = req.article;
+  var microapp = req.microapp;
 
-  article.remove(function (err) {
+  microapp.remove(function (err) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      res.json(article);
+      res.json(microapp);
 
       // Update Cache ::
       appcache.updateMicroAppsConfigCache();
@@ -114,15 +114,15 @@ exports.articleByID = function (req, res, next, id) {
     });
   }
 
-  MicroApp.findById(id).populate('user', 'displayName').exec(function (err, article) {
+  MicroApp.findById(id).populate('user', 'displayName').exec(function (err, microapp) {
     if (err) {
       return next(err);
-    } else if (!article) {
+    } else if (!microapp) {
       return res.status(404).send({
-        message: 'No article with that identifier has been found'
+        message: 'No microapp with that identifier has been found'
       });
     }
-    req.article = article;
+    req.microapp = microapp;
     next();
   });
 };

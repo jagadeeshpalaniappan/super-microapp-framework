@@ -46,7 +46,7 @@
       Authentication = _Authentication_;
       MicroAppsService = _ArticlesService_;
 
-      // create mock article
+      // create mock microapp
       mockArticle = new MicroAppsService({
         _id: '525a8422f6d0f87f0e407a33',
         title: 'An MicroApp about MEAN',

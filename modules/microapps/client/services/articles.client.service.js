@@ -18,22 +18,22 @@
 
     angular.extend(MicroApp.prototype, {
       createOrUpdate: function () {
-        var article = this;
-        return createOrUpdate(article);
+        var microapp = this;
+        return createOrUpdate(microapp);
       }
     });
 
     return MicroApp;
 
-    function createOrUpdate(article) {
-      if (article._id) {
-        return article.$update(onSuccess, onError);
+    function createOrUpdate(microapp) {
+      if (microapp._id) {
+        return microapp.$update(onSuccess, onError);
       } else {
-        return article.$save(onSuccess, onError);
+        return microapp.$save(onSuccess, onError);
       }
 
       // Handle successful response
-      function onSuccess(article) {
+      function onSuccess(microapp) {
         // Any required internal processing from inside the service, goes here.
       }
 

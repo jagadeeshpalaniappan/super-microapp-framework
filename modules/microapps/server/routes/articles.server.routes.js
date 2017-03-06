@@ -12,12 +12,12 @@ module.exports = function (app) {
     .get(microapps.list)
     .post(microapps.create);
 
-  // Single article routes
+  // Single microapp routes
   app.route('/api/microapps/:microAppId').all(articlesPolicy.isAllowed)
     .get(microapps.read)
     .put(microapps.update)
     .delete(microapps.delete);
 
-  // Finish by binding the article middleware
+  // Finish by binding the microapp middleware
   app.param('microAppId', microapps.articleByID);
 };

@@ -12,7 +12,7 @@ var should = require('should'),
  * Globals
  */
 var user,
-  article;
+  microapp;
 
 /**
  * Unit tests
@@ -30,7 +30,7 @@ describe('MicroApp Model Unit Tests:', function () {
     });
 
     user.save(function () {
-      article = new MicroApp({
+      microapp = new MicroApp({
         title: 'MicroApp Title',
         content: 'MicroApp Content',
         user: user
@@ -43,16 +43,16 @@ describe('MicroApp Model Unit Tests:', function () {
   describe('Method Save', function () {
     it('should be able to save without problems', function (done) {
       this.timeout(10000);
-      article.save(function (err) {
+      microapp.save(function (err) {
         should.not.exist(err);
         return done();
       });
     });
 
     it('should be able to show an error when try to save without title', function (done) {
-      article.title = '';
+      microapp.title = '';
 
-      article.save(function (err) {
+      microapp.save(function (err) {
         should.exist(err);
         return done();
       });

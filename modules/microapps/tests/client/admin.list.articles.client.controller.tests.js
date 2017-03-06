@@ -50,7 +50,7 @@
       $httpBackend.whenGET('/modules/microapps/client/views/list-microapps.client.view.html').respond(200, '');
       $httpBackend.whenGET('/modules/core/client/views/home.client.view.html').respond(200, '');
 
-      // create mock article
+      // create mock microapp
       mockArticle = new MicroAppsService({
         _id: '525a8422f6d0f87f0e407a33',
         title: 'An MicroApp about MEAN',

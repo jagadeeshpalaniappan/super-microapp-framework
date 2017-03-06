@@ -66,7 +66,7 @@
           createstate = $state.get('admin.microapps.create');
           $templateCache.put('/modules/microapps/client/views/admin/form-microapp.client.view.html', '');
 
-          // Create mock article
+          // Create mock microapp
           mockArticle = new MicroAppsService();
 
           // Initialize Controller
@@ -89,7 +89,7 @@
           expect($state.href(createstate)).toEqual('/admin/microapps/create');
         }));
 
-        it('should attach an article to the controller scope', function () {
+        it('should attach an microapp to the controller scope', function () {
           expect($scope.vm.microApp._id).toBe(mockArticle._id);
           expect($scope.vm.microApp._id).toBe(undefined);
         });
@@ -112,7 +112,7 @@
           editstate = $state.get('admin.microapps.edit');
           $templateCache.put('/modules/microapps/client/views/admin/form-microapp.client.view.html', '');
 
-          // Create mock article
+          // Create mock microapp
           mockArticle = new MicroAppsService({
             _id: '525a8422f6d0f87f0e407a33',
             title: 'An MicroApp about MEAN',
@@ -141,7 +141,7 @@
           })).toEqual('/admin/microapps/1/edit');
         }));
 
-        it('should attach an article to the controller scope', function () {
+        it('should attach an microapp to the controller scope', function () {
           expect($scope.vm.microApp._id).toBe(mockArticle._id);
         });
 
