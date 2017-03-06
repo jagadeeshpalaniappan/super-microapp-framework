@@ -5,12 +5,12 @@
     .module('root.articles.admin')
     .controller('MicroAppsAdminController', MicroAppsAdminController);
 
-  MicroAppsAdminController.$inject = ['$scope', '$state', '$window', 'articleResolve', 'Authentication', 'Notification'];
+  MicroAppsAdminController.$inject = ['$scope', '$state', '$window', 'microAppResolve', 'Authentication', 'Notification'];
 
-  function MicroAppsAdminController($scope, $state, $window, article, Authentication, Notification) {
+  function MicroAppsAdminController($scope, $state, $window, microApp, Authentication, Notification) {
     var vm = this;
 
-    vm.microApp = article;
+    vm.microApp = microApp;
     vm.authentication = Authentication;
     vm.form = {};
     vm.remove = remove;
@@ -33,7 +33,7 @@
         return false;
       }
 
-      // Create a new article, or update the current instance
+      // Create a new microApp, or update the current instance
       vm.microApp.createOrUpdate()
         .then(successCallback)
         .catch(errorCallback);

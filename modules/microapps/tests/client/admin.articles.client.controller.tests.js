@@ -66,7 +66,7 @@
       // Initialize the Articles controller.
       MicroAppsAdminController = $controller('MicroAppsAdminController as vm', {
         $scope: $scope,
-        articleResolve: {}
+        microAppResolve: {}
       });
 
       // Spy on state go

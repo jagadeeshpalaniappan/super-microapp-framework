@@ -76,7 +76,7 @@
           // Initialize Controller
           MicroAppsController = $controller('MicroAppsController as vm', {
             $scope: $scope,
-            articleResolve: mockArticle
+            microAppResolve: mockArticle
           });
         }));
 
@@ -86,7 +86,7 @@
 
         it('Should have a resolve function', function () {
           expect(typeof viewstate.resolve).toEqual('object');
-          expect(typeof viewstate.resolve.articleResolve).toEqual('function');
+          expect(typeof viewstate.resolve.microAppResolve).toEqual('function');
         });
 
         it('should respond to URL', inject(function ($state) {

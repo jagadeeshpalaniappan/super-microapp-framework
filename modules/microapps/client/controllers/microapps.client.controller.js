@@ -5,7 +5,7 @@
     .module('root.articles')
     .controller('MicroAppsController', MicroAppsController);
 
-  MicroAppsController.$inject = ['$scope', 'articleResolve', 'Authentication'];
+  MicroAppsController.$inject = ['$scope', 'microAppResolve', 'Authentication'];
 
   function MicroAppsController($scope, article, Authentication) {
     var vm = this;

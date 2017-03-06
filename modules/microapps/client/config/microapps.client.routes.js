@@ -29,10 +29,10 @@
         controller: 'MicroAppsController',
         controllerAs: 'vm',
         resolve: {
-          articleResolve: getArticle
+          microAppResolve: getArticle
         },
         data: {
-          pageTitle: 'Micro Apps {{ articleResolve.title }}'
+          pageTitle: 'Micro Apps {{ microAppResolve.title }}'
         }
       });
   }

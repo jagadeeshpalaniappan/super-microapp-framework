@@ -72,7 +72,7 @@
           // Initialize Controller
           MicroAppsAdminController = $controller('MicroAppsAdminController as vm', {
             $scope: $scope,
-            articleResolve: mockArticle
+            microAppResolve: mockArticle
           });
         }));
 
@@ -82,7 +82,7 @@
 
         it('Should have a resolve function', function () {
           expect(typeof createstate.resolve).toEqual('object');
-          expect(typeof createstate.resolve.articleResolve).toEqual('function');
+          expect(typeof createstate.resolve.microAppResolve).toEqual('function');
         });
 
         it('should respond to URL', inject(function ($state) {
@@ -122,7 +122,7 @@
           // Initialize Controller
           MicroAppsAdminController = $controller('MicroAppsAdminController as vm', {
             $scope: $scope,
-            articleResolve: mockArticle
+            microAppResolve: mockArticle
           });
         }));
 
@@ -132,7 +132,7 @@
 
         it('Should have a resolve function', function () {
           expect(typeof editstate.resolve).toEqual('object');
-          expect(typeof editstate.resolve.articleResolve).toEqual('function');
+          expect(typeof editstate.resolve.microAppResolve).toEqual('function');
         });
 
         it('should respond to URL', inject(function ($state) {

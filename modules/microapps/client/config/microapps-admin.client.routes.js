@@ -32,7 +32,7 @@
           roles: ['admin']
         },
         resolve: {
-          articleResolve: newArticle
+          microAppResolve: newArticle
         }
       })
       .state('admin.microapps.edit', {
@@ -44,7 +44,7 @@
           roles: ['admin']
         },
         resolve: {
-          articleResolve: getArticle
+          microAppResolve: getArticle
         }
       });
   }
