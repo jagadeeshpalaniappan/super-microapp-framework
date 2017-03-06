@@ -24,7 +24,7 @@
         }
       })
       .state('microapps.view', {
-        url: '/:articleId',
+        url: '/:microAppId',
         templateUrl: '/modules/microapps/client/views/view-microapps.client.view.html',
         controller: 'MicroAppsController',
         controllerAs: 'vm',
@@ -41,7 +41,7 @@
 
   function getArticle($stateParams, MicroAppsService) {
     return MicroAppsService.get({
-      articleId: $stateParams.articleId
+      microAppId: $stateParams.microAppId
     }).$promise;
   }
 }());

@@ -81,7 +81,7 @@
         }));
 
         it('Should have the correct URL', function () {
-          expect(viewstate.url).toEqual('/:articleId');
+          expect(viewstate.url).toEqual('/:microAppId');
         });
 
         it('Should have a resolve function', function () {
@@ -91,7 +91,7 @@
 
         it('should respond to URL', inject(function ($state) {
           expect($state.href(viewstate, {
-            articleId: 1
+            microAppId: 1
           })).toEqual('/articles/1');
         }));
 

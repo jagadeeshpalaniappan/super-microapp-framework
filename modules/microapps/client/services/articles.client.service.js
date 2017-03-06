@@ -8,8 +8,8 @@
   MicroAppsService.$inject = ['$resource', '$log'];
 
   function MicroAppsService($resource, $log) {
-    var Article = $resource('/api/articles/:articleId', {
-      articleId: '@_id'
+    var Article = $resource('/api/articles/:microAppId', {
+      microAppId: '@_id'
     }, {
       update: {
         method: 'PUT'

@@ -36,7 +36,7 @@
         }
       })
       .state('admin.microapps.edit', {
-        url: '/:articleId/edit',
+        url: '/:microAppId/edit',
         templateUrl: '/modules/microapps/client/views/admin/form-microapp.client.view.html',
         controller: 'MicroAppsAdminController',
         controllerAs: 'vm',
@@ -53,7 +53,7 @@
 
   function getArticle($stateParams, MicroAppsService) {
     return MicroAppsService.get({
-      articleId: $stateParams.articleId
+      microAppId: $stateParams.microAppId
     }).$promise;
   }
 

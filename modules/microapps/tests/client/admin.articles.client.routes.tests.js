@@ -127,7 +127,7 @@
         }));
 
         it('Should have the correct URL', function () {
-          expect(editstate.url).toEqual('/:articleId/edit');
+          expect(editstate.url).toEqual('/:microAppId/edit');
         });
 
         it('Should have a resolve function', function () {
@@ -137,7 +137,7 @@
 
         it('should respond to URL', inject(function ($state) {
           expect($state.href(editstate, {
-            articleId: 1
+            microAppId: 1
           })).toEqual('/admin/articles/1/edit');
         }));
 
