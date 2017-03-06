@@ -9,12 +9,12 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('admin.articles', {
+      .state('admin.microapps', {
         abstract: true,
-        url: '/articles',
+        url: '/microapps',
         template: '<ui-view/>'
       })
-      .state('admin.articles.list', {
+      .state('admin.microapps.list', {
         url: '',
         templateUrl: '/modules/articles/client/views/admin/list-articles.client.view.html',
         controller: 'ArticlesAdminListController',
@@ -23,7 +23,7 @@
           roles: ['admin']
         }
       })
-      .state('admin.articles.create', {
+      .state('admin.microapps.create', {
         url: '/create',
         templateUrl: '/modules/articles/client/views/admin/form-article.client.view.html',
         controller: 'ArticlesAdminController',
@@ -35,7 +35,7 @@
           articleResolve: newArticle
         }
       })
-      .state('admin.articles.edit', {
+      .state('admin.microapps.edit', {
         url: '/:articleId/edit',
         templateUrl: '/modules/articles/client/views/admin/form-article.client.view.html',
         controller: 'ArticlesAdminController',

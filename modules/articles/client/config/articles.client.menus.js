@@ -10,15 +10,15 @@
   function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
       title: 'Articles',
-      state: 'articles',
+      state: 'microapps',
       type: 'dropdown',
       roles: ['*']
     });
 
     // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'articles', {
+    menuService.addSubMenuItem('topbar', 'microapps', {
       title: 'List Articles',
-      state: 'articles.list',
+      state: 'microapps.list',
       roles: ['*']
     });
   }

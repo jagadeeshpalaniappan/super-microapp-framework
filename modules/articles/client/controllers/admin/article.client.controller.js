@@ -20,7 +20,7 @@
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         vm.article.$remove(function() {
-          $state.go('admin.articles.list');
+          $state.go('admin.microapps.list');
           Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Article deleted successfully!' });
         });
       }
@@ -39,7 +39,7 @@
         .catch(errorCallback);
 
       function successCallback(res) {
-        $state.go('admin.articles.list'); // should we send the User to the list or the updated Article's view?
+        $state.go('admin.microapps.list'); // should we send the User to the list or the updated Article's view?
         Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Article saved successfully!' });
       }
 

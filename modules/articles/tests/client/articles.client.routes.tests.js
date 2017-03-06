@@ -22,7 +22,7 @@
       describe('Main Route', function () {
         var mainstate;
         beforeEach(inject(function ($state) {
-          mainstate = $state.get('articles');
+          mainstate = $state.get('microapps');
         }));
 
         it('Should have the correct URL', function () {
@@ -41,7 +41,7 @@
       describe('List Route', function () {
         var liststate;
         beforeEach(inject(function ($state) {
-          liststate = $state.get('articles.list');
+          liststate = $state.get('microapps.list');
         }));
 
         it('Should have the correct URL', function () {
@@ -63,7 +63,7 @@
           mockArticle;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
-          viewstate = $state.get('articles.view');
+          viewstate = $state.get('microapps.view');
           $templateCache.put('/modules/articles/client/views/view-article.client.view.html', '');
 
           // create mock article
@@ -112,7 +112,7 @@
         beforeEach(inject(function ($state, $rootScope, $templateCache) {
           $templateCache.put('/modules/articles/client/views/list-articles.client.view.html', '');
 
-          $state.go('articles.list');
+          $state.go('microapps.list');
           $rootScope.$digest();
         }));
 

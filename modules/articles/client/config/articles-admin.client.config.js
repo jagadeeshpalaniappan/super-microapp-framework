@@ -11,7 +11,7 @@
   function menuConfig(Menus) {
     Menus.addSubMenuItem('topbar', 'admin', {
       title: 'Manage Micro Apps',
-      state: 'admin.articles.list'
+      state: 'admin.microapps.list'
     });
   }
 }());

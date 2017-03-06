@@ -9,12 +9,12 @@
 
   function routeConfig($stateProvider) {
     $stateProvider
-      .state('articles', {
+      .state('microapps', {
         abstract: true,
-        url: '/articles',
+        url: '/microapps',
         template: '<ui-view/>'
       })
-      .state('articles.list', {
+      .state('microapps.list', {
         url: '',
         templateUrl: '/modules/articles/client/views/list-articles.client.view.html',
         controller: 'ArticlesListController',
@@ -23,7 +23,7 @@
           pageTitle: 'Articles List'
         }
       })
-      .state('articles.view', {
+      .state('microapps.view', {
         url: '/:articleId',
         templateUrl: '/modules/articles/client/views/view-article.client.view.html',
         controller: 'ArticlesController',

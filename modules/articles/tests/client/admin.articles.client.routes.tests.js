@@ -22,7 +22,7 @@
       describe('Main Route', function () {
         var mainstate;
         beforeEach(inject(function ($state) {
-          mainstate = $state.get('admin.articles');
+          mainstate = $state.get('admin.microapps');
         }));
 
         it('Should have the correct URL', function () {
@@ -41,7 +41,7 @@
       describe('List Route', function () {
         var liststate;
         beforeEach(inject(function ($state) {
-          liststate = $state.get('admin.articles.list');
+          liststate = $state.get('admin.microapps.list');
         }));
 
         it('Should have the correct URL', function () {
@@ -63,7 +63,7 @@
           mockArticle;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
-          createstate = $state.get('admin.articles.create');
+          createstate = $state.get('admin.microapps.create');
           $templateCache.put('/modules/articles/client/views/admin/form-article.client.view.html', '');
 
           // Create mock article
@@ -109,7 +109,7 @@
           mockArticle;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
-          editstate = $state.get('admin.articles.edit');
+          editstate = $state.get('admin.microapps.edit');
           $templateCache.put('/modules/articles/client/views/admin/form-article.client.view.html', '');
 
           // Create mock article

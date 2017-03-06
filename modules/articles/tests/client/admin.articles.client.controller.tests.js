@@ -99,7 +99,7 @@
         // Test Notification success was called
         expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> Article saved successfully!' });
         // Test URL redirection after the article was created
-        expect($state.go).toHaveBeenCalledWith('admin.articles.list');
+        expect($state.go).toHaveBeenCalledWith('admin.microapps.list');
       }));
 
       it('should call Notification.error if error', function () {
@@ -132,7 +132,7 @@
         // Test Notification success was called
         expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> Article saved successfully!' });
         // Test URL location to new object
-        expect($state.go).toHaveBeenCalledWith('admin.articles.list');
+        expect($state.go).toHaveBeenCalledWith('admin.microapps.list');
       }));
 
       it('should  call Notification.error if error', inject(function (ArticlesService) {
@@ -164,7 +164,7 @@
         $httpBackend.flush();
 
         expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> Article deleted successfully!' });
-        expect($state.go).toHaveBeenCalledWith('admin.articles.list');
+        expect($state.go).toHaveBeenCalledWith('admin.microapps.list');
       });
 
       it('should should not delete the article and not redirect', function () {
