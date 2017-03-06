@@ -53,7 +53,7 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(liststate.templateUrl).toBe('/modules/articles/client/views/list-articles.client.view.html');
+          expect(liststate.templateUrl).toBe('/modules/microapps/client/views/list-articles.client.view.html');
         });
       });
 
@@ -64,7 +64,7 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           viewstate = $state.get('microapps.view');
-          $templateCache.put('/modules/articles/client/views/view-article.client.view.html', '');
+          $templateCache.put('/modules/microapps/client/views/view-article.client.view.html', '');
 
           // create mock article
           mockArticle = new ArticlesService({
@@ -104,13 +104,13 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(viewstate.templateUrl).toBe('/modules/articles/client/views/view-article.client.view.html');
+          expect(viewstate.templateUrl).toBe('/modules/microapps/client/views/view-article.client.view.html');
         });
       });
 
       describe('Handle Trailing Slash', function () {
         beforeEach(inject(function ($state, $rootScope, $templateCache) {
-          $templateCache.put('/modules/articles/client/views/list-articles.client.view.html', '');
+          $templateCache.put('/modules/microapps/client/views/list-articles.client.view.html', '');
 
           $state.go('microapps.list');
           $rootScope.$digest();
@@ -121,7 +121,7 @@
           $rootScope.$digest();
 
           expect($location.path()).toBe('/articles');
-          expect($state.current.templateUrl).toBe('/modules/articles/client/views/list-articles.client.view.html');
+          expect($state.current.templateUrl).toBe('/modules/microapps/client/views/list-articles.client.view.html');
         }));
       });
     });
