@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('root.articles')
+    .module('root.microapps')
     .controller('MicroAppsController', MicroAppsController);
 
   MicroAppsController.$inject = ['$scope', 'microAppResolve', 'Authentication'];

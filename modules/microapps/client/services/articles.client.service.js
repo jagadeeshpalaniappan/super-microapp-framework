@@ -2,13 +2,13 @@
   'use strict';
 
   angular
-    .module('root.articles.services')
+    .module('root.microapps.services')
     .factory('MicroAppsService', MicroAppsService);
 
   MicroAppsService.$inject = ['$resource', '$log'];
 
   function MicroAppsService($resource, $log) {
-    var MicroApp = $resource('/api/articles/:microAppId', {
+    var MicroApp = $resource('/api/microapps/:microAppId', {
       microAppId: '@_id'
     }, {
       update: {

@@ -69,7 +69,7 @@ describe('MicroApp CRUD tests', function () {
           return done(signinErr);
         }
 
-        agent.post('/api/articles')
+        agent.post('/api/microapps')
           .send(article)
           .expect(403)
           .end(function (articleSaveErr, articleSaveRes) {
@@ -81,7 +81,7 @@ describe('MicroApp CRUD tests', function () {
   });
 
   it('should not be able to save an article if not logged in', function (done) {
-    agent.post('/api/articles')
+    agent.post('/api/microapps')
       .send(article)
       .expect(403)
       .end(function (articleSaveErr, articleSaveRes) {
@@ -100,7 +100,7 @@ describe('MicroApp CRUD tests', function () {
           return done(signinErr);
         }
 
-        agent.post('/api/articles')
+        agent.post('/api/microapps')
           .send(article)
           .expect(403)
           .end(function (articleSaveErr, articleSaveRes) {
@@ -110,14 +110,14 @@ describe('MicroApp CRUD tests', function () {
       });
   });
 
-  it('should be able to get a list of articles if not signed in', function (done) {
+  it('should be able to get a list of microapps if not signed in', function (done) {
     // Create new article model instance
     var articleObj = new MicroApp(article);
 
     // Save the article
     articleObj.save(function () {
-      // Request articles
-      request(app).get('/api/articles')
+      // Request microapps
+      request(app).get('/api/microapps')
         .end(function (req, res) {
           // Set assertion
           res.body.should.be.instanceof(Array).and.have.lengthOf(1);
@@ -135,7 +135,7 @@ describe('MicroApp CRUD tests', function () {
 
     // Save the article
     articleObj.save(function () {
-      request(app).get('/api/articles/' + articleObj._id)
+      request(app).get('/api/microapps/' + articleObj._id)
         .end(function (req, res) {
           // Set assertion
           res.body.should.be.instanceof(Object).and.have.property('title', article.title);
@@ -148,7 +148,7 @@ describe('MicroApp CRUD tests', function () {
 
   it('should return proper error for single article with an invalid Id, if not signed in', function (done) {
     // test is not a valid mongoose Id
-    request(app).get('/api/articles/test')
+    request(app).get('/api/microapps/test')
       .end(function (req, res) {
         // Set assertion
         res.body.should.be.instanceof(Object).and.have.property('message', 'MicroApp is invalid');
@@ -160,7 +160,7 @@ describe('MicroApp CRUD tests', function () {
 
   it('should return proper error for single article which doesnt exist, if not signed in', function (done) {
     // This is a valid mongoose Id but a non-existent article
-    request(app).get('/api/articles/559e9cd815f80b4c256a8f41')
+    request(app).get('/api/microapps/559e9cd815f80b4c256a8f41')
       .end(function (req, res) {
         // Set assertion
         res.body.should.be.instanceof(Object).and.have.property('message', 'No article with that identifier has been found');
@@ -180,7 +180,7 @@ describe('MicroApp CRUD tests', function () {
           return done(signinErr);
         }
 
-        agent.post('/api/articles')
+        agent.post('/api/microapps')
           .send(article)
           .expect(403)
           .end(function (articleSaveErr, articleSaveRes) {
@@ -200,7 +200,7 @@ describe('MicroApp CRUD tests', function () {
     // Save the article
     articleObj.save(function () {
       // Try deleting article
-      request(app).delete('/api/articles/' + articleObj._id)
+      request(app).delete('/api/microapps/' + articleObj._id)
         .expect(403)
         .end(function (articleDeleteErr, articleDeleteRes) {
           // Set message assertion
@@ -251,7 +251,7 @@ describe('MicroApp CRUD tests', function () {
           var orphanId = orphan._id;
 
           // Save a new article
-          agent.post('/api/articles')
+          agent.post('/api/microapps')
             .send(article)
             .expect(200)
             .end(function (articleSaveErr, articleSaveRes) {
@@ -278,7 +278,7 @@ describe('MicroApp CRUD tests', function () {
                     }
 
                     // Get the article
-                    agent.get('/api/articles/' + articleSaveRes.body._id)
+                    agent.get('/api/microapps/' + articleSaveRes.body._id)
                       .expect(200)
                       .end(function (articleInfoErr, articleInfoRes) {
                         // Handle article error
@@ -307,7 +307,7 @@ describe('MicroApp CRUD tests', function () {
 
     // Save the article
     articleObj.save(function () {
-      request(app).get('/api/articles/' + articleObj._id)
+      request(app).get('/api/microapps/' + articleObj._id)
         .end(function (req, res) {
           // Set assertion
           res.body.should.be.instanceof(Object).and.have.property('title', article.title);
@@ -358,7 +358,7 @@ describe('MicroApp CRUD tests', function () {
           var userId = _user._id;
 
           // Save a new article
-          agent.post('/api/articles')
+          agent.post('/api/microapps')
             .send(article)
             .expect(200)
             .end(function (articleSaveErr, articleSaveRes) {
@@ -383,7 +383,7 @@ describe('MicroApp CRUD tests', function () {
                   }
 
                   // Get the article
-                  agent.get('/api/articles/' + articleSaveRes.body._id)
+                  agent.get('/api/microapps/' + articleSaveRes.body._id)
                     .expect(200)
                     .end(function (articleInfoErr, articleInfoRes) {
                       // Handle article error

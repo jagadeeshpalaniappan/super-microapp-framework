@@ -73,7 +73,7 @@ describe('MicroApp Admin CRUD tests', function () {
         var userId = user.id;
 
         // Save a new article
-        agent.post('/api/articles')
+        agent.post('/api/microapps')
           .send(article)
           .expect(200)
           .end(function (articleSaveErr, articleSaveRes) {
@@ -82,20 +82,20 @@ describe('MicroApp Admin CRUD tests', function () {
               return done(articleSaveErr);
             }
 
-            // Get a list of articles
-            agent.get('/api/articles')
+            // Get a list of microapps
+            agent.get('/api/microapps')
               .end(function (articlesGetErr, articlesGetRes) {
                 // Handle article save error
                 if (articlesGetErr) {
                   return done(articlesGetErr);
                 }
 
-                // Get articles list
-                var articles = articlesGetRes.body;
+                // Get microapps list
+                var microapps = articlesGetRes.body;
 
                 // Set assertions
-                (articles[0].user._id).should.equal(userId);
-                (articles[0].title).should.match('MicroApp Title');
+                (microapps[0].user._id).should.equal(userId);
+                (microapps[0].title).should.match('MicroApp Title');
 
                 // Call the assertion callback
                 done();
@@ -118,7 +118,7 @@ describe('MicroApp Admin CRUD tests', function () {
         var userId = user.id;
 
         // Save a new article
-        agent.post('/api/articles')
+        agent.post('/api/microapps')
           .send(article)
           .expect(200)
           .end(function (articleSaveErr, articleSaveRes) {
@@ -131,7 +131,7 @@ describe('MicroApp Admin CRUD tests', function () {
             article.title = 'WHY YOU GOTTA BE SO MEAN?';
 
             // Update an existing article
-            agent.put('/api/articles/' + articleSaveRes.body._id)
+            agent.put('/api/microapps/' + articleSaveRes.body._id)
               .send(article)
               .expect(200)
               .end(function (articleUpdateErr, articleUpdateRes) {
@@ -168,7 +168,7 @@ describe('MicroApp Admin CRUD tests', function () {
         var userId = user.id;
 
         // Save a new article
-        agent.post('/api/articles')
+        agent.post('/api/microapps')
           .send(article)
           .expect(422)
           .end(function (articleSaveErr, articleSaveRes) {
@@ -195,7 +195,7 @@ describe('MicroApp Admin CRUD tests', function () {
         var userId = user.id;
 
         // Save a new article
-        agent.post('/api/articles')
+        agent.post('/api/microapps')
           .send(article)
           .expect(200)
           .end(function (articleSaveErr, articleSaveRes) {
@@ -205,7 +205,7 @@ describe('MicroApp Admin CRUD tests', function () {
             }
 
             // Delete an existing article
-            agent.delete('/api/articles/' + articleSaveRes.body._id)
+            agent.delete('/api/microapps/' + articleSaveRes.body._id)
               .send(article)
               .expect(200)
               .end(function (articleDeleteErr, articleDeleteRes) {
@@ -242,7 +242,7 @@ describe('MicroApp Admin CRUD tests', function () {
         var userId = user.id;
 
         // Save a new article
-        agent.post('/api/articles')
+        agent.post('/api/microapps')
           .send(article)
           .expect(200)
           .end(function (articleSaveErr, articleSaveRes) {
@@ -252,7 +252,7 @@ describe('MicroApp Admin CRUD tests', function () {
             }
 
             // Get the article
-            agent.get('/api/articles/' + articleSaveRes.body._id)
+            agent.get('/api/microapps/' + articleSaveRes.body._id)
               .expect(200)
               .end(function (articleInfoErr, articleInfoRes) {
                 // Handle article error

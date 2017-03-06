@@ -3,21 +3,21 @@
 /**
  * Module dependencies
  */
-var articlesPolicy = require('../policies/articles.server.policy'),
-  articles = require('../controllers/articles.server.controller');
+var articlesPolicy = require('../policies/microapps.server.policy'),
+  microapps = require('../controllers/microapps.server.controller');
 
 module.exports = function (app) {
   // Articles collection routes
-  app.route('/api/articles').all(articlesPolicy.isAllowed)
-    .get(articles.list)
-    .post(articles.create);
+  app.route('/api/microapps').all(articlesPolicy.isAllowed)
+    .get(microapps.list)
+    .post(microapps.create);
 
   // Single article routes
-  app.route('/api/articles/:microAppId').all(articlesPolicy.isAllowed)
-    .get(articles.read)
-    .put(articles.update)
-    .delete(articles.delete);
+  app.route('/api/microapps/:microAppId').all(articlesPolicy.isAllowed)
+    .get(microapps.read)
+    .put(microapps.update)
+    .delete(microapps.delete);
 
   // Finish by binding the article middleware
-  app.param('microAppId', articles.articleByID);
+  app.param('microAppId', microapps.articleByID);
 };

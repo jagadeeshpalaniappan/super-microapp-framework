@@ -78,17 +78,17 @@
         mockArticleList = [mockArticle, mockArticle];
       });
 
-      it('should send a GET request and return all articles', inject(function (MicroAppsService) {
+      it('should send a GET request and return all microapps', inject(function (MicroAppsService) {
         // Set POST response
-        $httpBackend.expectGET('/api/articles').respond(mockArticleList);
+        $httpBackend.expectGET('/api/microapps').respond(mockArticleList);
 
 
         $httpBackend.flush();
 
         // Test form inputs are reset
-        expect($scope.vm.articles.length).toEqual(2);
-        expect($scope.vm.articles[0]).toEqual(mockArticle);
-        expect($scope.vm.articles[1]).toEqual(mockArticle);
+        expect($scope.vm.microapps.length).toEqual(2);
+        expect($scope.vm.microapps[0]).toEqual(mockArticle);
+        expect($scope.vm.microapps[1]).toEqual(mockArticle);
 
       }));
     });

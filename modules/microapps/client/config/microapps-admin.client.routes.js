@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('root.articles.admin.routes')
+    .module('root.microapps.admin.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];

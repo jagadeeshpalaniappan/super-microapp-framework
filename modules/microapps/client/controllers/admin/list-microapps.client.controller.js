@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('root.articles.admin')
+    .module('root.microapps.admin')
     .controller('MicroAppsAdminListController', MicroAppsAdminListController);
 
   MicroAppsAdminListController.$inject = ['MicroAppsService'];
@@ -10,6 +10,6 @@
   function MicroAppsAdminListController(MicroAppsService) {
     var vm = this;
 
-    vm.articles = MicroAppsService.query();
+    vm.microapps = MicroAppsService.query();
   }
 }());

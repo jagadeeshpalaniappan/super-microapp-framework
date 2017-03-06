@@ -90,7 +90,7 @@
 
       it('should send a POST request with the form input values and then locate to new object URL', inject(function (MicroAppsService) {
         // Set POST response
-        $httpBackend.expectPOST('/api/articles', sampleArticlePostData).respond(mockArticle);
+        $httpBackend.expectPOST('/api/microapps', sampleArticlePostData).respond(mockArticle);
 
         // Run controller functionality
         $scope.vm.save(true);
@@ -104,7 +104,7 @@
 
       it('should call Notification.error if error', function () {
         var errorMessage = 'this is an error message';
-        $httpBackend.expectPOST('/api/articles', sampleArticlePostData).respond(400, {
+        $httpBackend.expectPOST('/api/microapps', sampleArticlePostData).respond(400, {
           message: errorMessage
         });
 
@@ -123,7 +123,7 @@
 
       it('should update a valid article', inject(function (MicroAppsService) {
         // Set PUT response
-        $httpBackend.expectPUT(/api\/articles\/([0-9a-fA-F]{24})$/).respond();
+        $httpBackend.expectPUT(/api\/microapps\/([0-9a-fA-F]{24})$/).respond();
 
         // Run controller functionality
         $scope.vm.save(true);
@@ -137,7 +137,7 @@
 
       it('should  call Notification.error if error', inject(function (MicroAppsService) {
         var errorMessage = 'error';
-        $httpBackend.expectPUT(/api\/articles\/([0-9a-fA-F]{24})$/).respond(400, {
+        $httpBackend.expectPUT(/api\/microapps\/([0-9a-fA-F]{24})$/).respond(400, {
           message: errorMessage
         });
 
@@ -150,15 +150,15 @@
 
     describe('vm.remove()', function () {
       beforeEach(function () {
-        // Setup articles
+        // Setup microapps
         $scope.vm.microApp = mockArticle;
       });
 
-      it('should delete the article and redirect to articles', function () {
+      it('should delete the article and redirect to microapps', function () {
         // Return true on confirm message
         spyOn(window, 'confirm').and.returnValue(true);
 
-        $httpBackend.expectDELETE(/api\/articles\/([0-9a-fA-F]{24})$/).respond(204);
+        $httpBackend.expectDELETE(/api\/microapps\/([0-9a-fA-F]{24})$/).respond(204);
 
         $scope.vm.remove();
         $httpBackend.flush();

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('root.articles.admin')
+    .module('root.microapps.admin')
     .controller('MicroAppsAdminController', MicroAppsAdminController);
 
   MicroAppsAdminController.$inject = ['$scope', '$state', '$window', 'microAppResolve', 'Authentication', 'Notification'];

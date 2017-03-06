@@ -26,7 +26,7 @@
         }));
 
         it('Should have the correct URL', function () {
-          expect(mainstate.url).toEqual('/articles');
+          expect(mainstate.url).toEqual('/microapps');
         });
 
         it('Should be abstract', function () {
@@ -92,7 +92,7 @@
         it('should respond to URL', inject(function ($state) {
           expect($state.href(viewstate, {
             microAppId: 1
-          })).toEqual('/articles/1');
+          })).toEqual('/microapps/1');
         }));
 
         it('should attach an article to the controller scope', function () {
@@ -117,10 +117,10 @@
         }));
 
         it('Should remove trailing slash', inject(function ($state, $location, $rootScope) {
-          $location.path('articles/');
+          $location.path('microapps/');
           $rootScope.$digest();
 
-          expect($location.path()).toBe('/articles');
+          expect($location.path()).toBe('/microapps');
           expect($state.current.templateUrl).toBe('/modules/microapps/client/views/list-microapps.client.view.html');
         }));
       });

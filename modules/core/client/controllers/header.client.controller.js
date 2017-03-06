@@ -10,7 +10,7 @@
   function RootHeaderController($scope, $state, Authentication, menuService, MicroAppsService) {
     var vm = this;
 
-    vm.articles = MicroAppsService.query();
+    vm.microapps = MicroAppsService.query();
 
     vm.accountMenu = menuService.getMenu('account').items[0];
     vm.authentication = Authentication;

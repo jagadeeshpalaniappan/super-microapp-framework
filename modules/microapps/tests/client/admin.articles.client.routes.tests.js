@@ -26,7 +26,7 @@
         }));
 
         it('Should have the correct URL', function () {
-          expect(mainstate.url).toEqual('/articles');
+          expect(mainstate.url).toEqual('/microapps');
         });
 
         it('Should be abstract', function () {
@@ -86,7 +86,7 @@
         });
 
         it('should respond to URL', inject(function ($state) {
-          expect($state.href(createstate)).toEqual('/admin/articles/create');
+          expect($state.href(createstate)).toEqual('/admin/microapps/create');
         }));
 
         it('should attach an article to the controller scope', function () {
@@ -138,7 +138,7 @@
         it('should respond to URL', inject(function ($state) {
           expect($state.href(editstate, {
             microAppId: 1
-          })).toEqual('/admin/articles/1/edit');
+          })).toEqual('/admin/microapps/1/edit');
         }));
 
         it('should attach an article to the controller scope', function () {
