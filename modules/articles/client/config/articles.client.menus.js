@@ -9,7 +9,7 @@
 
   function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
-      title: 'Articles',
+      title: 'Micro Apps',
       state: 'microapps',
       type: 'dropdown',
       roles: ['*']
@@ -17,7 +17,7 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'microapps', {
-      title: 'List Articles',
+      title: 'List Micro Apps',
       state: 'microapps.list',
       roles: ['*']
     });

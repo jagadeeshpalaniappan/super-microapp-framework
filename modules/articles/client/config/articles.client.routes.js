@@ -20,7 +20,7 @@
         controller: 'ArticlesListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Articles List'
+          pageTitle: 'Micro Apps List'
         }
       })
       .state('microapps.view', {
