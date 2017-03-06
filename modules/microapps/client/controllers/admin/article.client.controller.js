@@ -3,11 +3,11 @@
 
   angular
     .module('root.articles.admin')
-    .controller('ArticlesAdminController', ArticlesAdminController);
+    .controller('MicroAppsAdminController', MicroAppsAdminController);
 
-  ArticlesAdminController.$inject = ['$scope', '$state', '$window', 'articleResolve', 'Authentication', 'Notification'];
+  MicroAppsAdminController.$inject = ['$scope', '$state', '$window', 'articleResolve', 'Authentication', 'Notification'];
 
-  function ArticlesAdminController($scope, $state, $window, article, Authentication, Notification) {
+  function MicroAppsAdminController($scope, $state, $window, article, Authentication, Notification) {
     var vm = this;
 
     vm.article = article;

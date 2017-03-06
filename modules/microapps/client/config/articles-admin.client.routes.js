@@ -17,7 +17,7 @@
       .state('admin.microapps.list', {
         url: '',
         templateUrl: '/modules/microapps/client/views/admin/list-articles.client.view.html',
-        controller: 'ArticlesAdminListController',
+        controller: 'MicroAppsAdminListController',
         controllerAs: 'vm',
         data: {
           roles: ['admin']
@@ -26,7 +26,7 @@
       .state('admin.microapps.create', {
         url: '/create',
         templateUrl: '/modules/microapps/client/views/admin/form-article.client.view.html',
-        controller: 'ArticlesAdminController',
+        controller: 'MicroAppsAdminController',
         controllerAs: 'vm',
         data: {
           roles: ['admin']
@@ -38,7 +38,7 @@
       .state('admin.microapps.edit', {
         url: '/:articleId/edit',
         templateUrl: '/modules/microapps/client/views/admin/form-article.client.view.html',
-        controller: 'ArticlesAdminController',
+        controller: 'MicroAppsAdminController',
         controllerAs: 'vm',
         data: {
           roles: ['admin']

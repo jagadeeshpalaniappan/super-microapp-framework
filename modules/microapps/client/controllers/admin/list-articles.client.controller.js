@@ -3,11 +3,11 @@
 
   angular
     .module('root.articles.admin')
-    .controller('ArticlesAdminListController', ArticlesAdminListController);
+    .controller('MicroAppsAdminListController', MicroAppsAdminListController);
 
-  ArticlesAdminListController.$inject = ['MicroAppsService'];
+  MicroAppsAdminListController.$inject = ['MicroAppsService'];
 
-  function ArticlesAdminListController(MicroAppsService) {
+  function MicroAppsAdminListController(MicroAppsService) {
     var vm = this;
 
     vm.articles = MicroAppsService.query();

@@ -17,7 +17,7 @@
       .state('microapps.list', {
         url: '',
         templateUrl: '/modules/microapps/client/views/list-articles.client.view.html',
-        controller: 'ArticlesListController',
+        controller: 'MicroAppsListController',
         controllerAs: 'vm',
         data: {
           pageTitle: 'Micro Apps List'
@@ -26,13 +26,13 @@
       .state('microapps.view', {
         url: '/:articleId',
         templateUrl: '/modules/microapps/client/views/view-article.client.view.html',
-        controller: 'ArticlesController',
+        controller: 'MicroAppsController',
         controllerAs: 'vm',
         resolve: {
           articleResolve: getArticle
         },
         data: {
-          pageTitle: 'Article {{ articleResolve.title }}'
+          pageTitle: 'Micro Apps {{ articleResolve.title }}'
         }
       });
   }

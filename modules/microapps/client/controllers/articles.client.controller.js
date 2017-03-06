@@ -3,11 +3,11 @@
 
   angular
     .module('root.articles')
-    .controller('ArticlesController', ArticlesController);
+    .controller('MicroAppsController', MicroAppsController);
 
-  ArticlesController.$inject = ['$scope', 'articleResolve', 'Authentication'];
+  MicroAppsController.$inject = ['$scope', 'articleResolve', 'Authentication'];
 
-  function ArticlesController($scope, article, Authentication) {
+  function MicroAppsController($scope, article, Authentication) {
     var vm = this;
 
     vm.article = article;

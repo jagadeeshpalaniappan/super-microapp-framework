@@ -3,7 +3,7 @@
 
   describe('Articles Controller Tests', function () {
     // Initialize global variables
-    var ArticlesController,
+    var MicroAppsController,
       $scope,
       $httpBackend,
       $state,
@@ -59,7 +59,7 @@
       };
 
       // Initialize the Articles controller.
-      ArticlesController = $controller('ArticlesController as vm', {
+      MicroAppsController = $controller('MicroAppsController as vm', {
         $scope: $scope,
         articleResolve: {}
       });

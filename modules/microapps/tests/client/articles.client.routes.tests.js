@@ -59,7 +59,7 @@
 
       describe('View Route', function () {
         var viewstate,
-          ArticlesController,
+          MicroAppsController,
           mockArticle;
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
@@ -74,7 +74,7 @@
           });
 
           // Initialize Controller
-          ArticlesController = $controller('ArticlesController as vm', {
+          MicroAppsController = $controller('MicroAppsController as vm', {
             $scope: $scope,
             articleResolve: mockArticle
           });
