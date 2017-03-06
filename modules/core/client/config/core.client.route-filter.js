@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core')
+    .module('root.core')
     .run(routeFilter);
 
   routeFilter.$inject = ['$rootScope', '$state', 'Authentication'];

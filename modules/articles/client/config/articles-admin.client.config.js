@@ -3,7 +3,7 @@
 
   // Configuring the Articles Admin module
   angular
-    .module('articles.admin')
+    .module('root.articles.admin')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];

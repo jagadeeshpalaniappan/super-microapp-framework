@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('users')
+    .module('root.users')
     .controller('AuthenticationController', AuthenticationController);
 
   AuthenticationController.$inject = ['$scope', '$state', 'UsersService', '$location', '$window', 'Authentication', 'PasswordValidator', 'Notification'];

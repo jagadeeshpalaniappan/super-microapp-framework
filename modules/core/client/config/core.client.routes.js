@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core.routes')
+    .module('root.core.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider', '$urlRouterProvider'];

@@ -23,7 +23,7 @@
       describe('Main Route', function () {
         var mainstate;
         beforeEach(inject(function ($state) {
-          mainstate = $state.get('chat');
+          mainstate = $state.get('root.chat');
         }));
 
         it('Should have the correct URL', function () {
@@ -52,7 +52,7 @@
           $httpBackend.whenGET('/modules/chat/client/views/chat.client.view.html').respond(200);
           $httpBackend.whenGET('/modules/core/client/views/home.client.view.html').respond(200, '');
 
-          $state.go('chat');
+          $state.go('root.chat');
           $rootScope.$digest();
         }));
 

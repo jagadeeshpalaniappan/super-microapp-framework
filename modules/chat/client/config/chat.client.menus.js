@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('chat')
+    .module('root.chat')
     .run(menuConfig);
 
   menuConfig.$inject = ['menuService'];
@@ -11,7 +11,7 @@
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
       title: 'Chat',
-      state: 'chat'
+      state: 'root.chat'
     });
   }
 }());

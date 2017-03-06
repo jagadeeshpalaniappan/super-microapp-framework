@@ -3,7 +3,7 @@
 
   // Users service used for communicating with the users REST endpoint
   angular
-    .module('users.services')
+    .module('root.users.services')
     .factory('UsersService', UsersService);
 
   UsersService.$inject = ['$resource'];
@@ -72,7 +72,7 @@
 
   // TODO this should be Users service
   angular
-    .module('users.admin.services')
+    .module('root.users.admin.services')
     .factory('AdminService', AdminService);
 
   AdminService.$inject = ['$resource'];

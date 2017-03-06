@@ -1,8 +1,8 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('core');
-  app.registerModule('core.routes', ['ui.router']);
-  app.registerModule('core.admin', ['core']);
-  app.registerModule('core.admin.routes', ['ui.router']);
+  app.registerModule('root.core');
+  app.registerModule('root.core.routes', ['ui.router']);
+  app.registerModule('root.core.admin', ['root.core']);
+  app.registerModule('root.core.admin.routes', ['ui.router']);
 }(RootApplicationConfiguration));

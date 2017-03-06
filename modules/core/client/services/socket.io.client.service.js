@@ -3,7 +3,7 @@
 
   // Create the Socket.io wrapper service
   angular
-    .module('core')
+    .module('root.core')
     .factory('Socket', Socket);
 
   Socket.$inject = ['Authentication', '$state', '$timeout'];

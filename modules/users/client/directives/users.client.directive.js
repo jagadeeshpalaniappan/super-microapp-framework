@@ -3,7 +3,7 @@
 
   // Users directive used to force lowercase input
   angular
-    .module('users')
+    .module('root.users')
     .directive('lowercase', lowercase);
 
   function lowercase() {

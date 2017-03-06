@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('articles.admin.routes')
+    .module('root.articles.admin.routes')
     .config(routeConfig);
 
   routeConfig.$inject = ['$stateProvider'];

@@ -1,10 +1,10 @@
 (function (app) {
   'use strict';
 
-  app.registerModule('users');
-  app.registerModule('users.admin');
-  app.registerModule('users.admin.routes', ['ui.router', 'core.routes', 'users.admin.services']);
-  app.registerModule('users.admin.services');
-  app.registerModule('users.routes', ['ui.router', 'core.routes']);
-  app.registerModule('users.services');
+  app.registerModule('root.users');
+  app.registerModule('root.users.admin');
+  app.registerModule('root.users.admin.routes', ['ui.router', 'root.core.routes', 'root.users.admin.services']);
+  app.registerModule('root.users.admin.services');
+  app.registerModule('root.users.routes', ['ui.router', 'root.core.routes']);
+  app.registerModule('root.users.services');
 }(RootApplicationConfiguration));

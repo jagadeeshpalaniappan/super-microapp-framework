@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core')
+    .module('root.core')
     .controller('RootHeaderController', RootHeaderController);
 
   RootHeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService', 'ArticlesService'];

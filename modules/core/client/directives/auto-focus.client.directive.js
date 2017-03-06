@@ -4,7 +4,7 @@
   // Focus the element on page load
   // Unless the user is on a small device, because this could obscure the page with a keyboard
 
-  angular.module('core')
+  angular.module('root.core')
     .directive('autofocus', autofocus);
 
   autofocus.$inject = ['$timeout', '$window'];

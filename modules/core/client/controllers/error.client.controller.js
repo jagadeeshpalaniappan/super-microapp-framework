@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core')
+    .module('root.core')
     .controller('ErrorController', ErrorController);
 
   ErrorController.$inject = ['$stateParams'];

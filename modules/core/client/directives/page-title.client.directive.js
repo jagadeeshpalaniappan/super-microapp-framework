@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  angular.module('core')
+  angular.module('root.core')
     .directive('pageTitle', pageTitle);
 
   pageTitle.$inject = ['$rootScope', '$interpolate', '$state'];

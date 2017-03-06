@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('users')
+    .module('root.users')
     .controller('SettingsController', SettingsController);
 
   SettingsController.$inject = ['$scope', 'Authentication'];

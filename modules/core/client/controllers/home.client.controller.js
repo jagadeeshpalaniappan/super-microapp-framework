@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('core')
+    .module('root.core')
     .controller('HomeController', HomeController);
 
   function HomeController() {
