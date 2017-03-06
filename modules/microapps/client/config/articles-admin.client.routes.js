@@ -49,17 +49,17 @@
       });
   }
 
-  getArticle.$inject = ['$stateParams', 'ArticlesService'];
+  getArticle.$inject = ['$stateParams', 'MicroAppsService'];
 
-  function getArticle($stateParams, ArticlesService) {
-    return ArticlesService.get({
+  function getArticle($stateParams, MicroAppsService) {
+    return MicroAppsService.get({
       articleId: $stateParams.articleId
     }).$promise;
   }
 
-  newArticle.$inject = ['ArticlesService'];
+  newArticle.$inject = ['MicroAppsService'];
 
-  function newArticle(ArticlesService) {
-    return new ArticlesService();
+  function newArticle(MicroAppsService) {
+    return new MicroAppsService();
   }
 }());

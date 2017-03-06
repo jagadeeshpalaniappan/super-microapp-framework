@@ -934,7 +934,7 @@
 * grunt(core): Remove Excess Grunt Dependencies (#1543) ([afe0d38](https://github.com/meanjs/mean/commit/afe0d38))
 * feat(angular): disable Angular debug data in production (#1457) ([07a860f](https://github.com/meanjs/mean/commit/07a860f))
 * feat(articles): Article Admin feature (#807) ([89075cb](https://github.com/meanjs/mean/commit/89075cb))
-* feat(articles): ArticlesService extended $resource (#1266) ([a7370a7](https://github.com/meanjs/mean/commit/a7370a7))
+* feat(articles): MicroAppsService extended $resource (#1266) ([a7370a7](https://github.com/meanjs/mean/commit/a7370a7))
 * feat(articles): Modify articles module to implement style guidelines. ([b3ad56e](https://github.com/meanjs/mean/commit/b3ad56e)), closes [#874](https://github.com/meanjs/mean/issues/874) [#339](https://github.com/meanjs/mean/issues/339)
 * feat(articles): Rename list.articles.client.controller.js to list-articles.client.controller.js ([a014ffc](https://github.com/meanjs/mean/commit/a014ffc)), closes [#1192](https://github.com/meanjs/mean/issues/1192)
 * feat(build): added imagemin to gulp ([1a3f6f8](https://github.com/meanjs/mean/commit/1a3f6f8))

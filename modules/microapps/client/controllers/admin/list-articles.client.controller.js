@@ -5,11 +5,11 @@
     .module('root.articles.admin')
     .controller('ArticlesAdminListController', ArticlesAdminListController);
 
-  ArticlesAdminListController.$inject = ['ArticlesService'];
+  ArticlesAdminListController.$inject = ['MicroAppsService'];
 
-  function ArticlesAdminListController(ArticlesService) {
+  function ArticlesAdminListController(MicroAppsService) {
     var vm = this;
 
-    vm.articles = ArticlesService.query();
+    vm.articles = MicroAppsService.query();
   }
 }());

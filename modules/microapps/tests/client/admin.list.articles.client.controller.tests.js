@@ -8,7 +8,7 @@
       $httpBackend,
       $state,
       Authentication,
-      ArticlesService,
+      MicroAppsService,
       mockArticle;
 
     // The $resource service augments the response object with methods for updating and deleting the resource.
@@ -44,14 +44,14 @@
       $httpBackend = _$httpBackend_;
       $state = _$state_;
       Authentication = _Authentication_;
-      ArticlesService = _ArticlesService_;
+      MicroAppsService = _ArticlesService_;
 
       // Ignore parent template get on state transitions
       $httpBackend.whenGET('/modules/microapps/client/views/list-articles.client.view.html').respond(200, '');
       $httpBackend.whenGET('/modules/core/client/views/home.client.view.html').respond(200, '');
 
       // create mock article
-      mockArticle = new ArticlesService({
+      mockArticle = new MicroAppsService({
         _id: '525a8422f6d0f87f0e407a33',
         title: 'An Article about MEAN',
         content: 'MEAN rocks!'
@@ -78,7 +78,7 @@
         mockArticleList = [mockArticle, mockArticle];
       });
 
-      it('should send a GET request and return all articles', inject(function (ArticlesService) {
+      it('should send a GET request and return all articles', inject(function (MicroAppsService) {
         // Set POST response
         $httpBackend.expectGET('/api/articles').respond(mockArticleList);
 

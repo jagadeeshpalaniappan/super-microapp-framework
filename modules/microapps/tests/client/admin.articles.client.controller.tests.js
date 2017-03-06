@@ -8,7 +8,7 @@
       $httpBackend,
       $state,
       Authentication,
-      ArticlesService,
+      MicroAppsService,
       mockArticle,
       Notification;
 
@@ -45,14 +45,14 @@
       $httpBackend = _$httpBackend_;
       $state = _$state_;
       Authentication = _Authentication_;
-      ArticlesService = _ArticlesService_;
+      MicroAppsService = _ArticlesService_;
       Notification = _Notification_;
 
       // Ignore parent template get on state transitions
       $httpBackend.whenGET('/modules/core/client/views/home.client.view.html').respond(200, '');
 
       // create mock article
-      mockArticle = new ArticlesService({
+      mockArticle = new MicroAppsService({
         _id: '525a8422f6d0f87f0e407a33',
         title: 'An Article about MEAN',
         content: 'MEAN rocks!'
@@ -80,7 +80,7 @@
 
       beforeEach(function () {
         // Create a sample article object
-        sampleArticlePostData = new ArticlesService({
+        sampleArticlePostData = new MicroAppsService({
           title: 'An Article about MEAN',
           content: 'MEAN rocks!'
         });
@@ -88,7 +88,7 @@
         $scope.vm.article = sampleArticlePostData;
       });
 
-      it('should send a POST request with the form input values and then locate to new object URL', inject(function (ArticlesService) {
+      it('should send a POST request with the form input values and then locate to new object URL', inject(function (MicroAppsService) {
         // Set POST response
         $httpBackend.expectPOST('/api/articles', sampleArticlePostData).respond(mockArticle);
 
@@ -121,7 +121,7 @@
         $scope.vm.article = mockArticle;
       });
 
-      it('should update a valid article', inject(function (ArticlesService) {
+      it('should update a valid article', inject(function (MicroAppsService) {
         // Set PUT response
         $httpBackend.expectPUT(/api\/articles\/([0-9a-fA-F]{24})$/).respond();
 
@@ -135,7 +135,7 @@
         expect($state.go).toHaveBeenCalledWith('admin.microapps.list');
       }));
 
-      it('should  call Notification.error if error', inject(function (ArticlesService) {
+      it('should  call Notification.error if error', inject(function (MicroAppsService) {
         var errorMessage = 'error';
         $httpBackend.expectPUT(/api\/articles\/([0-9a-fA-F]{24})$/).respond(400, {
           message: errorMessage

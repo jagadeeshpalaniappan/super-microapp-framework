@@ -4,7 +4,7 @@
   describe('Articles Route Tests', function () {
     // Initialize global variables
     var $scope,
-      ArticlesService;
+      MicroAppsService;
 
     // We can start by loading the main application module
     beforeEach(module(RootApplicationConfiguration.applicationModuleName));
@@ -15,7 +15,7 @@
     beforeEach(inject(function ($rootScope, _ArticlesService_) {
       // Set a new global scope
       $scope = $rootScope.$new();
-      ArticlesService = _ArticlesService_;
+      MicroAppsService = _ArticlesService_;
     }));
 
     describe('Route Config', function () {
@@ -67,7 +67,7 @@
           $templateCache.put('/modules/microapps/client/views/view-article.client.view.html', '');
 
           // create mock article
-          mockArticle = new ArticlesService({
+          mockArticle = new MicroAppsService({
             _id: '525a8422f6d0f87f0e407a33',
             title: 'An Article about MEAN',
             content: 'MEAN rocks!'

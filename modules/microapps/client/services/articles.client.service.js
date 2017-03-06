@@ -3,11 +3,11 @@
 
   angular
     .module('root.articles.services')
-    .factory('ArticlesService', ArticlesService);
+    .factory('MicroAppsService', MicroAppsService);
 
-  ArticlesService.$inject = ['$resource', '$log'];
+  MicroAppsService.$inject = ['$resource', '$log'];
 
-  function ArticlesService($resource, $log) {
+  function MicroAppsService($resource, $log) {
     var Article = $resource('/api/articles/:articleId', {
       articleId: '@_id'
     }, {

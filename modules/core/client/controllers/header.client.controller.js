@@ -5,12 +5,12 @@
     .module('root.core')
     .controller('RootHeaderController', RootHeaderController);
 
-  RootHeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService', 'ArticlesService'];
+  RootHeaderController.$inject = ['$scope', '$state', 'Authentication', 'menuService', 'MicroAppsService'];
 
-  function RootHeaderController($scope, $state, Authentication, menuService, ArticlesService) {
+  function RootHeaderController($scope, $state, Authentication, menuService, MicroAppsService) {
     var vm = this;
 
-    vm.articles = ArticlesService.query();
+    vm.articles = MicroAppsService.query();
 
     vm.accountMenu = menuService.getMenu('account').items[0];
     vm.authentication = Authentication;
