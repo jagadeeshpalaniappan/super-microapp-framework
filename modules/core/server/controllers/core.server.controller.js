@@ -12,10 +12,10 @@ var requestProxy = require('express-request-proxy');
 var cache = require('memory-cache');
 
 
-var _redirectFormattedUrl = function(req, res){
+var _redirectFormattedUrl = function(req, res) {
 
   // append '/' --if not
-  if(!req.path.endsWith('/')){
+  if (!req.path.endsWith('/')) {
     var url = parseUrl(req.url);
     url.pathname = url.pathname + '/';
     var newUrl = formatUrl(url);
@@ -25,7 +25,7 @@ var _redirectFormattedUrl = function(req, res){
 
 };
 
-var _getSafeUserObject = function (req, res){
+var _getSafeUserObject = function (req, res) {
 
   var safeUserObject = null;
   if (req.user) {
@@ -45,8 +45,6 @@ var _getSafeUserObject = function (req, res){
 
   return safeUserObject;
 };
-
-
 
 /**
  * Render the main application page
@@ -72,7 +70,7 @@ exports.renderMicroAppIndex = function (req, res) {
 
   var microAppId = req.params.mappId;
 
-  console.log('-------------------renderMicroAppIndex ['+microAppId+']---------------------');
+  console.log('-------------------renderMicroAppIndex [' + microAppId + ']---------------------');
 
   _redirectFormattedUrl(req, res);
 
@@ -86,9 +84,10 @@ exports.renderMicroAppIndex = function (req, res) {
 
   var allMicroAppsConfig = cache.get('allMicroAppsConfig');
 
-  console.log("### allMicroAppsConfig");
-  console.log(allMicroAppsConfig);
-  var requestedMicroAppConfig = _.find(allMicroAppsConfig, { 'title': microAppId});
+  // console.log('### allMicroAppsConfig');
+  // console.log(allMicroAppsConfig);
+
+  var requestedMicroAppConfig = _.find(allMicroAppsConfig, { 'title': microAppId });
 
   if (requestedMicroAppConfig) {
 
@@ -103,12 +102,12 @@ exports.renderMicroAppIndex = function (req, res) {
 
     rp(options)
       .then(function (response) {
-        console.log("succeeded with status %d", response.statusCode);
+        console.log('succeeded with status %d', response.statusCode);
 
         var microAppBody = response.body;
 
         res.render('modules/core/server/views/index', {
-          user: safeUserObject? JSON.stringify(safeUserObject) : null,
+          user: safeUserObject ? JSON.stringify(safeUserObject) : null,
           sharedConfig: JSON.stringify(config.shared),
           microAppBody: microAppBody
         });
@@ -121,7 +120,7 @@ exports.renderMicroAppIndex = function (req, res) {
         var microAppBody = '<br><br><h1> Micro App Found, But its not responding :( </h1>';
 
         res.render('modules/core/server/views/index', {
-          user: safeUserObject? JSON.stringify(safeUserObject) : null,
+          user: safeUserObject ? JSON.stringify(safeUserObject) : null,
           sharedConfig: JSON.stringify(config.shared),
           microAppBody: microAppBody
         });
@@ -130,19 +129,15 @@ exports.renderMicroAppIndex = function (req, res) {
 
   } else {
 
-
     var microAppBody = '<br><br><h1> Micro App Not Found :( </h1>';
 
     res.render('modules/core/server/views/index', {
-      user: safeUserObject? JSON.stringify(safeUserObject) : null,
+      user: safeUserObject ? JSON.stringify(safeUserObject) : null,
       sharedConfig: JSON.stringify(config.shared),
       microAppBody: microAppBody
     });
 
-
   }
-
-
 
 };
 
@@ -154,7 +149,7 @@ exports.proxyAllMicroAppRequest = function (req, res, next) {
   var customHeader = {};
 
   var options = {
-    url: 'http://localhost:4000'+ '/*',
+    url: 'http://localhost:4000' + '/*',
     timeout: 10000,
     headers: customHeader,
     originalQuery: req.originalUrl.indexOf('?') >= 0
