@@ -5,7 +5,7 @@ var should = require('should'),
   path = require('path'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  Article = mongoose.model('Article'),
+  MicroApp = mongoose.model('MicroApp'),
   express = require(path.resolve('./config/lib/express'));
 
 /**
@@ -18,9 +18,9 @@ var app,
   article;
 
 /**
- * Article routes tests
+ * MicroApp routes tests
  */
-describe('Article CRUD tests', function () {
+describe('MicroApp CRUD tests', function () {
 
   before(function (done) {
     // Get application
@@ -51,8 +51,8 @@ describe('Article CRUD tests', function () {
     // Save a user to the test db and create new article
     user.save(function () {
       article = {
-        title: 'Article Title',
-        content: 'Article Content'
+        title: 'MicroApp Title',
+        content: 'MicroApp Content'
       };
 
       done();
@@ -112,7 +112,7 @@ describe('Article CRUD tests', function () {
 
   it('should be able to get a list of articles if not signed in', function (done) {
     // Create new article model instance
-    var articleObj = new Article(article);
+    var articleObj = new MicroApp(article);
 
     // Save the article
     articleObj.save(function () {
@@ -131,7 +131,7 @@ describe('Article CRUD tests', function () {
 
   it('should be able to get a single article if not signed in', function (done) {
     // Create new article model instance
-    var articleObj = new Article(article);
+    var articleObj = new MicroApp(article);
 
     // Save the article
     articleObj.save(function () {
@@ -151,7 +151,7 @@ describe('Article CRUD tests', function () {
     request(app).get('/api/articles/test')
       .end(function (req, res) {
         // Set assertion
-        res.body.should.be.instanceof(Object).and.have.property('message', 'Article is invalid');
+        res.body.should.be.instanceof(Object).and.have.property('message', 'MicroApp is invalid');
 
         // Call the assertion callback
         done();
@@ -195,7 +195,7 @@ describe('Article CRUD tests', function () {
     article.user = user;
 
     // Create new article model instance
-    var articleObj = new Article(article);
+    var articleObj = new MicroApp(article);
 
     // Save the article
     articleObj.save(function () {
@@ -303,7 +303,7 @@ describe('Article CRUD tests', function () {
 
   it('should be able to get a single article if not signed in and verify the custom "isCurrentUserOwner" field is set to "false"', function (done) {
     // Create new article model instance
-    var articleObj = new Article(article);
+    var articleObj = new MicroApp(article);
 
     // Save the article
     articleObj.save(function () {
@@ -326,7 +326,7 @@ describe('Article CRUD tests', function () {
       password: 'M3@n.jsI$Aw3$0m3'
     };
 
-    // Create user that will create the Article
+    // Create user that will create the MicroApp
     var _articleOwner = new User({
       firstName: 'Full',
       lastName: 'Name',
@@ -344,7 +344,7 @@ describe('Article CRUD tests', function () {
         return done(err);
       }
 
-      // Sign in with the user that will create the Article
+      // Sign in with the user that will create the MicroApp
       agent.post('/api/auth/signin')
         .send(_creds)
         .expect(200)
@@ -408,7 +408,7 @@ describe('Article CRUD tests', function () {
 
   afterEach(function (done) {
     User.remove().exec(function () {
-      Article.remove().exec(done);
+      MicroApp.remove().exec(done);
     });
   });
 });

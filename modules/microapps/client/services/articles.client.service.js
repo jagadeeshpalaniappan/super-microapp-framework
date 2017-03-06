@@ -8,7 +8,7 @@
   MicroAppsService.$inject = ['$resource', '$log'];
 
   function MicroAppsService($resource, $log) {
-    var Article = $resource('/api/articles/:microAppId', {
+    var MicroApp = $resource('/api/articles/:microAppId', {
       microAppId: '@_id'
     }, {
       update: {
@@ -16,14 +16,14 @@
       }
     });
 
-    angular.extend(Article.prototype, {
+    angular.extend(MicroApp.prototype, {
       createOrUpdate: function () {
         var article = this;
         return createOrUpdate(article);
       }
     });
 
-    return Article;
+    return MicroApp;
 
     function createOrUpdate(article) {
       if (article._id) {

@@ -54,7 +54,7 @@
       // create mock article
       mockArticle = new MicroAppsService({
         _id: '525a8422f6d0f87f0e407a33',
-        title: 'An Article about MEAN',
+        title: 'An MicroApp about MEAN',
         content: 'MEAN rocks!'
       });
 
@@ -81,7 +81,7 @@
       beforeEach(function () {
         // Create a sample article object
         sampleArticlePostData = new MicroAppsService({
-          title: 'An Article about MEAN',
+          title: 'An MicroApp about MEAN',
           content: 'MEAN rocks!'
         });
 
@@ -97,7 +97,7 @@
         $httpBackend.flush();
 
         // Test Notification success was called
-        expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> Article saved successfully!' });
+        expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> MicroApp saved successfully!' });
         // Test URL redirection after the article was created
         expect($state.go).toHaveBeenCalledWith('admin.microapps.list');
       }));
@@ -111,7 +111,7 @@
         $scope.vm.save(true);
         $httpBackend.flush();
 
-        expect(Notification.error).toHaveBeenCalledWith({ message: errorMessage, title: '<i class="glyphicon glyphicon-remove"></i> Article save error!' });
+        expect(Notification.error).toHaveBeenCalledWith({ message: errorMessage, title: '<i class="glyphicon glyphicon-remove"></i> MicroApp save error!' });
       });
     });
 
@@ -130,7 +130,7 @@
         $httpBackend.flush();
 
         // Test Notification success was called
-        expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> Article saved successfully!' });
+        expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> MicroApp saved successfully!' });
         // Test URL location to new object
         expect($state.go).toHaveBeenCalledWith('admin.microapps.list');
       }));
@@ -144,7 +144,7 @@
         $scope.vm.save(true);
         $httpBackend.flush();
 
-        expect(Notification.error).toHaveBeenCalledWith({ message: errorMessage, title: '<i class="glyphicon glyphicon-remove"></i> Article save error!' });
+        expect(Notification.error).toHaveBeenCalledWith({ message: errorMessage, title: '<i class="glyphicon glyphicon-remove"></i> MicroApp save error!' });
       }));
     });
 
@@ -163,7 +163,7 @@
         $scope.vm.remove();
         $httpBackend.flush();
 
-        expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> Article deleted successfully!' });
+        expect(Notification.success).toHaveBeenCalledWith({ message: '<i class="glyphicon glyphicon-ok"></i> MicroApp deleted successfully!' });
         expect($state.go).toHaveBeenCalledWith('admin.microapps.list');
       });
 

@@ -6,7 +6,7 @@
 var should = require('should'),
   mongoose = require('mongoose'),
   User = mongoose.model('User'),
-  Article = mongoose.model('Article');
+  MicroApp = mongoose.model('MicroApp');
 
 /**
  * Globals
@@ -17,7 +17,7 @@ var user,
 /**
  * Unit tests
  */
-describe('Article Model Unit Tests:', function () {
+describe('MicroApp Model Unit Tests:', function () {
 
   beforeEach(function (done) {
     user = new User({
@@ -30,9 +30,9 @@ describe('Article Model Unit Tests:', function () {
     });
 
     user.save(function () {
-      article = new Article({
-        title: 'Article Title',
-        content: 'Article Content',
+      article = new MicroApp({
+        title: 'MicroApp Title',
+        content: 'MicroApp Content',
         user: user
       });
 
@@ -60,7 +60,7 @@ describe('Article Model Unit Tests:', function () {
   });
 
   afterEach(function (done) {
-    Article.remove().exec(function () {
+    MicroApp.remove().exec(function () {
       User.remove().exec(done);
     });
   });

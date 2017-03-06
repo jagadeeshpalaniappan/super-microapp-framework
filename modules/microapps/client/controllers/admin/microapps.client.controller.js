@@ -16,17 +16,17 @@
     vm.remove = remove;
     vm.save = save;
 
-    // Remove existing Article
+    // Remove existing MicroApp
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         vm.microApp.$remove(function() {
           $state.go('admin.microapps.list');
-          Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Article deleted successfully!' });
+          Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> MicroApp deleted successfully!' });
         });
       }
     }
 
-    // Save Article
+    // Save MicroApp
     function save(isValid) {
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.articleForm');
@@ -39,12 +39,12 @@
         .catch(errorCallback);
 
       function successCallback(res) {
-        $state.go('admin.microapps.list'); // should we send the User to the list or the updated Article's view?
-        Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Article saved successfully!' });
+        $state.go('admin.microapps.list'); // should we send the User to the list or the updated MicroApp's view?
+        Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> MicroApp saved successfully!' });
       }
 
       function errorCallback(res) {
-        Notification.error({ message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> Article save error!' });
+        Notification.error({ message: res.data.message, title: '<i class="glyphicon glyphicon-remove"></i> MicroApp save error!' });
       }
     }
   }

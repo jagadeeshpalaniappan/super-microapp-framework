@@ -8,14 +8,14 @@ var config = require('../config'),
 
 var cache = require('memory-cache');
 var mongoose = require('mongoose');
-var Article = {};
+var MicroApp = {};
 
 
 var _updateMicroAppsConfigCache = function () {
 
-  var Article = mongoose.model('Article');
+  var MicroApp = mongoose.model('MicroApp');
 
-  Article.find().sort('-created').populate('user', 'displayName').exec(function (err, allMicroAppsConfig) {
+  MicroApp.find().sort('-created').populate('user', 'displayName').exec(function (err, allMicroAppsConfig) {
     if (err) {
       // err getting micro apps config --from db
     } else {

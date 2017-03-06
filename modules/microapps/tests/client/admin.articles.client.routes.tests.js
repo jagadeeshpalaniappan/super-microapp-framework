@@ -115,7 +115,7 @@
           // Create mock article
           mockArticle = new MicroAppsService({
             _id: '525a8422f6d0f87f0e407a33',
-            title: 'An Article about MEAN',
+            title: 'An MicroApp about MEAN',
             content: 'MEAN rocks!'
           });
 
