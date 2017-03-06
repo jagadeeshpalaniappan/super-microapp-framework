@@ -93,10 +93,12 @@ exports.renderMicroAppIndex = function (req, res) {
 
     // Requested Micro App (Found)
 
+    var microAppHostUrl = 'http://localhost:4000';
+
     // Request Micro App --html
     var options = {
       method: 'GET',
-      uri: 'http://localhost:4000',
+      uri: microAppHostUrl,
       resolveWithFullResponse: true
     };
 
@@ -148,8 +150,10 @@ exports.proxyAllMicroAppRequest = function (req, res, next) {
 
   var customHeader = {};
 
+  var microAppHostUrl = 'http://localhost:4000';
+
   var options = {
-    url: 'http://localhost:4000' + '/*',
+    url: microAppHostUrl + '/*',
     timeout: 10000,
     headers: customHeader,
     originalQuery: req.originalUrl.indexOf('?') >= 0
