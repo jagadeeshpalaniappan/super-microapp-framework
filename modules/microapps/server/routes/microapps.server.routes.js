@@ -7,7 +7,7 @@ var articlesPolicy = require('../policies/microapps.server.policy'),
   microapps = require('../controllers/microapps.server.controller');
 
 module.exports = function (app) {
-  // Articles collection routes
+  // MicroApps collection routes
   app.route('/api/microapps').all(articlesPolicy.isAllowed)
     .get(microapps.list)
     .post(microapps.create);

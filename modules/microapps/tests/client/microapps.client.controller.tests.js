@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  describe('Articles Controller Tests', function () {
+  describe('MicroApps Controller Tests', function () {
     // Initialize global variables
     var MicroAppsController,
       $scope,
@@ -58,7 +58,7 @@
         roles: ['user']
       };
 
-      // Initialize the Articles controller.
+      // Initialize the MicroApps controller.
       MicroAppsController = $controller('MicroAppsController as vm', {
         $scope: $scope,
         microAppResolve: {}

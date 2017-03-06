@@ -1,7 +1,7 @@
 ﻿(function () {
   'use strict';
 
-  // Configuring the Articles Admin module
+  // Configuring the MicroApps Admin module
   angular
     .module('root.microapps.admin')
     .run(menuConfig);

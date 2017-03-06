@@ -89,7 +89,7 @@ exports.delete = function (req, res) {
 };
 
 /**
- * List of Articles
+ * List of MicroApps
  */
 exports.list = function (req, res) {
   MicroApp.find().sort('-created').populate('user', 'displayName').exec(function (err, microapps) {

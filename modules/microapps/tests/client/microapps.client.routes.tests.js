@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  describe('Articles Route Tests', function () {
+  describe('MicroApps Route Tests', function () {
     // Initialize global variables
     var $scope,
       MicroAppsService;

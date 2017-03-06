@@ -1,7 +1,7 @@
 ﻿(function () {
   'use strict';
 
-  describe('Admin Articles List Controller Tests', function () {
+  describe('Admin MicroApps List Controller Tests', function () {
     // Initialize global variables
     var MicroAppsAdminListController,
       $scope,
@@ -62,7 +62,7 @@
         roles: ['user', 'admin']
       };
 
-      // Initialize the Articles List controller.
+      // Initialize the MicroApps List controller.
       MicroAppsAdminListController = $controller('MicroAppsAdminListController as vm', {
         $scope: $scope
       });
