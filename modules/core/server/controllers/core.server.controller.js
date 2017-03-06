@@ -93,7 +93,7 @@ exports.renderMicroAppIndex = function (req, res) {
 
     // Requested Micro App (Found)
 
-    var microAppHostUrl = 'http://localhost:4000';
+    var microAppHostUrl = requestedMicroAppConfig.content;  //TODO : validate is valid url or not ?
 
     // Request Micro App --html
     var options = {
@@ -148,18 +148,30 @@ exports.proxyAllMicroAppRequest = function (req, res, next) {
 
   console.log('-------------------proxyAllMicroAppRequest---------------------');
 
-  var customHeader = {};
+  var microAppId = req.params.mappId;
+  var allMicroAppsConfig = cache.get('allMicroAppsConfig');
 
-  var microAppHostUrl = 'http://localhost:4000';
+  // console.log('### allMicroAppsConfig');
+  // console.log(allMicroAppsConfig);
 
-  var options = {
-    url: microAppHostUrl + '/*',
-    timeout: 10000,
-    headers: customHeader,
-    originalQuery: req.originalUrl.indexOf('?') >= 0
-  };
+  var requestedMicroAppConfig = _.find(allMicroAppsConfig, { 'title': microAppId });
 
-  requestProxy(options)(req, res, next);
+  if (requestedMicroAppConfig) {
+
+    var customHeader = {};
+
+    var microAppHostUrl = requestedMicroAppConfig.content;  //TODO : validate is valid url or not ?
+
+    var options = {
+      url: microAppHostUrl + '/*',
+      timeout: 10000,
+      headers: customHeader,
+      originalQuery: req.originalUrl.indexOf('?') >= 0
+    };
+
+    requestProxy(options)(req, res, next);
+
+  }
 
 };
 
