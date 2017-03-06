@@ -85,7 +85,7 @@
           content: 'MEAN rocks!'
         });
 
-        $scope.vm.article = sampleArticlePostData;
+        $scope.vm.microApp = sampleArticlePostData;
       });
 
       it('should send a POST request with the form input values and then locate to new object URL', inject(function (MicroAppsService) {
@@ -118,7 +118,7 @@
     describe('vm.save() as update', function () {
       beforeEach(function () {
         // Mock article in $scope
-        $scope.vm.article = mockArticle;
+        $scope.vm.microApp = mockArticle;
       });
 
       it('should update a valid article', inject(function (MicroAppsService) {
@@ -151,7 +151,7 @@
     describe('vm.remove()', function () {
       beforeEach(function () {
         // Setup articles
-        $scope.vm.article = mockArticle;
+        $scope.vm.microApp = mockArticle;
       });
 
       it('should delete the article and redirect to articles', function () {

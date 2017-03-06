@@ -10,7 +10,7 @@
   function MicroAppsController($scope, article, Authentication) {
     var vm = this;
 
-    vm.article = article;
+    vm.microApp = article;
     vm.authentication = Authentication;
 
   }

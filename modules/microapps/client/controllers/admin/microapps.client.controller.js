@@ -10,7 +10,7 @@
   function MicroAppsAdminController($scope, $state, $window, article, Authentication, Notification) {
     var vm = this;
 
-    vm.article = article;
+    vm.microApp = article;
     vm.authentication = Authentication;
     vm.form = {};
     vm.remove = remove;
@@ -19,7 +19,7 @@
     // Remove existing Article
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        vm.article.$remove(function() {
+        vm.microApp.$remove(function() {
           $state.go('admin.microapps.list');
           Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Article deleted successfully!' });
         });
@@ -34,7 +34,7 @@
       }
 
       // Create a new article, or update the current instance
-      vm.article.createOrUpdate()
+      vm.microApp.createOrUpdate()
         .then(successCallback)
         .catch(errorCallback);
 

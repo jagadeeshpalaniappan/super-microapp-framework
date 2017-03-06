@@ -96,7 +96,7 @@
         }));
 
         it('should attach an article to the controller scope', function () {
-          expect($scope.vm.article._id).toBe(mockArticle._id);
+          expect($scope.vm.microApp._id).toBe(mockArticle._id);
         });
 
         it('Should not be abstract', function () {
