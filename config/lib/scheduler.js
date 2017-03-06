@@ -16,7 +16,7 @@ var _setupMicroAppsCache = function (){
   console.log(' ::: Setting Up MicroApps Cache :::');
   appcache.updateMicroAppsConfigCache();
 
-  cron.schedule('* * * * 30', function(){
+  cron.schedule('30 * * * *', function(){
     console.log(' ::: Setting Up MicroApps Cache -- every 30 minutes :::');
     appcache.updateMicroAppsConfigCache();
   });
