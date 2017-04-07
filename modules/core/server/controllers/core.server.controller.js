@@ -93,13 +93,30 @@ exports.renderMicroAppIndex = function (req, res) {
 
     // Requested Micro App (Found)
 
+    // Note:
+    // http://localhost:5000 is valid
+    // http://localhost:5000/ is NOT valid
     var microAppHostUrl = requestedMicroAppConfig.content;  //TODO : validate is valid url or not ?
+
+    var microAppRqstHeader = _.extend({}, {
+      'cookie': req.headers['cookie'],
+      'accept-language': req.headers['accept-language'],
+      'cache-control': req.headers['cache-control'],
+      'source-system': 'SUPERMICROAPPFRAMEWORK'
+    });
+
+    //console.log('req.headers::');
+    //console.log(req.headers);
+    //console.log('microAppRqstHeader::');
+    //console.log(microAppRqstHeader);
+
 
     // Request Micro App --html
     var options = {
       method: 'GET',
       uri: microAppHostUrl,
-      resolveWithFullResponse: true
+      resolveWithFullResponse: true,
+      headers: microAppRqstHeader
     };
 
     rp(options)
@@ -117,9 +134,13 @@ exports.renderMicroAppIndex = function (req, res) {
 
       })
       .catch(function (err) {
-        // Request failed...
+        // Micro App :: Request Failed
+        console.log('Micro App [ %s ] :: Request Failed', microAppId);
 
-        var microAppBody = '<br><br><h1> Micro App Found, But its not responding :( </h1>';
+        var microAppBody = '<br><br><h1> Micro App ['+ microAppId +'] Found, But its not responding :( </h1>';
+        microAppBody = microAppBody+ '<p> Status Code: '+err.statusCode+'</p>';
+        microAppBody = microAppBody+ '<p> Message: '+err.message+'</p>';
+
 
         res.render('modules/core/server/views/index', {
           user: safeUserObject ? JSON.stringify(safeUserObject) : null,
