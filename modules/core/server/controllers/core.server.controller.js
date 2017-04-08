@@ -46,6 +46,31 @@ var _getSafeUserObject = function (req, res) {
   return safeUserObject;
 };
 
+
+var _getMicroAppRqstHeader = function (req) {
+
+
+  var microAppRqstHeader = _.extend({}, {
+    'cookie': req.headers['cookie'],
+    'connection': req.headers['connection'],
+    'accept-language': req.headers['accept-language'],
+    'cache-control': req.headers['cache-control'],
+    'source-system': 'SUPERMICROAPPFRAMEWORK'
+  });
+
+  //console.log('req.headers::');
+  //console.log(req.headers);
+  //console.log('microAppRqstHeader::');
+  //console.log(microAppRqstHeader);
+
+
+  return microAppRqstHeader;
+};
+
+
+
+
+
 /**
  * Render the main application page
  */
@@ -97,18 +122,7 @@ exports.renderMicroAppIndex = function (req, res) {
     // http://localhost:5000 is valid
     // http://localhost:5000/ is NOT valid
     var microAppHostUrl = requestedMicroAppConfig.content;  //TODO : validate is valid url or not ?
-
-    var microAppRqstHeader = _.extend({}, {
-      'cookie': req.headers['cookie'],
-      'accept-language': req.headers['accept-language'],
-      'cache-control': req.headers['cache-control'],
-      'source-system': 'SUPERMICROAPPFRAMEWORK'
-    });
-
-    //console.log('req.headers::');
-    //console.log(req.headers);
-    //console.log('microAppRqstHeader::');
-    //console.log(microAppRqstHeader);
+    var microAppRqstHeader = _getMicroAppRqstHeader(req);
 
 
     // Request Micro App --html
@@ -179,14 +193,14 @@ exports.proxyAllMicroAppRequest = function (req, res, next) {
 
   if (requestedMicroAppConfig) {
 
-    var customHeader = {};
+    var microAppRqstHeader = _getMicroAppRqstHeader(req);
 
     var microAppHostUrl = requestedMicroAppConfig.content;  //TODO : validate is valid url or not ?
 
     var options = {
       url: microAppHostUrl + '/*',
       timeout: 10000,
-      headers: customHeader,
+      headers: microAppRqstHeader,
       originalQuery: req.originalUrl.indexOf('?') >= 0
     };
 
