@@ -69,19 +69,63 @@
   <script type="text/javascript" src="{{host}}:35729/livereload.js"></script>
   {{/if}}
 
+
+  <style>
+    html, body {
+      height: 100%;
+    }
+
+    .navbar-toggle {
+      float: left;
+      margin-left: 15px;
+    }
+
+    @media (min-width: 0) {
+      .navbar-toggle {
+        display: block; /* force showing the toggle */
+      }
+    }
+
+  </style>
+
 </head>
 
 <body>
 
-  <div id="rootApp">
-    <header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>
-    {{#if isRootApp}}
-    <section class="content">
-      <section class="container">
-        {{{block "rootAppContent"}}}
-      </section>
+
+<div id="rootApp">
+
+
+  <div ng-include="'/modules/core/client/views/sidemenu.client.view.html'" class="navmenu navmenu-default navmenu-fixed-left offcanvas"></div>
+
+  <!--<header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>-->
+
+
+  {{#if isRootApp}}
+
+  <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <a href="/#/" class="navbar-brand">Super Micro App</a>
+
+      </div>
+    </div>
+  </header>
+
+
+  <section class="content m-top-50">
+    <section class="container">
+      {{{block "rootAppContent"}}}
     </section>
-    {{/if}}
+  </section>
+  {{/if}}
+
   </div>
 
   <div id="microApp">
