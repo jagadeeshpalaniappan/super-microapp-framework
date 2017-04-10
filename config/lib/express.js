@@ -21,6 +21,9 @@ var config = require('../config'),
   _ = require('lodash'),
   lusca = require('lusca');
 
+
+var core = require('../../modules/core/server/controllers/core.server.controller');
+
 /**
  * Initialize local variables
  */
@@ -50,6 +53,23 @@ module.exports.initLocalVariables = function (app) {
     next();
   });
 };
+
+
+
+
+/**
+ * initMicroAppProxy:
+ * Handle (POST, PUT, DELETE) Proxy Request --before bodyParser
+ */
+module.exports.initMicroAppProxy = function (app) {
+  // Handle (POST, PUT, DELETE) Proxy Request --before bodyParser
+  app.route('/mapp/:mappId/*')
+    .post(core.proxyAllMicroAppRequest)
+    .put(core.proxyAllMicroAppRequest)
+    .delete(core.proxyAllMicroAppRequest);
+};
+
+
 
 /**
  * Initialize application middleware
@@ -225,6 +245,9 @@ module.exports.init = function (db) {
 
   // Initialize local variables
   this.initLocalVariables(app);
+
+  // Initialize Micro App Proxy
+  this.initMicroAppProxy(app);
 
   // Initialize Express middleware
   this.initMiddleware(app);
