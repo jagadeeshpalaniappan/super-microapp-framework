@@ -11,9 +11,22 @@ module.exports = function (app) {
   app.route('/:url(api|modules|lib)/*').get(core.renderNotFound);
 
 
-  // Define application route
+  // ****** Micro App Config *******
+
+  // Request Proxy : for handling HTML content
   app.route('/mapp/:mappId').get(core.renderMicroAppIndex);
+
+  // Express Request Proxy : for handling all other request except getting html content
+  // GET:
   app.route('/mapp/:mappId/*').get(core.proxyAllMicroAppRequest);
+
+  // Handle (POST, PUT, DELETE) Proxy Request --before bodyParser initialization
+  /*
+  app.route('/mapp/:mappId/!*')
+    .post(core.proxyAllMicroAppRequest)
+    .put(core.proxyAllMicroAppRequest)
+    .delete(core.proxyAllMicroAppRequest);
+  */
 
 
   // Define application route
