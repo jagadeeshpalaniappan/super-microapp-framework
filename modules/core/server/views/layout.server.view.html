@@ -32,7 +32,9 @@
   <link href="/{{favicon}}" rel="shortcut icon" type="image/x-icon">
 
   <!-- Application CSS Files -->
-  {{#each cssFiles}}<link rel="stylesheet" href="/{{this}}">{{/each}}
+  {{#each cssFiles}}
+  <link rel="stylesheet" href="/{{this}}">
+  {{/each}}
 
 
   <noscript>
@@ -56,7 +58,9 @@
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 
   <!--Application JavaScript Files-->
-  {{#each jsFiles}}<script type="text/javascript" src="/{{this}}"></script>{{/each}}
+  {{#each jsFiles}}
+  <script type="text/javascript" src="/{{this}}"></script>
+  {{/each}}
 
   <!--owasp config sync-->
   <script type="text/javascript">
@@ -70,67 +74,55 @@
   {{/if}}
 
 
-  <style>
-    html, body {
-      height: 100%;
-    }
-
-    .navbar-toggle {
-      float: left;
-      margin-left: 15px;
-    }
-
-    @media (min-width: 0) {
-      .navbar-toggle {
-        display: block; /* force showing the toggle */
-      }
-    }
-
-  </style>
-
 </head>
 
 <body>
 
 
-<div id="rootApp">
+<div class="wrapper">
+  <div id="rootApp">
 
+    <div ng-include="'/modules/core/client/views/sidemenu.client.view.html'" class="side-bar navbar-inverse"></div>
 
-  <div ng-include="'/modules/core/client/views/sidemenu.client.view.html'" class="navmenu navmenu-default navmenu-fixed-left offcanvas"></div>
+    {{#if isRootApp}}
 
-  <!--<header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>-->
+    <!-- Root App -->
+    <div class="main-content">
+      <div class="container-fluid">
 
-
-  {{#if isRootApp}}
-
-  <header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-
-        <a href="/#/" class="navbar-brand">Super Micro App</a>
+        {{{block "rootAppContent"}}}
 
       </div>
+
     </div>
-  </header>
 
 
-  <section class="content m-top-50">
-    <section class="container">
-      {{{block "rootAppContent"}}}
-    </section>
-  </section>
-  {{/if}}
+    {{/if}}
+
 
   </div>
+
+
+  {{#unless isRootApp}}
+
+  <!-- Micro App -->
 
   <div id="microApp">
-    {{{block "microAppContent"}}}
+    <div class="main-content">
+      <div class="container-fluid">
+
+        {{{block "microAppContent"}}}
+
+
+      </div>
+
+    </div>
+
   </div>
+
+  {{/unless}}
+
+</div>
 
 </body>
 
