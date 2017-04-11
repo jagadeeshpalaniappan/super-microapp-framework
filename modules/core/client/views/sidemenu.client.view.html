@@ -1,4 +1,3 @@
-
 <script>
 
   $(document).ready(function () {
@@ -23,7 +22,7 @@
 
 <div ng-controller="RootHeaderController as vm">
 
-  <ul class="menu-head">
+  <ul class="side-bar-header">
     <li>
       <a class="push_menu" role="button">SUPER APP <span
         class="glyphicon glyphicon-align-justify pull-right"></span></a>
@@ -31,40 +30,42 @@
 
   </ul>
 
- <ul class="menu">
+  <div class="side-bar-body">
 
-    <li>
-      <a href="/#/">Home <span class="glyphicon glyphicon-home pull-right"></span></a>
-    </li>
+    <ul class="menu">
+      <li>
+        <a href="/#/">Home <span class="glyphicon glyphicon-home pull-right"></span></a>
+      </li>
+    </ul>
+
+    <ul class="menu">
+      <li ng-repeat="microapp in vm.microapps">
+        <a href="/mapp/{{microapp.title}}">{{microapp.title}} <span
+          class="glyphicon glyphicon-heart pull-right"></span></a>
+      </li>
+    </ul>
+
+    <ul class="menu" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+      <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);"
+          ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active"
+          class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+        <a ng-switch-when="dropdown" role="button">{{::item.title}} <span
+          class="glyphicon glyphicon-star pull-right"></span></a>
+        <ul ng-switch-when="dropdown" class="parent">
+          <li ng-repeat="subitem in item.items | orderBy: 'position'"
+              ng-if="subitem.shouldRender(vm.authentication.user);" ui-sref-active="active">
+            <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
+          </li>
+        </ul>
+        <a ng-switch-default ui-sref="{{item.state}}"> {{::item.title}} <span
+          class="glyphicon glyphicon-star pull-right"></span></a>
+      </li>
+    </ul>
+
+  </div>
 
 
-    <li ng-repeat="microapp in vm.microapps">
-      <a href="/mapp/{{microapp.title}}">{{microapp.title}} <span
-        class="glyphicon glyphicon-heart pull-right"></span></a>
-    </li>
-
-  </ul>
-
-
-  <ul class="menu" ng-if="vm.menu.shouldRender(vm.authentication.user);">
-    <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);"
-        ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active"
-        class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
-      <a ng-switch-when="dropdown" role="button">{{::item.title}} <span
-        class="glyphicon glyphicon-star pull-right"></span></a>
-      <ul ng-switch-when="dropdown" class="parent">
-        <li ng-repeat="subitem in item.items | orderBy: 'position'"
-            ng-if="subitem.shouldRender(vm.authentication.user);" ui-sref-active="active">
-          <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
-        </li>
-      </ul>
-      <a ng-switch-default ui-sref="{{item.state}}"> {{::item.title}} <span
-        class="glyphicon glyphicon-star pull-right"></span></a>
-    </li>
-  </ul>
-
-
-  <ul class="menu" ng-hide="vm.authentication.user">
+  <ul class="menu user-menu" ng-hide="vm.authentication.user">
     <li ui-sref-active="active">
       <a ui-sref="authentication.signup">Sign Up <span class="glyphicon glyphicon-user pull-right"></span></a>
     </li>
@@ -75,7 +76,7 @@
   </ul>
 
 
-  <ul class="menu" ng-show="vm.authentication.user">
+  <ul class="menu side-bar-footer" ng-show="vm.authentication.user">
     <li>
 
 

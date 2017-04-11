@@ -20,22 +20,23 @@ html, body {
 
 }
 
-.side-bar ul.menu-head{
+.side-bar ul.side-bar-header{
 	margin: 0;
 	border-bottom: 1px solid #333;
+	height: 6vh;
 }
-.side-bar ul.menu-head li{
+.side-bar ul.side-bar-header li{
 	font-family: 'Lato', sans-serif;
 	padding: 10px 20px;
 }
 
-.side-bar ul.menu-head li a {
+.side-bar ul.side-bar-header li a {
 	color: #fff;
 	text-decoration: none;
 	height: 50px;
 }
 
-.side-bar ul .menu-head a {
+.side-bar ul .side-bar-header a {
 	color: #fff;
 	text-decoration: none;
 	height: 50px;
@@ -134,4 +135,44 @@ html, body {
 	margin-right: 5px;
 	opacity: 0.8;
 	width: 22px;
+}
+
+
+.side-bar-footer {
+	position: fixed;
+	bottom: 2px;
+	width: 200px;
+}
+
+.side-bar-body {
+	height: 80vh;
+	overflow-y: auto;
+}
+
+
+/* Let's get this party started */
+.side-bar-body::-webkit-scrollbar {
+	width: 3px;
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: rgba(255,0,0,0.5);
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4);
 }
