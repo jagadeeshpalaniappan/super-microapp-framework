@@ -22,6 +22,7 @@ html, body {
 
 .side-bar ul.menu-head{
 	margin: 0;
+	border-bottom: 1px solid #333;
 }
 .side-bar ul.menu-head li{
 	font-family: 'Lato', sans-serif;
