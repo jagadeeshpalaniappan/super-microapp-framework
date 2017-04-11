@@ -9,16 +9,12 @@ module.exports = {
         // bower:css
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-        'public/lib/jasny-bootstrap/dist/css/jasny-bootstrap.css',
         'public/lib/angular-ui-notification/dist/angular-ui-notification.css'
         // endbower
       ],
       js: [
         // bower:js
         'public/lib/jquery/dist/jquery.js',
-        'public/lib/bootstrap/dist/js/bootstrap.js',
-        'public/lib/jasny-bootstrap/dist/js/jasny-bootstrap.js',
-        'public/lib/jasny-bootstrap/js/offcanvas.js',
         'public/lib/angular/angular.js',
         'public/lib/angular-animate/angular-animate.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
