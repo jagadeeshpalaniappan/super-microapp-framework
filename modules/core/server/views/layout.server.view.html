@@ -50,9 +50,23 @@
 
   <!--Embedding The User Object-->
   <script type="text/javascript">
-    var user = {{{ user }}};
+    var user = {};
+    var microAppConfig = {};
     var env = "{{ env }}";
   </script>
+
+  {{#if user}}
+  <script type="text/javascript">
+    user = {{{ user }}};
+  </script>
+  {{/if}}
+
+  {{#if microAppConfig}}
+  <script type="text/javascript">
+    microAppConfig = {{{ microAppConfig }}};
+  </script>
+  {{/if}}
+
 
   <!--Load The Socket.io File-->
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>

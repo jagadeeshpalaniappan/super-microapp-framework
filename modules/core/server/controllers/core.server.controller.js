@@ -139,10 +139,14 @@ exports.renderMicroAppIndex = function (req, res) {
 
         var microAppBody = response.body;
 
+        console.log('################ requestedMicroAppConfig');
+        console.log(requestedMicroAppConfig);
+
         res.render('modules/core/server/views/index', {
           user: safeUserObject ? JSON.stringify(safeUserObject) : null,
           sharedConfig: JSON.stringify(config.shared),
-          microAppBody: microAppBody
+          microAppBody: microAppBody,
+          microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null
         });
 
 
@@ -159,7 +163,8 @@ exports.renderMicroAppIndex = function (req, res) {
         res.render('modules/core/server/views/index', {
           user: safeUserObject ? JSON.stringify(safeUserObject) : null,
           sharedConfig: JSON.stringify(config.shared),
-          microAppBody: microAppBody
+          microAppBody: microAppBody,
+          microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null
         });
 
       });
@@ -171,7 +176,8 @@ exports.renderMicroAppIndex = function (req, res) {
     res.render('modules/core/server/views/index', {
       user: safeUserObject ? JSON.stringify(safeUserObject) : null,
       sharedConfig: JSON.stringify(config.shared),
-      microAppBody: microAppBody
+      microAppBody: microAppBody,
+      microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null
     });
 
   }
