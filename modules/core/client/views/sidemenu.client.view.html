@@ -1,6 +1,6 @@
 <div ng-controller="RootHeaderController as vm">
 
-  <ul class="side-bar-header">
+  <ul class="sidemenu-header">
     <li>
       <a href="/#/">
         SUPER APP
@@ -11,7 +11,7 @@
 
   </ul>
 
-  <div class="side-bar-body">
+  <div class="sidemenu-body">
 
     <ul class="menu">
       <li>
@@ -79,7 +79,7 @@
   </div>
 
 
-  <ul class="menu user-menu side-bar-footer" ng-if="!vm.authentication.user">
+  <ul class="menu user-menu sidemenu-footer" ng-if="!vm.authentication.user">
     <li ui-sref-active="active">
       <a ui-sref="authentication.signup">Sign Up <span class="glyphicon glyphicon-user pull-right"></span></a>
     </li>
@@ -90,7 +90,7 @@
   </ul>
 
 
-  <ul class="menu side-bar-footer" ng-if="vm.authentication.user">
+  <ul class="menu sidemenu-footer" ng-if="vm.authentication.user">
     <li ng-init="vm.authentication.user.isCollapsed=true">
 
 

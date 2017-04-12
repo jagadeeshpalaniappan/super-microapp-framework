@@ -5,7 +5,7 @@ html, body {
 	height: 100%;
 }
 
-.side-bar {
+.sidemenu {
 	position: fixed;
 	height: 100%;
 	width: 200px;
@@ -14,34 +14,34 @@ html, body {
 	border-radius: 0;
 }
 
-.side-bar ul {
+.sidemenu ul {
 	list-style: none;
 	padding: 0px;
 
 }
 
-.side-bar ul.side-bar-header{
+.sidemenu ul.sidemenu-header{
 	margin: 0;
 	border-bottom: 1px solid #333;
 }
-.side-bar ul.side-bar-header li{
+.sidemenu ul.sidemenu-header li{
 	font-family: 'Lato', sans-serif;
 	padding: 10px 20px;
 }
 
-.side-bar ul.side-bar-header li a {
+.sidemenu ul.sidemenu-header li a {
 	color: #fff;
 	text-decoration: none;
 	height: 50px;
 }
 
-.side-bar ul .side-bar-header a {
+.sidemenu ul .sidemenu-header a {
 	color: #fff;
 	text-decoration: none;
 	height: 50px;
 }
 
-.side-bar ul.menu li a {
+.sidemenu ul.menu li a {
 	color:#9d9d9d;
 	text-decoration: none;
 	display: inline-table;
@@ -52,11 +52,11 @@ html, body {
 	padding-bottom: 10px;
 }
 
-.side-bar ul.menu li a:hover {
+.sidemenu ul.menu li a:hover {
 	color: #ffffff;
 }
 
-.side-bar ul.menu > li.active > a {
+.sidemenu ul.menu > li.active > a {
 	padding-left: 17px;
 	background: #080808;
 	border-left: 3px solid #ECECEA;
@@ -66,7 +66,7 @@ html, body {
 
 
 
-.side-bar ul.menu > li > ul > li.active > a {
+.sidemenu ul.menu > li > ul > li.active > a {
 	color: #fff;
 }
 
@@ -76,7 +76,7 @@ html, body {
 	transition: padding-left 0.5s;
 }
 
-.active > div > .side-bar {
+.active > div > .sidemenu {
 	margin-left: -150px;
 	transition: margin-left 0.5s;
 }
@@ -112,7 +112,7 @@ html, body {
 }
 
 
-.side-bar-footer {
+.sidemenu-footer {
 	position: fixed;
 	bottom: 0;
 	width: 200px;
@@ -121,7 +121,7 @@ html, body {
 	margin-bottom: 0;
 }
 
-.side-bar-body {
+.sidemenu-body {
 	height: 80vh;
 	overflow-y: auto;
 	font-size: 0.9em;
@@ -129,7 +129,7 @@ html, body {
 
 
 /* Let's get this party started */
-.side-bar-body::-webkit-scrollbar {
+.sidemenu-body::-webkit-scrollbar {
 	width: 3px;
 }
 
