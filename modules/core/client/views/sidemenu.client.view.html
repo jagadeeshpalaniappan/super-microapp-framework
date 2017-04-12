@@ -35,13 +35,13 @@
     </ul>
 
 
-    <ul class="smenu" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+    <ul class="smenu" ng-if="vm.menu.shouldRender(vm.authentication.user)">
       <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);"
           ng-switch="item.type" ng-class="{'active': $state.includes(item.state)}"
           class="{{item.class}}" ng-init="item.isCollapsed=true">
 
         <!-- drop-down -->
-        <a ng-switch-when="dropdown" role="button" ng-click="item.isCollapsed = !item.isCollapsed">
+        <a ng-switch-when="dropdown" role="button" ng-click="vm.toggleDropDown(item)">
 
           <span class="glyphicon glyphicon-star"
                 ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed, 'active': $state.includes(item.state)}"></span>
@@ -96,7 +96,7 @@
 
       <a role="button"
          style="padding-right: 11px" title="{{::vm.authentication.user.displayName}}"
-         ng-click="vm.authentication.user.isCollapsed = !vm.authentication.user.isCollapsed">
+         ng-click="vm.toggleDropDown(vm.authentication.user)">
 
         {{ vm.authentication.user.displayName | characters:15 :true }}
 

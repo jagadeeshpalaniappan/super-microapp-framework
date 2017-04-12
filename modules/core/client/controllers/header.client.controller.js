@@ -51,13 +51,22 @@
 
     vm.isSideMenuClosed = false;
 
+    var wrapper = angular.element(document.querySelector(".wrapper"));
+
     vm.toggleSideMenu =function () {
       vm.isSideMenuClosed = !vm.isSideMenuClosed;
-
-      var wrapper = angular.element(document.querySelector(".wrapper"));
       wrapper.toggleClass("active");
-      console.log(wrapper);
+    };
 
+    vm.openSideMenu =function () {
+      vm.isSideMenuClosed = false;
+      wrapper.removeClass("active");
+    };
+
+
+    vm.toggleDropDown =function (item) {
+      item.isCollapsed = !item.isCollapsed;
+      vm.openSideMenu();
     };
 
 
