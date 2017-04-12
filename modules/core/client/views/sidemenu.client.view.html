@@ -48,7 +48,8 @@
 
           {{::item.title}}
 
-          <span class="caret"></span>
+          <span class="pull-right-container glyphicon"
+                ng-class="{'glyphicon-chevron-left': !vm.isSideMenuClosed && vm.isDropDownCollapsed(item), 'glyphicon-chevron-down': !vm.isSideMenuClosed && !vm.isDropDownCollapsed(item) }"></span>
 
         </a>
 

@@ -198,3 +198,9 @@ html, body {
 }
 
 
+
+.sidemenu li > a >.pull-right-container {
+	float: right;
+	font-size: 0.8em;
+	padding: 2px;
+}
