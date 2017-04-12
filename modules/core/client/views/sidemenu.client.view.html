@@ -16,7 +16,7 @@
     <ul class="smenu">
       <li>
         <a href="/#/"><span class="glyphicon glyphicon-dashboard"
-                            ng-class="{'pull-right': vm.isSideMenuClosed, 'm-r-5': !vm.isSideMenuClosed}"></span>
+                            ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed}"></span>
           Dasboard</a>
       </li>
     </ul>
@@ -26,7 +26,7 @@
         <a href="/mapp/{{microapp.title}}">
 
           <span class="glyphicon glyphicon-heart"
-                ng-class="{'pull-right': vm.isSideMenuClosed, 'm-r-5': !vm.isSideMenuClosed}"></span>
+                ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed}"></span>
 
           {{microapp.title}}
 
@@ -44,7 +44,7 @@
         <a ng-switch-when="dropdown" role="button" ng-click="item.isCollapsed = !item.isCollapsed">
 
           <span class="glyphicon glyphicon-star"
-                ng-class="{'pull-right': vm.isSideMenuClosed, 'm-r-5': !vm.isSideMenuClosed, 'active': $state.includes(item.state)}"></span>
+                ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed, 'active': $state.includes(item.state)}"></span>
 
           {{::item.title}}
 
@@ -68,7 +68,7 @@
         <a ng-switch-default href="{{vm.getRootAppUrl(item.state)}}">
 
           <span class="glyphicon glyphicon-heart"
-                ng-class="{'pull-right': vm.isSideMenuClosed, 'm-r-5': !vm.isSideMenuClosed}"></span>
+                ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed}"></span>
 
           {{::item.title}}
 

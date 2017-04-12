@@ -188,8 +188,13 @@ html, body {
 	filter: grayscale(1);
 }
 
-.m-r-5 {
-	margin-right: 5px;
+.sidemenu-footer:hover img {
+	-webkit-filter: grayscale(0);
+	filter: grayscale(0);
+}
+
+.pull-default {
+	margin-right: 7px;
 }
 
 
