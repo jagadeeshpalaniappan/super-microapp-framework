@@ -65,6 +65,12 @@ html, body {
 }
 
 
+
+.side-bar ul.menu > li > ul > li.active > a {
+	color: #fff;
+}
+
+
 .main-content {
 	padding-left: 200px;
 	transition: padding-left 0.5s;
@@ -80,27 +86,11 @@ html, body {
 	transition: padding-left 0.5s;
 }
 
-.menu li ul.parent {
-	display: none;
-	transition: all 3s;
-}
 
-.menu li.active ul.parent {
-	display: block;
-	transition: all 3s;
-}
-
-.menu li ul.parent li a {
+.menu li ul > li a {
 	padding-left: 40px;
 	border-left: 0px;
 	background: #000;
-}
-
-.menu li ul.parent li.active a {
-	padding-left: 39px;
-	background: #000;
-	margin-bottom: 1px;
-	color: #fff;
 }
 
 .menu li ul.parent li a:hover {
