@@ -13,7 +13,7 @@
 
   <div class="sidemenu-body">
 
-    <ul class="menu">
+    <ul class="smenu">
       <li>
         <a href="/#/"><span class="glyphicon glyphicon-dashboard"
                             ng-class="{'pull-right': vm.isSideMenuClosed, 'm-r-5': !vm.isSideMenuClosed}"></span>
@@ -21,7 +21,7 @@
       </li>
     </ul>
 
-    <ul class="menu">
+    <ul class="smenu">
       <li ng-repeat="microapp in vm.microapps" ng-class="{'active': vm.isMenuActive(microapp)}">
         <a href="/mapp/{{microapp.title}}">
 
@@ -35,7 +35,7 @@
     </ul>
 
 
-    <ul class="menu" ng-if="vm.menu.shouldRender(vm.authentication.user);">
+    <ul class="smenu" ng-if="vm.menu.shouldRender(vm.authentication.user);">
       <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);"
           ng-switch="item.type" ng-class="{'active': $state.includes(item.state)}"
           class="{{item.class}}" ng-init="item.isCollapsed=true">
@@ -79,7 +79,7 @@
   </div>
 
 
-  <ul class="menu user-menu sidemenu-footer" ng-if="!vm.authentication.user">
+  <ul class="smenu sidemenu-footer" ng-if="!vm.authentication.user">
     <li ui-sref-active="active">
       <a ui-sref="authentication.signup">Sign Up <span class="glyphicon glyphicon-user pull-right"></span></a>
     </li>
@@ -90,7 +90,7 @@
   </ul>
 
 
-  <ul class="menu sidemenu-footer" ng-if="vm.authentication.user">
+  <ul class="smenu sidemenu-footer" ng-if="vm.authentication.user">
     <li ng-init="vm.authentication.user.isCollapsed=true">
 
 

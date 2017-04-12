@@ -41,7 +41,7 @@ html, body {
 	height: 50px;
 }
 
-.sidemenu ul.menu li a {
+.sidemenu ul.smenu li a {
 	color:#9d9d9d;
 	text-decoration: none;
 	display: inline-table;
@@ -52,11 +52,11 @@ html, body {
 	padding-bottom: 10px;
 }
 
-.sidemenu ul.menu li a:hover {
+.sidemenu ul.smenu li a:hover {
 	color: #ffffff;
 }
 
-.sidemenu ul.menu > li.active > a {
+.sidemenu ul.smenu > li.active > a {
 	padding-left: 17px;
 	background: #080808;
 	border-left: 3px solid #ECECEA;
@@ -66,7 +66,7 @@ html, body {
 
 
 
-.sidemenu ul.menu > li > ul > li.active > a {
+.sidemenu ul.smenu > li > ul > li.active > a {
 	color: #fff;
 }
 
@@ -87,18 +87,18 @@ html, body {
 }
 
 
-.menu li ul > li a {
+.smenu li ul > li a {
 	padding-left: 40px;
 	border-left: 0px;
 	background: #000;
 }
 
-.menu li ul.parent li a:hover {
+.smenu li ul.parent li a:hover {
 	padding-left: 39px;
 	color: #fff;
 }
 
-.menu ul.parent li.active a:before, .menu li.active ul.parent li a:before {
+.smenu ul.parent li.active a:before, .smenu li.active ul.parent li a:before {
 	border: 0px;
 }
 
