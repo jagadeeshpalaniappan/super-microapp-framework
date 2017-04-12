@@ -53,7 +53,7 @@
         </a>
 
 
-        <ul ng-switch-when="dropdown" uib-collapse="item.isCollapsed">
+        <ul ng-switch-when="dropdown" uib-collapse="vm.isDropDownCollapsed(item)">
           <li ng-repeat="subitem in item.items | orderBy: 'position'"
               ng-if="subitem.shouldRender(vm.authentication.user);"
               ng-class="{'active': $state.includes(subitem.state)}">
@@ -91,12 +91,12 @@
 
 
   <ul class="smenu sidemenu-footer" ng-if="vm.authentication.user">
-    <li ng-init="vm.authentication.user.isCollapsed=true">
+    <li ng-init="vm.accountMenu.isCollapsed=true">
 
 
       <a role="button"
          style="padding-right: 11px" title="{{::vm.authentication.user.displayName}}"
-         ng-click="vm.toggleDropDown(vm.authentication.user)">
+         ng-click="vm.toggleDropDown(vm.accountMenu)">
 
         {{ vm.authentication.user.displayName | characters:15 :true }}
 
@@ -105,7 +105,7 @@
       </a>
 
 
-      <ul uib-collapse="vm.authentication.user.isCollapsed">
+      <ul uib-collapse="vm.isDropDownCollapsed(vm.accountMenu)">
         <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items"
             ng-class="{'active': $state.includes(item.state)}">
           <a href="{{vm.getRootAppUrl(item.state)}}">{{::item.title}}</a>

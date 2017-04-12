@@ -70,5 +70,14 @@
     };
 
 
+    vm.isDropDownCollapsed = function (item) {
+
+      if($state.includes(item.state)) {
+        return false;
+      }
+
+      return item.isCollapsed;
+    }
+
   }
 }());
