@@ -5,6 +5,22 @@ html, body {
 	height: 100%;
 }
 
+.sidemenu-inverse {
+	background-image: -webkit-linear-gradient(top, #3c3c3c 0%, #222 100%);
+	background-image: -o-linear-gradient(top, #3c3c3c 0%, #222 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#3c3c3c), to(#222));
+	background-image: linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c3c3c', endColorstr='#ff222222', GradientType=0);
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+	background-repeat: repeat-x;
+	border-radius: 4px;
+}
+
+.sidemenu-inverse {
+	background-color: #222;
+	border-color: #080808;
+}
+
 .sidemenu {
 	position: fixed;
 	height: 100%;
@@ -17,11 +33,11 @@ html, body {
 .sidemenu ul {
 	list-style: none;
 	padding: 0px;
-
+	margin: 0px;
 }
 
 .sidemenu ul.sidemenu-header{
-	margin: 0;
+	margin: 5px 0;
 	border-bottom: 1px solid #333;
 }
 .sidemenu ul.sidemenu-header li{
@@ -52,8 +68,13 @@ html, body {
 	padding-bottom: 10px;
 }
 
-.sidemenu ul.smenu li a:hover {
-	color: #ffffff;
+.sidemenu ul.smenu > li a:hover {
+	color: #fff;
+}
+.sidemenu ul.smenu > li > a:hover {
+	padding-left: 17px;
+	border-left: 3px solid #ECECEA;
+	margin-bottom: 1px;
 }
 
 .sidemenu ul.smenu > li.active > a {
@@ -90,7 +111,7 @@ html, body {
 .smenu li ul > li a {
 	padding-left: 40px;
 	border-left: 0px;
-	background: #000;
+	background: #474747;
 }
 
 .smenu li ul.parent li a:hover {
@@ -129,8 +150,8 @@ html, body {
 
 
 /* Let's get this party started */
-.sidemenu-body::-webkit-scrollbar {
-	width: 3px;
+.sidemenu ::-webkit-scrollbar {
+	width: 4px;
 }
 
 ::-webkit-scrollbar {
@@ -145,18 +166,30 @@ html, body {
 }
 
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	background: rgba(255,0,0,0.5);
+	background: rgba(0,0,0,0.5);
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(255,0,0,0.4);
+	background: rgba(0,0,0,0.4);
 }
 
 
+.sidemenu ::-webkit-scrollbar-thumb {
+	background: rgba(255,255,255,0.5);
+}
+
+
+.sidemenu-footer img {
+	-webkit-filter: grayscale(1);
+	filter: grayscale(1);
+}
 
 .m-r-5 {
 	margin-right: 5px;
 }
+
+
