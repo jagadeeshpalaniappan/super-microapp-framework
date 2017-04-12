@@ -97,12 +97,12 @@ html, body {
 	transition: padding-left 0.5s;
 }
 
-.active > div > .sidemenu {
+.sidemenu-minimized > div > .sidemenu {
 	margin-left: -150px;
 	transition: margin-left 0.5s;
 }
 
-.active > div > .main-content {
+.sidemenu-minimized > div > .main-content {
 	padding-left: 50px;
 	transition: padding-left 0.5s;
 }

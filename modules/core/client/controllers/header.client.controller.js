@@ -48,19 +48,20 @@
     };
 
 
+    // Side Menu
 
     vm.isSideMenuClosed = false;
 
-    var wrapper = angular.element(document.querySelector(".wrapper"));
+    var body = angular.element(document.querySelector("body"));
 
     vm.toggleSideMenu =function () {
       vm.isSideMenuClosed = !vm.isSideMenuClosed;
-      wrapper.toggleClass("active");
+      body.toggleClass("sidemenu-minimized");
     };
 
     vm.openSideMenu =function () {
       vm.isSideMenuClosed = false;
-      wrapper.removeClass("active");
+      body.removeClass("sidemenu-minimized");
     };
 
 
