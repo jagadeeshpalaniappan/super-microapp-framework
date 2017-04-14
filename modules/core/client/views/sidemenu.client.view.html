@@ -2,11 +2,12 @@
 
   <ul class="sidemenu-header">
     <li>
-      <a href="/#/">
+ <span class="glyphicon glyphicon-align-justify pull-default" role="button"
+       ng-click="vm.toggleSideMenu()"></span>
+
+      <a href="/#/" ng-hide="vm.isSideMenuClosed">
         SUPER APP
       </a>
-      <span class="glyphicon glyphicon-align-justify pull-right" role="button"
-            ng-click="vm.toggleSideMenu()"></span>
     </li>
 
   </ul>
@@ -15,9 +16,15 @@
 
     <ul class="smenu">
       <li>
-        <a href="/#/"><span class="glyphicon glyphicon-dashboard"
-                            ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed}"></span>
-          Dasboard</a>
+        <a href="/#/">
+
+          <span class="glyphicon glyphicon-dashboard"></span>
+
+
+          <span ng-hide="vm.isSideMenuClosed">Dasboard</span>
+
+
+        </a>
       </li>
     </ul>
 
@@ -25,10 +32,9 @@
       <li ng-repeat="microapp in vm.microapps" ng-class="{'active': vm.isMenuActive(microapp)}">
         <a href="/mapp/{{microapp.title}}">
 
-          <span class="glyphicon glyphicon-heart"
-                ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed}"></span>
+          <span class="glyphicon glyphicon-heart"></span>
 
-          {{microapp.title}}
+          <span ng-hide="vm.isSideMenuClosed"> {{microapp.title}} </span>
 
         </a>
       </li>
@@ -43,13 +49,12 @@
         <!-- drop-down -->
         <a ng-switch-when="dropdown" role="button" ng-click="vm.toggleDropDown(item)">
 
-          <span class="glyphicon glyphicon-star"
-                ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed, 'active': $state.includes(item.state)}"></span>
+          <span class="glyphicon glyphicon-star" ng-class="{'active': $state.includes(item.state)}"></span>
 
-          {{::item.title}}
+          <span ng-hide="vm.isSideMenuClosed">{{::item.title}}</span>
 
-          <span class="pull-right-container glyphicon"
-                ng-class="{'glyphicon-chevron-left': !vm.isSideMenuClosed && vm.isDropDownCollapsed(item), 'glyphicon-chevron-down': !vm.isSideMenuClosed && !vm.isDropDownCollapsed(item) }"></span>
+																																				  <span class="caret-icon glyphicon"
+                                                                                ng-class="{'glyphicon-chevron-left': !vm.isSideMenuClosed && vm.isDropDownCollapsed(item), 'glyphicon-chevron-down': !vm.isSideMenuClosed && !vm.isDropDownCollapsed(item) }"></span>
 
         </a>
 
@@ -59,7 +64,7 @@
               ng-if="subitem.shouldRender(vm.authentication.user);"
               ng-class="{'active': $state.includes(subitem.state)}">
 
-            <a href="{{vm.getRootAppUrl(subitem.state, subitem.params)}}">{{::subitem.title}}</a>
+            <a href="{{vm.getRootAppUrl(subitem.state, subitem.params)}}" ng-hide="vm.isSideMenuClosed">{{::subitem.title}}</a>
 
 
           </li>
@@ -68,10 +73,10 @@
 
         <a ng-switch-default href="{{vm.getRootAppUrl(item.state)}}">
 
-          <span class="glyphicon glyphicon-heart"
-                ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed}"></span>
+<span class="glyphicon glyphicon-heart"
+  ></span>
 
-          {{::item.title}}
+          <span ng-hide="vm.isSideMenuClosed"> {{::item.title}} </span>
 
         </a>
       </li>
@@ -82,11 +87,16 @@
 
   <ul class="smenu sidemenu-footer" ng-if="!vm.authentication.user">
     <li ui-sref-active="active">
-      <a ui-sref="authentication.signup">Sign Up <span class="glyphicon glyphicon-user pull-right"></span></a>
+      <a href="{{vm.getRootAppUrl('authentication.signup')}}">
+        <span class="glyphicon glyphicon-user"></span>
+        <span ng-hide="vm.isSideMenuClosed">Sign Up</span></a>
     </li>
     <li class="divider-vertical"></li>
     <li ui-sref-active="active">
-      <a ui-sref="authentication.signin">Sign In <span class="glyphicon glyphicon-log-in pull-right"></span></a>
+      <a href="{{vm.getRootAppUrl('authentication.signin')}}">
+        <span class="glyphicon glyphicon-log-in"></span>
+        <span ng-hide="vm.isSideMenuClosed">Sign In</span>
+      </a>
     </li>
   </ul>
 
@@ -95,25 +105,25 @@
     <li ng-init="vm.accountMenu.isCollapsed=true">
 
 
-      <a role="button"
-         style="padding-right: 11px" title="{{::vm.authentication.user.displayName}}"
+      <a role="button" title="{{::vm.authentication.user.displayName}}"
          ng-click="vm.toggleDropDown(vm.accountMenu)">
 
-        {{ vm.authentication.user.displayName | characters:15 :true }}
-
         <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}"
-             class="header-profile-image-mini pull-right"/>
+             class="header-profile-image-mini"/>
+
+        <span ng-hide="vm.isSideMenuClosed">{{ vm.authentication.user.displayName | characters:15 :true }}</span>
+
       </a>
 
 
       <ul uib-collapse="vm.isDropDownCollapsed(vm.accountMenu)">
         <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items"
             ng-class="{'active': $state.includes(item.state)}">
-          <a href="{{vm.getRootAppUrl(item.state)}}">{{::item.title}}</a>
+          <a href="{{vm.getRootAppUrl(item.state)}}" ng-hide="vm.isSideMenuClosed">{{::item.title}}</a>
         </li>
         <li class="divider"></li>
         <li>
-          <a href="/api/auth/signout" target="_self">Signout</a>
+          <a href="/api/auth/signout" target="_self" ng-hide="vm.isSideMenuClosed">Signout</a>
         </li>
       </ul>
     </li>

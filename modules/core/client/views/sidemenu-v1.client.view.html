@@ -1,0 +1,124 @@
+<div ng-controller="RootHeaderController as vm">
+
+  <ul class="sidemenu-header">
+    <li>
+      <a href="/#/">
+        SUPER APP
+      </a>
+      <span class="glyphicon glyphicon-align-justify pull-right" role="button"
+            ng-click="vm.toggleSideMenu()"></span>
+    </li>
+
+  </ul>
+
+  <div class="sidemenu-body">
+
+    <ul class="smenu">
+      <li>
+        <a href="/#/"><span class="glyphicon glyphicon-dashboard"
+                            ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed}"></span>
+          Dasboard</a>
+      </li>
+    </ul>
+
+    <ul class="smenu">
+      <li ng-repeat="microapp in vm.microapps" ng-class="{'active': vm.isMenuActive(microapp)}">
+        <a href="/mapp/{{microapp.title}}">
+
+          <span class="glyphicon glyphicon-heart"
+                ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed}"></span>
+
+          {{microapp.title}}
+
+        </a>
+      </li>
+    </ul>
+
+
+    <ul class="smenu" ng-if="vm.menu.shouldRender(vm.authentication.user)">
+      <li ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);"
+          ng-switch="item.type" ng-class="{'active': $state.includes(item.state)}"
+          class="{{item.class}}" ng-init="item.isCollapsed=true">
+
+        <!-- drop-down -->
+        <a ng-switch-when="dropdown" role="button" ng-click="vm.toggleDropDown(item)">
+
+          <span class="glyphicon glyphicon-star"
+                ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed, 'active': $state.includes(item.state)}"></span>
+
+          {{::item.title}}
+
+          <span class="pull-right-container glyphicon"
+                ng-class="{'glyphicon-chevron-left': !vm.isSideMenuClosed && vm.isDropDownCollapsed(item), 'glyphicon-chevron-down': !vm.isSideMenuClosed && !vm.isDropDownCollapsed(item) }"></span>
+
+        </a>
+
+
+        <ul ng-switch-when="dropdown" uib-collapse="vm.isDropDownCollapsed(item)">
+          <li ng-repeat="subitem in item.items | orderBy: 'position'"
+              ng-if="subitem.shouldRender(vm.authentication.user);"
+              ng-class="{'active': $state.includes(subitem.state)}">
+
+            <a href="{{vm.getRootAppUrl(subitem.state, subitem.params)}}">{{::subitem.title}}</a>
+
+
+          </li>
+        </ul>
+
+
+        <a ng-switch-default href="{{vm.getRootAppUrl(item.state)}}">
+
+          <span class="glyphicon glyphicon-heart"
+                ng-class="{'pull-right': vm.isSideMenuClosed, 'pull-default': !vm.isSideMenuClosed}"></span>
+
+          {{::item.title}}
+
+        </a>
+      </li>
+    </ul>
+
+  </div>
+
+
+  <ul class="smenu sidemenu-footer" ng-if="!vm.authentication.user">
+    <li ui-sref-active="active">
+      <a ui-sref="authentication.signup">Sign Up <span class="glyphicon glyphicon-user pull-right"></span></a>
+    </li>
+    <li class="divider-vertical"></li>
+    <li ui-sref-active="active">
+      <a ui-sref="authentication.signin">Sign In <span class="glyphicon glyphicon-log-in pull-right"></span></a>
+    </li>
+  </ul>
+
+
+  <ul class="smenu sidemenu-footer" ng-if="vm.authentication.user">
+    <li ng-init="vm.accountMenu.isCollapsed=true">
+
+
+      <a role="button"
+         style="padding-right: 11px" title="{{::vm.authentication.user.displayName}}"
+         ng-click="vm.toggleDropDown(vm.accountMenu)">
+
+        {{ vm.authentication.user.displayName | characters:15 :true }}
+
+        <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}"
+             class="header-profile-image-mini pull-right"/>
+      </a>
+
+
+      <ul uib-collapse="vm.isDropDownCollapsed(vm.accountMenu)">
+        <li ui-sref-active="active" ng-repeat="item in vm.accountMenu.items"
+            ng-class="{'active': $state.includes(item.state)}">
+          <a href="{{vm.getRootAppUrl(item.state)}}">{{::item.title}}</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="/api/auth/signout" target="_self">Signout</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+
+</div>
+
