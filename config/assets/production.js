@@ -13,6 +13,9 @@ module.exports = {
         // endbower
       ],
       js: [
+        'public/lib/jquery/dist/jquery.min.js'
+      ],
+      ngAppJs: [
         // bower:js
         'public/lib/angular/angular.min.js',
         'public/lib/angular-animate/angular-animate.min.js',

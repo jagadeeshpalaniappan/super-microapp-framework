@@ -161,6 +161,11 @@ var initGlobalConfigFiles = function (config, assets) {
   // Setting Globbed js files
   config.files.client.js = getGlobbedPaths(assets.client.lib.js, 'public/').concat(getGlobbedPaths(assets.client.js, ['public/']));
 
+
+  // Setting Globbed js files
+  config.files.client.ngAppJs = getGlobbedPaths(assets.client.lib.ngAppJs, 'public/').concat(getGlobbedPaths(assets.client.ngAppJs, ['public/']));
+
+
   // Setting Globbed css files
   config.files.client.css = getGlobbedPaths(assets.client.lib.css, 'public/').concat(getGlobbedPaths(assets.client.css, ['public/']));
 

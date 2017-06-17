@@ -14,7 +14,11 @@ module.exports = {
       ],
       js: [
         // bower:js
-        //'public/lib/jquery/dist/jquery.js',
+        'public/lib/jquery/dist/jquery.js'
+        // endbower
+      ],
+      ngAppJs: [
+        // bower:js
         'public/lib/angular/angular.js',
         'public/lib/angular-animate/angular-animate.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
@@ -40,6 +44,9 @@ module.exports = {
       'modules/*/client/scss/*.scss'
     ],
     js: [
+      'modules/core/client/plain/*.js'
+    ],
+    ngAppJs: [
       'modules/core/client/app/config.js',
       'modules/core/client/app/init.js',
       'modules/*/client/*.js',

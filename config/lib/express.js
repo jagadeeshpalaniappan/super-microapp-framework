@@ -39,6 +39,7 @@ module.exports.initLocalVariables = function (app) {
   app.locals.facebookAppId = config.facebook.clientID;
   app.locals.twitterUsername = config.twitter.username;
   app.locals.jsFiles = config.files.client.js;
+  app.locals.ngAppJsFiles = config.files.client.ngAppJs;
   app.locals.cssFiles = config.files.client.css;
   app.locals.livereload = config.livereload;
   app.locals.logo = config.logo;
