@@ -271,7 +271,7 @@ exports.renderNotFound = function (req, res) {
  */
 exports.renderAuthApp = function (req, res) {
 
-  res.render('modules/core/server/views/authapp', {
+  res.render('modules/core/server/views/authappindex', {
     sharedConfig: JSON.stringify(config.shared),
     isRootApp: true
   });
