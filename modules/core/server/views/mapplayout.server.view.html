@@ -32,9 +32,9 @@
   <link href="/{{favicon}}" rel="shortcut icon" type="image/x-icon">
 
   <!-- Application CSS Files -->
-  {{#each cssFiles}}<link rel="stylesheet" href="/{{this}}">{{/each}}
-
-  <!-- JS -->
+  {{#each cssFiles}}
+  <link rel="stylesheet" href="/{{this}}">
+  {{/each}}
 
 
   <noscript>
@@ -50,21 +50,40 @@
 
   <!--Embedding The User Object-->
   <script type="text/javascript">
-    var user = {{{ user }}};
+    var user = null;
+    var microAppConfig = null;
     var env = "{{ env }}";
   </script>
+
+  {{#if user}}
+  <script type="text/javascript">
+    user = {{{ user }}};
+  </script>
+  {{/if}}
+
+  {{#if microAppConfig}}
+  <script type="text/javascript">
+    microAppConfig = {{{ microAppConfig }}};
+  </script>
+  {{/if}}
+
 
   <!--Load The Socket.io File-->
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 
   <!--Application JavaScript Files-->
-    {{#each jsFiles}}<script type="text/javascript" src="/{{this}}"></script>{{/each}}
-  
+  {{#each jsFiles}}
+  <script type="text/javascript" src="/{{this}}"></script>
+  {{/each}}
+
   <!--owasp config sync-->
+  <!--
   <script type="text/javascript">
     var sharedConfig = {{{ sharedConfig }}};
     owaspPasswordStrengthTest.config(sharedConfig.owasp);
   </script>
+-->
+
 
   {{#if livereload}}
   <!--Livereload script rendered -->
@@ -72,89 +91,79 @@
   {{/if}}
 
 
-  <!-- /JS -->
 </head>
 
-<body class="ng-cloak">
+<body>
 
 
-  <!--<header ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-fixed-top navbar-inverse"></header>-->
+<!-- side menu -->
+<div class="sidemenu sidemenu-inverse ">
 
+  <div>
 
-  <header class="navbar navbar-fixed-top navbar-inverse">
-    
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span> 
-      </button>
-      <a class="navbar-brand" href="/#/">J-MICROAPPS</a>
-    </div>
+    <ul class="sidemenu-header">
+      <li>
+          <span id="sideMenuBtn" class="glyphicon glyphicon-align-justify pull-default" role="button"
+                ng-click="vm.toggleSideMenu()"></span>
 
-    
-    <nav class="collapse navbar-collapse" id="myNavbar">
+        <a href="/#/">
+          <span class="hide-on-small-menu">SUPER APP</span>
+        </a>
+      </li>
 
+    </ul>
 
-      <ul class="nav navbar-nav">
-        <li><a href="/mapp/mapp1">Mapp 1</a></li>
-        <li><a href="/mapp/mapp2">Mapp 2</a></li> 
-        <li><a href="/mapp/mapp3">Mapp 3</a></li> 
+    <div class="sidemenu-body">
+
+      <ul class="smenu">
+        <li>
+          <a href="/#/">
+            <span class="glyphicon glyphicon-dashboard"></span>
+            <span class="hide-on-small-menu">Dasboard</span>
+          </a>
+        </li>
       </ul>
 
-
-    
-        {{#if user}}
-          
-            <ul class="nav navbar-nav navbar-right">
-
-              <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href>
-                  <img alt="Admin User" class="header-profile-image" ng-src="/modules/users/client/img/profile/default.png" src="/modules/users/client/img/profile/default.png">
-                  <span>xxxx User</span> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  
-                  <li>
-                    <a href="/#/settings/profile">Edit Profile</a>
-                  </li>
-                  <li>
-                    <a  href="/#/settings/picture">Edit Profile Picture</a>
-                  </li>
-                  <li>
-                    <a href="/#/settings/password">Change Password</a>
-                  </li>
-                  <li>
-                    <a href="/#/settings/accounts">Manage Social Accounts</a>
-                  </li>
-                  
-                  <li class="divider"></li>
-                  <li><a href="/api/auth/signout"><span class="glyphicon glyphicon-log-in"></span> Sign Out</a></li>
-
-                </ul>
-              </li>
-
-            </ul>
+      <ul class="smenu">
+        <li ng-repeat="microapp in vm.microapps" ng-class="{'active': vm.isMenuActive(microapp)}">
+          <a href="/mapp/app1">
+            <span class="glyphicon glyphicon-heart"></span>
+            <span class="hide-on-small-menu"> app1 </span>
+          </a>
+        </li>
 
 
-        {{else}}
-        
-          <ul class="nav navbar-nav navbar-right">
-              <li><a href="/#/authentication/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-              <li><a href="/#/authentication/signin"><span class="glyphicon glyphicon-log-in"></span> Sign In</a></li>
-            </ul>
+        <li>
+          <a href="/api/auth/signout" target="_self">Signout</a>
+        </li>
 
-        {{/if}}
+      </ul>
 
-
-    </nav>
+    </div>
   </div>
-  </header>
+
+</div>
+
+<!-- / side menu -->
 
 
- 
-  {{{block "content"}}}
+<!-- Micro App -->
+
+<div id="microApp">
+  <div class="main-content">
+    <div class="container-fluid">
+
+      (NO -NG Layout) -- Mapp Layout
+
+      {{{block "microAppContent"}}}
+
+
+    </div>
+
+  </div>
+
+</div>
+
 
 </body>
 
