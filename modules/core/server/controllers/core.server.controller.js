@@ -94,7 +94,7 @@ exports.renderIndex = function (req, res) {
 
   var safeUserObject = _getSafeUserObject(req, res);
 
-  res.render('modules/core/server/views/index', {
+  res.render('modules/core/server/views/mappindex', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared),
     isRootApp: true
@@ -158,7 +158,7 @@ exports.renderMicroAppIndex = function (req, res) {
         console.log('################ requestedMicroAppConfig');
         console.log(requestedMicroAppConfig);
 
-        res.render('modules/core/server/views/index', {
+        res.render('modules/core/server/views/mappindex', {
           user: safeUserObject ? JSON.stringify(safeUserObject) : null,
           sharedConfig: JSON.stringify(config.shared),
           microAppBody: microAppBody,
@@ -176,7 +176,7 @@ exports.renderMicroAppIndex = function (req, res) {
         microAppBody = microAppBody+ '<p> Message: '+err.message+'</p>';
 
 
-        res.render('modules/core/server/views/index', {
+        res.render('modules/core/server/views/mappindex', {
           user: safeUserObject ? JSON.stringify(safeUserObject) : null,
           sharedConfig: JSON.stringify(config.shared),
           microAppBody: microAppBody,
@@ -189,7 +189,7 @@ exports.renderMicroAppIndex = function (req, res) {
 
     var microAppBody = '<br><br><h1> Micro App Not Found :( </h1>';
 
-    res.render('modules/core/server/views/index', {
+    res.render('modules/core/server/views/mappindex', {
       user: safeUserObject ? JSON.stringify(safeUserObject) : null,
       sharedConfig: JSON.stringify(config.shared),
       microAppBody: microAppBody,
