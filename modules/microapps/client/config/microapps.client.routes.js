@@ -12,7 +12,10 @@
       .state('microapps', {
         abstract: true,
         url: '/microapps',
-        template: '<ui-view/>'
+        template: '<ui-view/>',
+        data: {
+          roles: ['user', 'admin']
+        }
       })
       .state('microapps.list', {
         url: '',
