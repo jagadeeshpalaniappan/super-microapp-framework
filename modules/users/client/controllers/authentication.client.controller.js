@@ -68,9 +68,13 @@
     function onUserSignupSuccess(response) {
       // If successful we assign the response to the global user model
       vm.authentication.user = response;
-      Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Signup successful!' });
+      // Notification.success({ message: '<i class="glyphicon glyphicon-ok"></i> Signup successful!' });
+
       // And redirect to the previous or home page
-      $state.go($state.previous.state.name || 'home', $state.previous.params);
+      // $state.go($state.previous.state.name || 'home', $state.previous.params);
+
+      // Go to -Plain Home Page
+      window.location.href = '/';
     }
 
     function onUserSignupError(response) {
@@ -80,9 +84,21 @@
     function onUserSigninSuccess(response) {
       // If successful we assign the response to the global user model
       vm.authentication.user = response;
-      Notification.info({ message: 'Welcome ' + response.firstName });
+
+      // Notification.info({ message: 'Welcome ' + response.firstName });
+
       // And redirect to the previous or home page
-      $state.go($state.previous.state.name || 'home', $state.previous.params);
+      //$state.go($state.previous.state.name || 'home', $state.previous.params);
+
+      var redirectUrl = '/';
+      if ($state.previous.state.name) {
+        // wrong url
+        // redirectUrl = getRootAppUrl($state.previous.state.name, $state.previous.params)
+      }
+
+      // Go to -Plain Home Page
+      window.location.href = redirectUrl;
+
     }
 
     function onUserSigninError(response) {
