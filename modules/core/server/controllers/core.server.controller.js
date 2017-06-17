@@ -25,6 +25,18 @@ var _redirectFormattedUrl = function(req, res) {
 
 };
 
+
+var _redirectForAuthentication = function(req, res) {
+
+  if (!req.user) {
+    console.log('_redirectForAuthentication ::  User Not Logged In (Redirect to Auth (NG) App)');
+    console.log(req.user);
+    // User Not Logged In (Redirect to Auth (NG) App):
+    res.redirect('/auth/');
+  }
+
+};
+
 var _getSafeUserObject = function (req, res) {
 
   var safeUserObject = null;
@@ -78,6 +90,8 @@ exports.renderIndex = function (req, res) {
 
   _redirectFormattedUrl(req, res);
 
+  _redirectForAuthentication(req, res);
+
   var safeUserObject = _getSafeUserObject(req, res);
 
   res.render('modules/core/server/views/index', {
@@ -98,6 +112,8 @@ exports.renderMicroAppIndex = function (req, res) {
   console.log('-------------------renderMicroAppIndex [' + microAppId + ']---------------------');
 
   _redirectFormattedUrl(req, res);
+
+  _redirectForAuthentication(req, res);
 
   // Common:
   var safeUserObject = _getSafeUserObject(req, res);
@@ -247,4 +263,17 @@ exports.renderNotFound = function (req, res) {
       res.send('Path not found');
     }
   });
+};
+
+
+/**
+ * Render the server error page
+ */
+exports.renderAuthApp = function (req, res) {
+
+  res.render('modules/core/server/views/authapp', {
+    sharedConfig: JSON.stringify(config.shared),
+    isRootApp: true
+  });
+
 };
