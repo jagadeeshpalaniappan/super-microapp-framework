@@ -225,6 +225,11 @@ html, body {
 }
 
 
+#rootApp .navbar {
+	margin-left: -15px;
+	margin-right: -15px;
+	border-radius: 0;
+}
 
 #microApp .navbar {
 	margin-left: -15px;

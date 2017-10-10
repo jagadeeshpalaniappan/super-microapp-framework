@@ -102,44 +102,32 @@
   <div>
 
     <ul class="sidemenu-header">
-      <li>
-          <span id="sideMenuBtn" class="glyphicon glyphicon-align-justify pull-default" role="button"
-                ng-click="vm.toggleSideMenu()"></span>
 
-        <a href="/">
-          <span class="hide-on-small-menu">SUPER APP</span>
-        </a>
-      </li>
+        <li>
+            <span id="sideMenuBtn" class="glyphicon glyphicon-align-justify pull-default" role="button"
+                  ng-click="vm.toggleSideMenu()"></span>
+
+          <a href="/">
+            <span class="hide-on-small-menu">SUPER APP</span>
+          </a>
+        </li>
 
     </ul>
 
     <div class="sidemenu-body">
 
       <ul class="smenu">
+
+        {{#each allMicroAppsConfig}}
+
         <li>
-          <a href="/mapp/app1">
+          <a href="/mapp/{{this.title}}">
             <span class="glyphicon glyphicon-dashboard"></span>
-            <span class="hide-on-small-menu">Dasboard</span>
-          </a>
-        </li>
-      </ul>
-
-      <ul class="smenu">
-        <li ng-repeat="microapp in vm.microapps" ng-class="{'active': vm.isMenuActive(microapp)}">
-          <a href="/mapp/app1">
-            <span class="glyphicon glyphicon-heart"></span>
-            <span class="hide-on-small-menu"> app1 </span>
+            <span class="hide-on-small-menu">{{this.title}}</span>
           </a>
         </li>
 
-        <li class="divider"></li>
-
-        <li>
-          <a href="/mapp/admin">
-            <span class="glyphicon glyphicon-user"></span>
-            <span class="hide-on-small-menu"> Admin </span>
-          </a>
-        </li>
+        {{/each}}
 
         <li>
           <a href="/api/auth/signout" target="_self">

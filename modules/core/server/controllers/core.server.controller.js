@@ -88,16 +88,20 @@ var _getMicroAppRqstHeader = function (req) {
  */
 exports.renderIndex = function (req, res) {
 
+  console.log('------------------- renderIndex ---------------------');
+
   _redirectFormattedUrl(req, res);
 
   _redirectForAuthentication(req, res);
 
+  var allMicroAppsConfig = cache.get('allMicroAppsConfig');
   var safeUserObject = _getSafeUserObject(req, res);
 
-  res.render('modules/core/server/views/mappindex', {
+  res.render('modules/core/server/views/index', {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared),
-    isRootApp: true
+    isRootApp: true,
+    allMicroAppsConfig: allMicroAppsConfig
   });
 };
 
@@ -162,7 +166,8 @@ exports.renderMicroAppIndex = function (req, res) {
           user: safeUserObject ? JSON.stringify(safeUserObject) : null,
           sharedConfig: JSON.stringify(config.shared),
           microAppBody: microAppBody,
-          microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null
+          microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null,
+          allMicroAppsConfig: allMicroAppsConfig
         });
 
 
@@ -180,7 +185,8 @@ exports.renderMicroAppIndex = function (req, res) {
           user: safeUserObject ? JSON.stringify(safeUserObject) : null,
           sharedConfig: JSON.stringify(config.shared),
           microAppBody: microAppBody,
-          microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null
+          microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null,
+          allMicroAppsConfig: allMicroAppsConfig
         });
 
       });
@@ -193,7 +199,8 @@ exports.renderMicroAppIndex = function (req, res) {
       user: safeUserObject ? JSON.stringify(safeUserObject) : null,
       sharedConfig: JSON.stringify(config.shared),
       microAppBody: microAppBody,
-      microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null
+      microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null,
+      allMicroAppsConfig: allMicroAppsConfig
     });
 
   }

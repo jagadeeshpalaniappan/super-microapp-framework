@@ -32,9 +32,7 @@
   <link href="/{{favicon}}" rel="shortcut icon" type="image/x-icon">
 
   <!-- Application CSS Files -->
-  {{#each cssFiles}}
-  <link rel="stylesheet" href="/{{this}}">
-  {{/each}}
+  {{#each cssFiles}}<link rel="stylesheet" href="/{{this}}">{{/each}}
 
 
   <noscript>
@@ -72,9 +70,15 @@
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 
   <!--Application JavaScript Files-->
+  <!--Core JS-->
   {{#each jsFiles}}
   <script type="text/javascript" src="/{{this}}"></script>
   {{/each}}
+  <!--Angular JS-->
+  {{#each ngAppJsFiles}}
+  <script type="text/javascript" src="/{{this}}"></script>
+  {{/each}}
+
 
   <!--owasp config sync-->
   <script type="text/javascript">
@@ -92,49 +96,76 @@
 
 <body>
 
-  <div id="rootApp">
 
-    <div ng-include="'/modules/core/client/views/sidemenu.client.view.html'" class="sidemenu sidemenu-inverse"></div>
+<!-- side menu -->
+<div class="sidemenu sidemenu-inverse ">
 
-    {{#if isRootApp}}
+  <div>
 
-    <!-- Root App -->
-    <div class="main-content">
-      <div class="container-fluid">
+    <ul class="sidemenu-header">
 
-        {{{block "rootAppContent"}}}
+      <li>
+            <span id="sideMenuBtn" class="glyphicon glyphicon-align-justify pull-default" role="button"
+                  ng-click="vm.toggleSideMenu()"></span>
 
-      </div>
+        <a href="/">
+          <span class="hide-on-small-menu">SUPER APP</span>
+        </a>
+      </li>
+
+    </ul>
+
+    <div class="sidemenu-body">
+
+      <ul class="smenu">
+
+        {{#each allMicroAppsConfig}}
+
+        <li>
+          <a href="/mapp/{{this.title}}">
+            <span class="glyphicon glyphicon-dashboard"></span>
+            <span class="hide-on-small-menu">{{this.title}}</span>
+          </a>
+        </li>
+
+        {{/each}}
+
+        <li>
+          <a href="/api/auth/signout" target="_self">
+
+            <span class="glyphicon glyphicon-log-out"></span>
+            <span class="hide-on-small-menu"> SignOut </span>
+
+          </a>
+        </li>
+
+      </ul>
 
     </div>
+  </div>
+
+</div>
+
+<!-- / side menu -->
 
 
-    {{/if}}
+<div id="rootApp">
 
+  <!-- Auth App -->
+  <div class="main-content">
+    <div class="container-fluid">
+
+      <header ng-include="'modules/core/client/views/header.client.view.html'"
+              class="navbar navbar-default navbar-inverse navbar-micro-app"></header>
+
+      {{{block "rootAppContent"}}}
+
+    </div>
 
   </div>
 
 
-  {{#unless isRootApp}}
-
-  <!-- Micro App -->
-
-  <div id="microApp">
-    <div class="main-content">
-      <div class="container-fluid">
-
-        {{{block "microAppContent"}}}
-
-
-      </div>
-
-    </div>
-
-  </div>
-
-  {{/unless}}
-
-
+</div>
 
 </body>
 
