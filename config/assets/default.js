@@ -7,14 +7,27 @@ module.exports = {
     lib: {
       css: [
         // bower:css
-        'public/lib/bootstrap/dist/css/bootstrap.css',
+        'public/lib/gentelella/vendors/bootstrap/dist/css/bootstrap.min.css',
+        'public/lib/gentelella/vendors/font-awesome/css/font-awesome.min.css',
+        'public/lib/gentelella/vendors/nprogress/nprogress.css',
+        'public/lib/gentelella/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css',
+        'public/lib/gentelella/build/css/custom.min.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
         'public/lib/angular-ui-notification/dist/angular-ui-notification.css'
         // endbower
       ],
       js: [
         // bower:js
-        'public/lib/jquery/dist/jquery.js'
+        'public/lib/gentelella/vendors/jquery/dist/jquery.min.js',
+        'public/lib/gentelella/vendors/bootstrap/dist/js/bootstrap.min.js',
+        'public/lib/gentelella/vendors/fastclick/lib/fastclick.js',
+        'public/lib/gentelella/vendors/nprogress/nprogress.js',
+        'public/lib/gentelella/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js',
+        // endbower
+      ],
+      postBodyJs: [
+        // bower:js
+        'public/lib/gentelella/build/js/custom.min.js'
         // endbower
       ],
       ngAppJs: [
