@@ -101,7 +101,8 @@ exports.renderIndex = function (req, res) {
     user: JSON.stringify(safeUserObject),
     sharedConfig: JSON.stringify(config.shared),
     isRootApp: true,
-    allMicroAppsConfig: allMicroAppsConfig
+    allMicroAppsConfig: allMicroAppsConfig,
+    userObj: safeUserObject || null
   });
 };
 
@@ -167,7 +168,8 @@ exports.renderMicroAppIndex = function (req, res) {
           sharedConfig: JSON.stringify(config.shared),
           microAppBody: microAppBody,
           microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null,
-          allMicroAppsConfig: allMicroAppsConfig
+          allMicroAppsConfig: allMicroAppsConfig,
+          userObj: safeUserObject || null
         });
 
 
@@ -186,7 +188,8 @@ exports.renderMicroAppIndex = function (req, res) {
           sharedConfig: JSON.stringify(config.shared),
           microAppBody: microAppBody,
           microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null,
-          allMicroAppsConfig: allMicroAppsConfig
+          allMicroAppsConfig: allMicroAppsConfig,
+          userObj: safeUserObject || null
         });
 
       });
@@ -200,7 +203,8 @@ exports.renderMicroAppIndex = function (req, res) {
       sharedConfig: JSON.stringify(config.shared),
       microAppBody: microAppBody,
       microAppConfig: requestedMicroAppConfig ? JSON.stringify(requestedMicroAppConfig) : null,
-      allMicroAppsConfig: allMicroAppsConfig
+      allMicroAppsConfig: allMicroAppsConfig,
+      userObj: safeUserObject || null
     });
 
   }
