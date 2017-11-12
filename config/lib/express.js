@@ -117,7 +117,12 @@ module.exports.initMiddleware = function (app) {
  * Configure view engine
  */
 module.exports.initViewEngine = function (app) {
+
+  //REGISTER: hbs partial location
+  var hbsPartialDirList = [path.join(__dirname, '../../modules/core/server/views/partials')];
+
   app.engine('server.view.html', hbs.express4({
+    partialsDir: hbsPartialDirList,
     extname: '.server.view.html'
   }));
   app.set('view engine', 'server.view.html');
