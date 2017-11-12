@@ -25,6 +25,9 @@ var ArticleSchema = new Schema({
     default: '',
     trim: true
   },
+  sideNavIndex: {
+    type: Number
+  },
   user: {
     type: Schema.ObjectId,
     ref: 'User'

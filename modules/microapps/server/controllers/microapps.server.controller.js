@@ -53,6 +53,7 @@ exports.update = function (req, res) {
 
   microapp.title = req.body.title;
   microapp.content = req.body.content;
+  microapp.sideNavIndex = req.body.sideNavIndex;
 
   microapp.save(function (err) {
     if (err) {
@@ -92,7 +93,7 @@ exports.delete = function (req, res) {
  * List of MicroApps
  */
 exports.list = function (req, res) {
-  MicroApp.find().sort('-created').populate('user', 'displayName').exec(function (err, microapps) {
+  MicroApp.find().sort('sideNavIndex').populate('user', 'displayName').exec(function (err, microapps) {
     if (err) {
       return res.status(422).send({
         message: errorHandler.getErrorMessage(err)

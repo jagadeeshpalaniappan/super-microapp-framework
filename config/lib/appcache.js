@@ -15,7 +15,7 @@ var _updateMicroAppsConfigCache = function () {
 
   var MicroApp = mongoose.model('MicroApp');
 
-  MicroApp.find().sort('-created').populate('user', 'displayName').exec(function (err, allMicroAppsConfig) {
+  MicroApp.find().sort('sideNavIndex').populate('user', 'displayName').exec(function (err, allMicroAppsConfig) {
     if (err) {
       // err getting micro apps config --from db
     } else {
