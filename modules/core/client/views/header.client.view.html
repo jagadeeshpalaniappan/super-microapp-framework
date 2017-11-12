@@ -8,7 +8,7 @@
   </div>
 
 
-    <ul class="nav navbar-nav navbar-right" ng-show="vm.authentication.user">
+    <ul class="nav navbar-nav navbar-right" ng-if="vm.menu.shouldRender(vm.authentication.user);">
 
       <!-- user menu -->
       <li class="dropdown" uib-dropdown>
@@ -100,6 +100,7 @@
       <!-- menu -->
       <li role="presentation" ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
         <a ng-switch-when="dropdown" class="dropdown-toggle info-number" uib-dropdown-toggle role="button">
+          <!--{{::item.title}}&nbsp;<span class="caret"></span>-->
           <i class="fa fa-envelope-o"></i>
         </a>
         <ul ng-switch-when="dropdown" class="dropdown-menu">
