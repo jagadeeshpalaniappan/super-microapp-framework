@@ -28,6 +28,11 @@ var ArticleSchema = new Schema({
   sideNavIndex: {
     type: Number
   },
+  sideNavIconClass: {
+    type: String,
+    default: '',
+    trim: true
+  },
   user: {
     type: Schema.ObjectId,
     ref: 'User'

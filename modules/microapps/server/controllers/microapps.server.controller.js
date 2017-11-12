@@ -54,6 +54,7 @@ exports.update = function (req, res) {
   microapp.title = req.body.title;
   microapp.content = req.body.content;
   microapp.sideNavIndex = req.body.sideNavIndex;
+  microapp.sideNavIconClass = req.body.sideNavIconClass;
 
   microapp.save(function (err) {
     if (err) {

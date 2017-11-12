@@ -134,7 +134,12 @@
               {{#each allMicroAppsConfig}}
               <li>
                 <a href="/mapp/{{this.title}}">
-                  <i class="fa fa-laptop"></i> {{this.title}}
+                  {{#if this.sideNavIconClass}}
+                  <i class="{{this.sideNavIconClass}}"></i>
+                  {{else}}
+                  <i class="fa fa-cube"></i>
+                  {{/if}}
+                  {{this.title}}
                 </a>
               </li>
               {{/each}}
