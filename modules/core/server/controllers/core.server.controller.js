@@ -179,10 +179,9 @@ exports.renderMicroAppIndex = function (req, res) {
         console.log('Micro App [ %s ] :: Request Failed', microAppId);
 
 
-        var microAppBody = '<div class="right_col" role="main" style="height: 100%"> <div class="">'
-        +'<br><br><h1> Micro App ['+ microAppId +'] Found, But its not responding :( </h1>';
+        var microAppBody = '<br><br><h1> Micro App ['+ microAppId +'] Found, But its not responding :( </h1>';
         microAppBody = microAppBody+ '<p> Status Code: '+err.statusCode+'</p>';
-        microAppBody = microAppBody+ '<p> Message: '+err.message+'</p></div></div>';
+        microAppBody = microAppBody+ '<p> Message: '+err.message+'</p>';
 
 
         res.render('modules/core/server/views/mappindex', {
@@ -198,8 +197,7 @@ exports.renderMicroAppIndex = function (req, res) {
 
   } else {
 
-    var microAppBody = '<div class="right_col" role="main" style="height: 100%"> <div class="">'
-      +'<br><br><h1> Micro App Not Found :( </h1></div></div>';
+    var microAppBody = '<br><br><h1> Micro App Not Found :( </h1>';
 
     res.render('modules/core/server/views/mappindex', {
       user: safeUserObject ? JSON.stringify(safeUserObject) : null,
