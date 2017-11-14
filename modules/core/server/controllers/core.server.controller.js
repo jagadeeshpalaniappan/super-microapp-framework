@@ -133,7 +133,7 @@ exports.renderMicroAppIndex = function (req, res) {
   // console.log('### allMicroAppsConfig');
   // console.log(allMicroAppsConfig);
 
-  var requestedMicroAppConfig = _.find(allMicroAppsConfig, { 'title': microAppId });
+  var requestedMicroAppConfig = _.find(allMicroAppsConfig, { 'appId': microAppId });
 
   if (requestedMicroAppConfig) {
 
@@ -223,7 +223,7 @@ exports.proxyAllMicroAppRequest = function (req, res, next) {
   // console.log('### allMicroAppsConfig');
   // console.log(allMicroAppsConfig);
 
-  var requestedMicroAppConfig = _.find(allMicroAppsConfig, { 'title': microAppId });
+  var requestedMicroAppConfig = _.find(allMicroAppsConfig, { 'appId': microAppId });
 
   if (requestedMicroAppConfig) {
 

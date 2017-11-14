@@ -52,9 +52,11 @@ exports.update = function (req, res) {
   var microapp = req.microapp;
 
   microapp.title = req.body.title;
+  microapp.appId = req.body.appId;
   microapp.content = req.body.content;
   microapp.sideNavIndex = req.body.sideNavIndex;
   microapp.sideNavIconClass = req.body.sideNavIconClass;
+
 
   microapp.save(function (err) {
     if (err) {
