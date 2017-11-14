@@ -44,24 +44,12 @@ a:hover .header-profile-image {
 /*********** Jag CSS **************/
 /* Removing gentella margin-left and applying to .jag_right_col */
 .main_container .top_nav,
-.nav-sm .main_container .top_nav,
-.nav-md .container.body .right_col,
-.nav-sm .container.body .right_col{
+.nav-sm .main_container .top_nav{
 	margin-left: 0;
 }
 
-.nav-md .container.body .jag_right_col {
-	margin-left: 230px;
+.nav-sm .container.body .right_col,
+.nav-md .container.body .right_col {
+	padding: 0;
 }
-.nav-sm .container.body .jag_right_col{
-	margin-left: 70px;
-}
-
-
-.jag_right_col {
-	height: 100%;
-	min-height: 374px;
-	background: #F7F7F7;
-}
-
 /*********** /Jag CSS **************/
