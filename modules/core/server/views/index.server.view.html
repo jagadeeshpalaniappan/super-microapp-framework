@@ -3,27 +3,25 @@
 {{#if isRootApp}}
 {{#contentFor 'rootAppContent'}}
 
-<div>
-
-  <!-- top navigation -->
-  <div class="top_nav" ng-include="'modules/core/client/views/header.client.view.html'">
-  </div>
-
-  <!-- /top navigation -->
-
-
-  <!-- page content -->
-  <div class="right_col" role="main" style="height: 100%">
-    <div class="">
-      <br/>
-      <br/>
-      <br/>
-      <section ui-view></section>
-    </div>
-  </div>
-  <!-- /page content -->
-
+<!-- top navigation -->
+<div class="top_nav" ng-include="'modules/core/client/views/header.client.view.html'">
 </div>
+
+<!-- /top navigation -->
+
+
+<!-- page content -->
+<div class="right_col" role="main" style="height: 100%">
+  <div class="">
+    <br/>
+    <br/>
+    <br/>
+    <section ui-view></section>
+  </div>
+</div>
+<!-- /page content -->
+
+
 {{/contentFor}}
 {{/if}}
 

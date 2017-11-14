@@ -39,3 +39,22 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
+
+/*********** Jag CSS **************/
+/* Removing gentella margin-left and applying to .jag_right_col */
+.main_container .top_nav,
+.nav-sm .main_container .top_nav,
+.nav-md .container.body .right_col,
+.nav-sm .container.body .right_col{
+	margin-left: 0;
+}
+
+.nav-md .container.body .jag_right_col {
+	margin-left: 230px;
+}
+.nav-sm .container.body .jag_right_col{
+	margin-left: 70px;
+}
+
+/*********** /Jag CSS **************/
