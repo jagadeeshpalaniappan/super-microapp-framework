@@ -58,9 +58,21 @@ div.top_nav {
 	margin-bottom: 10px;
 }
 
-@media (max-width: 991px) {
-	.nav-md .container.body .right_col, .nav-md .container.body .top_nav.mobile-2-row {
+@media (max-width: 413px) {
+	.nav-sm .container.body .top_nav.mobile-2-row {
 		min-height: 120px;
+	}
+}
+
+@media (max-width: 342px) {
+	.nav-md .container.body .top_nav.mobile-2-row {
+		min-height: 120px;
+	}
+}
+
+@media (max-width: 991px) {
+	.nav-md .container.body .right_col, .nav-md .container.body .top_nav {
+		margin-bottom: 10px;
 	}
 }
 /*********** /Jag CSS **************/
