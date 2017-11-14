@@ -3,9 +3,9 @@
 
   <nav role="navigation">
 
-  <div class="nav toggle">
-    <a onclick="toggleSideNavMenu();"><i class="fa fa-bars"></i></a>
-  </div>
+    <div class="nav toggle">
+      <a onclick="toggleSideNavMenu();"><i class="fa fa-bars"></i></a>
+    </div>
 
 
     <ul class="nav navbar-nav navbar-right" ng-if="vm.menu.shouldRender(vm.authentication.user);">
@@ -13,7 +13,8 @@
       <!-- user menu -->
       <li class="dropdown" uib-dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" uib-dropdown-toggle role="button">
-          <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}" class="header-profile-image" />
+          <img ng-src="/{{vm.authentication.user.profileImageURL}}" alt="{{vm.authentication.user.displayName}}"
+               class="header-profile-image"/>
           <span class="hidden-xs">
             {{::vm.authentication.user.displayName}}<b class="caret"></b>
           </span>
@@ -30,6 +31,7 @@
       </li>
 
       <!-- notifications menu -->
+
       <li role="presentation" class="dropdown">
         <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
           <i class="fa fa-envelope-o"></i>
@@ -63,32 +65,6 @@
             </a>
           </li>
           <li>
-            <a>
-                  <span class="image"><img src="/modules/users/client/img/profile/default.png"
-                                           alt="Profile Image"/></span>
-                            <span>
-                              <span>John Smith</span>
-                              <span class="time">3 mins ago</span>
-                            </span>
-                            <span class="message">
-                              Film festivals used to be do-or-die moments for movie makers. They were where...
-                            </span>
-            </a>
-          </li>
-          <li>
-            <a>
-                  <span class="image"><img src="/modules/users/client/img/profile/default.png"
-                                           alt="Profile Image"/></span>
-                            <span>
-                              <span>John Smith</span>
-                              <span class="time">3 mins ago</span>
-                            </span>
-                            <span class="message">
-                              Film festivals used to be do-or-die moments for movie makers. They were where...
-                            </span>
-            </a>
-          </li>
-          <li>
             <div class="text-center">
               <a>
                 <strong>See All Alerts</strong>
@@ -100,13 +76,17 @@
       </li>
 
       <!-- menu -->
-      <li role="presentation" ng-repeat="item in vm.menu.items | orderBy: 'position'" ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type" ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}" uib-dropdown="item.type === 'dropdown'">
+      <li role="presentation" ng-repeat="item in vm.menu.items | orderBy: 'position'"
+          ng-if="item.shouldRender(vm.authentication.user);" ng-switch="item.type"
+          ng-class="{ dropdown: item.type === 'dropdown' }" ui-sref-active="active" class="{{item.class}}"
+          uib-dropdown="item.type === 'dropdown'">
         <a ng-switch-when="dropdown" class="dropdown-toggle info-number" uib-dropdown-toggle role="button">
           <i class="fa fa-star"></i>
           <span class="hidden-xs">{{::item.title}}&nbsp;<span class="caret"></span></span>
         </a>
         <ul ng-switch-when="dropdown" class="dropdown-menu">
-          <li ng-repeat="subitem in item.items | orderBy: 'position'" ng-if="subitem.shouldRender(vm.authentication.user);">
+          <li ng-repeat="subitem in item.items | orderBy: 'position'"
+              ng-if="subitem.shouldRender(vm.authentication.user);">
             <a ui-sref="{{subitem.state}}({{subitem.params}})" ng-bind="subitem.title"></a>
           </li>
         </ul>
