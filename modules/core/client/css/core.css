@@ -50,6 +50,11 @@ a:hover .header-profile-image {
 
 .nav-sm .container.body .right_col,
 .nav-md .container.body .right_col {
-	padding: 0;
+	padding: 0 !important;
+}
+
+div.top_nav {
+	min-height: 60px;
+	margin-bottom: 10px;
 }
 /*********** /Jag CSS **************/
