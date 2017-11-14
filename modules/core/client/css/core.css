@@ -75,4 +75,25 @@ div.top_nav {
 		margin-bottom: 10px;
 	}
 }
+
+.nav_title{
+	height: inherit;
+}
+
+.site_title {
+	height: inherit;
+}
+
+.menu_section {
+	margin-top: 12px;
+	margin-bottom: 0;
+}
+
+.menu_section h3 {
+	background: #172D44;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	color: #5A738E;
+	text-shadow: none;
+}
 /*********** /Jag CSS **************/
