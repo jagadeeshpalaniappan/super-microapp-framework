@@ -29,7 +29,7 @@
         <ul class="nav side-menu">
 
           {{#each allMicroAppsConfig}}
-          <li>
+          <li {{#compare this.appId ../microAppConfig.appId}}class="active"{{/compare}}>
             <a href="/mapp/{{this.appId}}">
               {{#if this.sideNavIconClass}}
               <i class="{{this.sideNavIconClass}}"></i>
