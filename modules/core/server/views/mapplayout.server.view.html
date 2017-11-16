@@ -27,32 +27,8 @@
   </div>
 </div>
 
-
-<!--Post Body JS-->
-{{#each postBodyJsFiles}}
-<script type="text/javascript" src="/{{this}}"></script>
-{{/each}}
-
+{{> postbody.server.view}}
 
 </body>
-
-
-<script>
-
-  var toggleSideNavMenu = function () {
-
-    if ($('body').hasClass('nav-md')) {
-      $('#sidebar-menu').find('li.active ul').hide();
-      $('#sidebar-menu').find('li.active').addClass('active-sm').removeClass('active');
-    } else {
-      $('#sidebar-menu').find('li.active-sm ul').show();
-      $('#sidebar-menu').find('li.active-sm').addClass('active').removeClass('active-sm');
-    }
-
-    $('body').toggleClass('nav-md nav-sm');
-
-    // setContentHeight();
-  }
-</script>
 
 </html>
