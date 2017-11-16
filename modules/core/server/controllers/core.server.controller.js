@@ -14,6 +14,8 @@ var cache = require('memory-cache');
 
 var _redirectFormattedUrl = function(req, res) {
 
+  console.log('_redirectFormattedUrl');
+
   // append '/' --if not
   if (!req.path.endsWith('/')) {
     var url = parseUrl(req.url);
